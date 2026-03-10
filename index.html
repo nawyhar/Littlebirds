@@ -1,401 +1,493 @@
-Je vais créer une maquette HTML/CSS responsive basée sur l'image "IMG_3020.png" avec la structure que vous montrez.
+Voici le code HTML/CSS pour votre maquette de site "Histoires des Prophètes". Il crée une interface adaptée aux mobiles et aux ordinateurs, reprenant la structure de votre image.
 
 ```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Histoires des Prophètes · Ibrahim</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Histoires des Prophètes • maquette</title>
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #F5F3F0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
+    body {
+      background: #f3efe7;  /* fond doux, rappelle le vieux papier */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
 
-        .container {
-            max-width: 500px;
-            width: 100%;
-            margin: 0 auto;
-            background: #FFFFFF;
-            border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
-            border: 1px solid #E8E0D5;
-        }
+    /* CARTE PRINCIPALE – reprend l’esprit de l’image */
+    .card {
+      max-width: 1200px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 36px 36px 32px 32px;
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.15), 0 8px 12px -4px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
 
-        /* Header */
-        .header {
-            padding: 24px 24px 16px;
-            border-bottom: 1px solid #EFE9E2;
-        }
+    /* en-tête avec "Historique / FR / EN" */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 12px 24px;
+      border-bottom: 1px solid #eeece5;
+    }
 
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #2C4A3E;
-            letter-spacing: -0.3px;
-            margin-bottom: 12px;
-        }
+    .historique {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #7f6e5a;
+      letter-spacing: 0.3px;
+    }
 
-        .lang-switch {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
+    .historique span {
+      font-size: 1.2rem;
+      margin-right: 4px;
+    }
 
-        .lang-btn {
-            background: #F0EBE5;
-            border: 1px solid #D6CDC2;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #2C4A3E;
-            cursor: default;
-        }
+    .lang-flags {
+      display: flex;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #a58e7a;
+    }
 
-        .lang-btn.active {
-            background: #2C4A3E;
-            color: white;
-            border-color: #2C4A3E;
-        }
+    .lang-flags .fr, .lang-flags .en {
+      cursor: default;
+      padding: 4px 10px;
+      border-radius: 40px;
+      background: #f4f1ea;
+      line-height: 1;
+    }
 
-        /* Section Historique */
-        .historique {
-            background: #FAF8F5;
-            margin: 0 16px 16px;
-            padding: 16px;
-            border-radius: 20px;
-            border: 1px solid #E8E0D5;
-        }
+    .lang-flags .fr { background: #e7e1d7; color: #5e4d3b; }
+    .lang-flags .en { background: #f4f1ea; color: #7b6b58; }
 
-        .historique-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2C4A3E;
-            margin-bottom: 12px;
-        }
+    /* SECTION PROPHÈTE (titre + double drapeau) */
+    .prophete-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 18px 24px 8px 24px;
+    }
 
-        .historique-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px dashed #DDD2C5;
-        }
+    .prophete-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        .historique-item:last-child {
-            border-bottom: none;
-        }
+    .prophete-tag .label {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ab8f74;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
 
-        .historique-item .prophet-name {
-            font-size: 18px;
-            font-weight: 500;
-            color: #5A4A3A;
-        }
+    .prophete-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #3a2c1e;
+      line-height: 1.2;
+    }
 
-        /* Stats */
-        .stats-container {
-            padding: 0 24px 20px;
-        }
+    .prophete-name.ibrahim {
+      background: #f0eadd;
+      padding: 4px 16px 4px 12px;
+      border-radius: 60px;
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 1.6rem;
+    }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 10px;
-        }
+    .double-flag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8f5f0;
+      padding: 6px 16px;
+      border-radius: 60px;
+    }
 
-        .progress-text {
-            font-size: 16px;
-            font-weight: 500;
-            color: #5A4A3A;
-        }
+    .double-flag span {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #5f4d3a;
+    }
 
-        .time-info {
-            font-size: 15px;
-            color: #8B7F72;
-            font-weight: 400;
-        }
+    .double-flag .separator {
+      width: 2px;
+      height: 24px;
+      background: #dcd5cc;
+    }
 
-        .progress-bar {
-            height: 8px;
-            background: #EFE9E2;
-            border-radius: 20px;
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
+    /* PROGRESS BAR + compteur */
+    .progress-section {
+      padding: 10px 24px 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
 
-        .progress-fill {
-            width: 20%;
-            height: 100%;
-            background: #2C4A3E;
-            border-radius: 20px;
-        }
+    .counter {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #4f4236;
+      background: #f2ede6;
+      padding: 6px 20px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
 
-        /* Cartes histoire */
-        .story-cards {
-            padding: 0 24px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+    .bar-container {
+      flex: 1;
+      min-width: 180px;
+      height: 10px;
+      background: #e4dbd0;
+      border-radius: 100px;
+      overflow: hidden;
+    }
 
-        .story-card {
-            background: #FAF8F5;
-            border: 1px solid #E8E0D5;
-            border-radius: 20px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .bar-fill {
+      width: 20%; /* 5/25 = 20% */
+      height: 100%;
+      background: #b08f72;
+      border-radius: 100px;
+    }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* MINIATURE TEMPS / LECTURE */
+    .time-box {
+      padding: 12px 24px 4px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .prophet-tag {
-            background: #2C4A3E;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 500;
-            display: inline-block;
-        }
+    .time-chip {
+      background: #e8dfd4;
+      border-radius: 40px;
+      padding: 10px 22px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #3b2e21;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        .lang-mini {
-            display: flex;
-            gap: 8px;
-        }
+    .time-chip .icon {
+      font-size: 1.4rem;
+    }
 
-        .lang-mini span {
-            font-size: 14px;
-            font-weight: 500;
-            color: #8B7F72;
-            padding: 4px 10px;
-            background: #F0EBE5;
-            border-radius: 30px;
-            border: 1px solid #DDD2C5;
-        }
+    /* DOUBLE BOUTON "Lire l'histoire" */
+    .double-lire {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 24px 24px 16px 24px;
+      border-bottom: 2px solid #f0eae2;
+    }
 
-        .story-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #2C4A3E;
-            margin: 4px 0;
-        }
+    .lire-btn {
+      flex: 1 1 200px;
+      background: #fcf9f5;
+      border: 2px solid #eadbcb;
+      border-radius: 120px;
+      padding: 16px 10px;
+      font-size: 1.35rem;
+      font-weight: 650;
+      color: #4f3d2c;
+      text-align: center;
+      transition: 0.15s;
+      box-shadow: 0 3px 0 #ddd2c5;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
 
-        .read-btn {
-            background: #2C4A3E;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 60px;
-            font-size: 16px;
-            font-weight: 500;
-            width: 100%;
-            text-align: center;
-            margin-top: 8px;
-            cursor: default;
-            border: 1px solid #1E352A;
-        }
+    .lire-btn .small-flag {
+      font-size: 0.9rem;
+      background: #e2cfbc;
+      padding: 2px 12px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #3f2f1f;
+    }
 
-        /* Version desktop */
-        @media (min-width: 768px) {
-            body {
-                padding: 24px;
-                background: #E8E0D5;
-            }
+    .lire-btn:hover {
+      background: #f5efe8;
+      border-color: #cbb8a5;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #cbb8a5;
+    }
 
-            .container {
-                max-width: 800px;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0;
-            }
+    /* DEUXIÈME occurrence PROPHÈTE (Ibrahim + drapeaux) */
+    .prophete-block {
+      padding: 18px 24px 8px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: #fefcf9;
+    }
 
-            .header {
-                grid-column: 1 / -1;
-                padding: 32px 32px 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-bottom: 1px solid #EFE9E2;
-            }
+    .prophete-large {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-            .header h1 {
-                margin-bottom: 0;
-                font-size: 32px;
-            }
+    .prophete-large .badge {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #8f765d;
+      text-transform: uppercase;
+    }
 
-            .historique {
-                grid-column: 1 / -1;
-                margin: 0 32px 24px;
-                display: flex;
-                flex-direction: column;
-            }
+    .prophete-large .name-xl {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2f241b;
+      background: #f0e5db;
+      padding: 5px 25px;
+      border-radius: 60px;
+      line-height: 1.3;
+    }
 
-            .historique-items {
-                display: flex;
-                gap: 40px;
-            }
+    .flag-pair {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #efe8df;
+      padding: 6px 20px;
+      border-radius: 60px;
+    }
 
-            .historique-item {
-                flex: 1;
-                border-bottom: none;
-                border-right: 1px dashed #DDD2C5;
-                padding-right: 20px;
-            }
+    .flag-pair span {
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #5b4c3d;
+    }
 
-            .historique-item:last-child {
-                border-right: none;
-            }
+    .flag-pair .divider {
+      width: 2px;
+      height: 26px;
+      background: #cdc0b2;
+    }
 
-            .stats-container {
-                grid-column: 1 / -1;
-                padding: 0 32px 24px;
-            }
+    /* bas de carte : "Histoires des Prophètes" avec drapeaux */
+    .footer-title {
+      padding: 20px 24px 24px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      border-top: 1px solid #ece3d9;
+    }
 
-            .story-cards {
-                grid-column: 1 / -1;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 24px;
-                padding: 0 32px 32px;
-            }
+    .footer-title .main-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #3a3027;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
 
-            .story-card {
-                margin: 0;
-            }
-        }
+    .footer-title .main-title small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #b29880;
+      margin-left: 8px;
+    }
 
-        /* Éléments spécifiques de l'image */
-        .mini-langs {
-            display: flex;
-            gap: 8px;
-            margin: 16px 24px;
-            padding-top: 8px;
-            border-top: 1px solid #EFE9E2;
-        }
+    .footer-flags {
+      display: flex;
+      gap: 12px;
+      background: #ebe1d6;
+      padding: 6px 24px;
+      border-radius: 60px;
+    }
 
-        .mini-langs span {
-            background: #F0EBE5;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 14px;
-            color: #2C4A3E;
-            border: 1px solid #D6CDC2;
-        }
-    </style>
+    .footer-flags span {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4f3b28;
+    }
+
+    /* aucun détail superflu, tout est visible */
+    .attribution {
+      margin-top: 14px;
+      color: #ac9b89;
+      font-size: 0.8rem;
+    }
+
+    /* --- RESPONSIVE TWEAKS (mobile first, mais déjà flexible) --- */
+    @media (max-width: 600px) {
+      body { padding: 8px; }
+      .card { border-radius: 24px; }
+
+      .top-bar { padding: 16px 18px 8px; }
+      .historique { font-size: 0.9rem; }
+      .lang-flags { gap: 6px; }
+      .lang-flags .fr, .lang-flags .en { padding: 3px 8px; font-size: 0.9rem; }
+
+      .prophete-row { padding: 12px 18px 4px; }
+      .prophete-name.ibrahim { font-size: 1.3rem; padding: 3px 14px; }
+      .double-flag { padding: 4px 10px; gap: 6px; }
+      .double-flag span { font-size: 1rem; }
+
+      .progress-section { padding: 8px 18px 0; gap: 10px; }
+      .counter { font-size: 0.9rem; padding: 4px 14px; }
+      .bar-container { min-width: 120px; }
+
+      .time-box { padding: 6px 18px 0; }
+      .time-chip { padding: 6px 14px; font-size: 1rem; }
+
+      .double-lire { padding: 16px 18px; gap: 10px; }
+      .lire-btn { padding: 12px 8px; font-size: 1.1rem; }
+
+      .prophete-block { padding: 14px 18px 4px; }
+      .prophete-large .name-xl { font-size: 1.6rem; padding: 4px 18px; }
+      .flag-pair { padding: 4px 12px; }
+      .flag-pair span { font-size: 1.1rem; }
+
+      .footer-title { padding: 16px 18px 20px; }
+      .footer-title .main-title { font-size: 1.3rem; }
+      .footer-flags { padding: 4px 16px; }
+      .footer-flags span { font-size: 1.1rem; }
+    }
+
+    /* ajustement pour très petits écrans */
+    @media (max-width: 400px) {
+      .prophete-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .double-flag { align-self: flex-start; }
+      .prophete-block { flex-direction: column; align-items: start; gap: 10px; }
+      .footer-title { flex-direction: column; gap: 12px; }
+    }
+
+    /* on garde la proportion du texte */
+    .lire-btn .small-flag {
+      background: #dacfc4;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header avec titre et langues -->
-        <div class="header">
-            <h1>Histoires des Prophètes</h1>
-            <div class="lang-switch">
-                <span class="lang-btn active">FR</span>
-                <span class="lang-btn">EN</span>
-            </div>
-        </div>
-
-        <!-- Section Historique -->
-        <div class="historique">
-            <div class="historique-title">Historique</div>
-            <div class="historique-items">
-                <div class="historique-item">
-                    <span class="prophet-name">Prophète Ibrahim</span>
-                </div>
-                <div class="historique-item">
-                    <span class="prophet-name">Prophète Ibrahim</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Statistiques de progression -->
-        <div class="stats-container">
-            <div class="progress-info">
-                <span class="progress-text">5 / 25 Histoires visionnés</span>
-                <span class="time-info">1.24 | 11:09</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-        </div>
-
-        <!-- Cartes d'histoire (deux fois "Lire l'histoire") -->
-        <div class="story-cards">
-            <!-- Première carte -->
-            <div class="story-card">
-                <div class="card-header">
-                    <span class="prophet-tag">Prophète Ibrahim</span>
-                    <div class="lang-mini">
-                        <span>FR</span>
-                        <span>EN</span>
-                    </div>
-                </div>
-                <div class="story-title">Lire l'histoire</div>
-                <div class="read-btn">Lire l'histoire</div>
-            </div>
-
-            <!-- Deuxième carte (identique pour correspondre à l'image) -->
-            <div class="story-card">
-                <div class="card-header">
-                    <span class="prophet-tag">Prophète Ibrahim</span>
-                    <div class="lang-mini">
-                        <span>FR</span>
-                        <span>EN</span>
-                    </div>
-                </div>
-                <div class="story-title">Lire l'histoire</div>
-                <div class="read-btn">Lire l'histoire</div>
-            </div>
-        </div>
-
-        <!-- Éléments additionnels pour correspondre à toutes les mentions de l'image -->
-        <div class="mini-langs">
-            <span>FR</span>
-            <span>EN</span>
-        </div>
-
-        <!-- Petite répétition des titres pour coller au contenu de l'image -->
-        <div style="padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 8px; background: #FAF8F5; border-top: 1px solid #EFE9E2;">
-            <div style="font-weight: 600; color: #2C4A3E;">Prophète Ibrahim</div>
-            <div style="display: flex; gap: 12px;">
-                <span style="background: #F0EBE5; padding: 4px 14px; border-radius: 30px;">FR</span>
-                <span style="background: #F0EBE5; padding: 4px 14px; border-radius: 30px;">EN</span>
-            </div>
-        </div>
+  <div class="card">
+    <!-- ligne Historique / FR - EN (identique à l'image) -->
+    <div class="top-bar">
+      <div class="historique">
+        <span>📜</span> Historique
+      </div>
+      <div class="lang-flags">
+        <span class="fr">FR</span>
+        <span class="en">EN</span>
+      </div>
     </div>
+
+    <!-- Prophète Ibrahim (première apparition) + drapeaux FR EN à droite -->
+    <div class="prophete-row">
+      <div class="prophete-tag">
+        <span class="label">Prophète</span>
+        <span class="prophete-name ibrahim">Prophète Ibrahim</span>
+      </div>
+      <div class="double-flag">
+        <span>FR</span>
+        <span class="separator"></span>
+        <span>EN</span>
+      </div>
+    </div>
+
+    <!-- barre de progression : 5 / 25 Histoires visionnés -->
+    <div class="progress-section">
+      <div class="counter">5 / 25 Histoires visionnés</div>
+      <div class="bar-container">
+        <div class="bar-fill" style="width:20%"></div>
+      </div>
+    </div>
+
+    <!-- bloc 1.24 | 11:09  (time chip) -->
+    <div class="time-box">
+      <div class="time-chip">
+        <span class="icon">⏳</span> 1.24 | 11:09
+      </div>
+    </div>
+
+    <!-- DOUBLE BOUTON Lire l'histoire (FR/EN) -->
+    <div class="double-lire">
+      <div class="lire-btn"><span>Lire l'histoire</span> <span class="small-flag">FR</span></div>
+      <div class="lire-btn"><span>Lire l'histoire</span> <span class="small-flag">EN</span></div>
+    </div>
+
+    <!-- ligne Prophète (encore une fois, comme dans l'image) avec Prophète Ibrahim et FR / EN côte à côte -->
+    <div class="prophete-block">
+      <div class="prophete-large">
+        <span class="badge">Prophète</span>
+        <span class="name-xl">Prophète Ibrahim</span>
+      </div>
+      <div class="flag-pair">
+        <span>FR</span>
+        <span class="divider"></span>
+        <span>EN</span>
+      </div>
+    </div>
+
+    <!-- dernier bloc : Histoires des Prophètes + FR / EN (conforme à l'image) -->
+    <div class="footer-title">
+      <div class="main-title">
+        Histoires des Prophètes
+        <small></small>
+      </div>
+      <div class="footer-flags">
+        <span>FR</span>
+        <span style="color:#b9a38e;">|</span>
+        <span>EN</span>
+      </div>
+    </div>
+
+    <!-- petit rappel visuel du nom (présent sur l'image en bas) -->
+    <div style="padding: 6px 24px 20px 24px; font-size: 0.9rem; color: #b4a088; display: flex; gap: 16px; flex-wrap: wrap; border-top: 1px dashed #f0e4d8;">
+      <span>📖 Prophète Ibrahim • 5/25</span>
+      <span>1.24 | 11:09</span>
+    </div>
+    <!-- on garde l'esprit dense de la maquette -->
+  </div>
+
+  <!-- simple légende pour le contexte de maquette -->
+  <div class="attribution">
+    maquette conforme à l'image • structure identique • mobile/desktop ready
+  </div>
 </body>
 </html>
 ```
 
-Cette maquette reproduit fidèlement la structure de votre image avec tous les éléments demandés :
+Structure et adaptation de l'interface
 
-· En-tête : "Histoires des Prophètes" avec les boutons FR/EN
-· Section Historique : liste des prophètes consultés
-· Barre de progression : "5/25 Histoires visionnés" avec l'indicateur temporel
-· Cartes d'histoire : deux blocs "Lire l'histoire" avec les tags Prophète Ibrahim et les indicateurs de langue
-· Éléments secondaires : toutes les occurrences de "FR/EN" et "Prophète Ibrahim" présentes dans l'image
+Cette maquette reproduit fidèlement les éléments visuels de votre image tout en s'adaptant automatiquement aux écrans.
 
-La mise en page est totalement responsive :
-
-· Sur mobile : affichage en colonne, cartes empilées
-· Sur tablette/desktop (à partir de 768px) : disposition en deux colonnes pour les cartes et meilleure répartition des éléments
+· Barre de progression et compteur : La section 5 / 25 Histoires visionnés est accompagnée d'une barre de progression remplie à 20%, offrant un aperçu immédiat de l'avancement.
+· Blocs "Lire l'histoire" : Deux boutons distincts pour le français et l'anglais permettent de lancer la lecture. Leur style change au survol sur ordinateur pour un effet interactif.
+· Adaptation responsive : La mise en page s'ajuste de manière fluide. Sur mobile (moins de 600px), les polices et les espacements se réduisent, et certains blocs (comme la première ligne "Prophète") passent en colonne pour une lisibilité optimale.
