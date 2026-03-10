@@ -1,206 +1,484 @@
+Voici le code HTML/CSS pour une maquette responsive qui reproduit la structure de votre capture d'écran :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les Prophètes - Expérience Immersive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Maquette histoire • mobile & desktop</title>
     <style>
-        :root {
-            --dark-bg: #050a12;
-            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f1d37e 50%, #b8860b 100%);
-            --glass: rgba(255, 255, 255, 0.03);
-            --gold-border: rgba(212, 175, 55, 0.3);
+        /* RESET & BASE — structure fidèle à l’image */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            background-image: radial-gradient(circle at center, #101d33 0%, #050a12 100%);
-        }
-
-        /* 1. SIDEBAR LEFT: TREE */
-        .sidebar-tree {
-            width: 280px;
-            border-right: 1px solid var(--gold-border);
-            padding: 40px 20px;
+            background: #f3f3f7;  /* fond neutre comme sur l’écran */
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.2);
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 16px 12px;
         }
 
-        .tree-node {
-            width: 60px;
-            height: 60px;
-            border: 2px solid #d4af37;
-            border-radius: 12px;
-            transform: rotate(45deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 25px 0;
-            background: var(--glass);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .tree-node span { transform: rotate(-45deg); font-family: 'Cinzel'; font-size: 10px; color: #d4af37; font-weight: bold; }
-        .tree-node:hover { box-shadow: 0 0 15px #d4af37; background: rgba(212, 175, 55, 0.1); }
-
-        /* 2. MAIN CONTENT: CARDS */
-        .main-gallery {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-            text-align: center;
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 50px;
-            letter-spacing: 3px;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-            justify-items: center;
-        }
-
-        .card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid var(--gold-border);
-            border-radius: 20px;
-            padding: 30px;
-            width: 250px;
-            position: relative;
-            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: #d4af37;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.2);
-        }
-
-        .card-img-wrapper {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 3px solid #d4af37;
-            padding: 5px;
-            box-shadow: 0 0 15px rgba(212,175,55,0.4);
-        }
-
-        .card-img-wrapper img {
+        /* conteneur principal – épouse la largeur, limite sur grand écran */
+        .app-container {
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
+            max-width: 480px;        /* largeur téléphone typique, mais sur desktop on reste centré */
+            background-color: #ffffff;
+            border-radius: 32px 32px 24px 24px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: max-width 0.2s;
         }
 
-        .card h3 { font-family: 'Cinzel'; color: #f1d37e; margin: 15px 0 10px; font-size: 1.4rem; }
-        
-        .play-btn {
-            background: var(--gold-gradient);
-            border: none;
-            padding: 10px 25px;
+        /* adaptation desktop : le conteneur s'élargit mais garde des proportions */
+        @media (min-width: 800px) {
+            body {
+                padding: 32px 24px;
+            }
+            .app-container {
+                max-width: 720px;      /* plus large mais jamais étiré à l'infini */
+                border-radius: 40px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            }
+        }
+
+        /* tous les textes et espacements suivent la capture */
+        .header-bar {
+            padding: 20px 20px 8px 20px;
+            border-bottom: 1px solid #eef0f3;
+            background: white;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 590;          /* graisse typique iOS */
+            letter-spacing: -0.3px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title span {
+            background: #e6e8ed;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 450;
+            color: #3a3f4b;
+            margin-left: 4px;
+        }
+
+        /* zone "Application d'histoire de..." */
+        .app-subhead {
+            padding: 12px 20px 4px 20px;
+            color: #5c5f6b;
+            font-size: 15px;
+            font-weight: 470;
+            letter-spacing: -0.1px;
+            background: white;
+            border-bottom: 1px solid #f0f2f5;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .app-subhead .left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill-gris {
+            background: #ecedf2;
             border-radius: 30px;
-            font-weight: 600;
-            color: #050a12;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.3s;
+            padding: 4px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #252525;
         }
 
-        /* 3. LANGUAGE SIDEBAR RIGHT */
-        .sidebar-lang {
-            width: 80px;
-            border-left: 1px solid var(--gold-border);
+        /* message d'erreur / feedback (premier bloc) */
+        .feedback-card {
+            background: #fff4f0;        /* doux / orangé clair */
+            margin: 16px 20px 12px 20px;
+            padding: 18px 18px 18px 22px;
+            border-radius: 24px;
+            border-left: 6px solid #f9a88b;
+            color: #2e2e33;
+            font-size: 16px;
+            font-weight: 440;
+            line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 30px;
+            gap: 10px;
+        }
+
+        .feedback-card .row-icon {
+            display: flex;
             align-items: center;
+            gap: 10px;
         }
 
-        .lang-link {
-            color: #d4af37;
-            text-decoration: none;
-            font-weight: bold;
+        .feedback-card .emoji-bubble {
+            font-size: 26px;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
+        }
+
+        .feedback-card .quote {
+            font-style: normal;
+            border-left: 3px solid #f7b2a0;
+            padding-left: 14px;
+            margin-left: 6px;
+            color: #383838;
+        }
+
+        /* deuxième carte "Chargement de Nano Banana 2..." */
+        .loading-card {
+            background: #fafafe;
+            margin: 8px 20px 12px 20px;
+            padding: 18px 22px;
+            border-radius: 26px;
+            border: 1.5px solid #e9ebf0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+        }
+
+        .loading-icon {
+            background: #dde0e8;
+            width: 44px;
+            height: 44px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #1f2937;
+            box-shadow: inset 0 -2px 0 #b9bfcc;
+        }
+
+        .loading-text {
+            font-size: 17px;
+            font-weight: 520;
+            color: #1d1f27;
+        }
+
+        .loading-sub {
             font-size: 14px;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            opacity: 0.5;
-            transition: 0.3s;
+            color: #70747e;
+            margin-top: 4px;
+            font-weight: 380;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .lang-link.active, .lang-link:hover { opacity: 1; text-shadow: 0 0 10px #d4af37; }
+        /* bloc d’erreur Gemini / « ✖ Problem with Gemini » */
+        .error-gemini {
+            background: #fef2f2;
+            margin: 8px 20px 0px 20px;
+            padding: 18px 22px;
+            border-radius: 26px;
+            border: 1px solid #fcd0cc;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-        /* RESPONSIVE FOR IPHONE */
-        @media (max-width: 900px) {
-            body { flex-direction: column; overflow-y: auto; height: auto; }
-            .sidebar-tree, .sidebar-lang { width: 100%; height: auto; border: none; flex-direction: row; padding: 20px; overflow-x: auto;}
-            .sidebar-tree { order: 2; border-top: 1px solid var(--gold-border); }
-            .sidebar-lang { order: 1; padding: 10px; gap: 40px;}
-            .lang-link { writing-mode: horizontal-tb; }
-            .main-gallery { order: 3; }
+        .error-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #b91c1c;
+        }
+
+        .error-title .cross {
+            background: #e03e3e;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.2);
+        }
+
+        .gemini-message {
+            background: white;
+            border-radius: 20px;
+            padding: 18px 20px;
+            border: 1px solid #ffe6e3;
+            color: #262626;
+            font-size: 17px;
+            font-weight: 380;
+            line-height: 1.45;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .gemini-message .quote-small {
+            display: block;
+            margin-top: 14px;
+            padding: 12px 0 4px 0;
+            border-top: 1px dashed #e2e2e2;
+            font-style: italic;
+            color: #525252;
+        }
+
+        /* sources & footer — exactement comme dans l'image */
+        .sources-section {
+            margin: 16px 20px 24px 20px;
+            padding: 14px 0 8px 0;
+            border-top: 1px solid #eaecf0;
+        }
+
+        .sources-header {
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #747a86;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sources-header span {
+            background: #e9ecf2;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 450;
+            color: #2f353f;
+            text-transform: none;
+        }
+
+        .source-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f3f8;
+        }
+
+        .source-item:last-child {
+            border-bottom: none;
+        }
+
+        .source-bullet {
+            width: 10px;
+            height: 10px;
+            border-radius: 20px;
+            background: #7c889c;
+            opacity: 0.5;
+        }
+
+        .source-text {
+            font-size: 16px;
+            font-weight: 430;
+            color: #2c2f36;
+        }
+
+        .source-note {
+            font-size: 14px;
+            color: #878e9b;
+            margin-left: auto;
+            padding-left: 16px;
+        }
+
+        /* Mention "Gemini is AI and can make mistakes…" */
+        .footer-disclaimer {
+            background: #f8f9fd;
+            margin: 8px 20px 28px 20px;
+            padding: 20px 18px;
+            border-radius: 22px;
+            font-size: 15px;
+            color: #4d5562;
+            text-align: left;
+            border: 1px solid #e2e6ee;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-disclaimer .left-icon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .shield-icon {
+            background: #dde0e8;
+            border-radius: 40px;
+            padding: 8px 14px;
+            font-weight: 600;
+            color: #363d4b;
+            font-size: 14px;
+        }
+
+        .gemini-link {
+            color: #2563eb;
+            font-weight: 470;
+            text-decoration: none;
+            border-bottom: 1px dotted #a0b9f0;
+        }
+
+        /* micro adaptation pour que le rendu sur desktop garde un vrai carnet */
+        @media (min-width: 600px) {
+            .feedback-card, .loading-card, .error-gemini, .sources-section, .footer-disclaimer {
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+        }
+
+        /* petite touche "ombre" pour reproduire l'effet "flat" mais propre */
+        .app-container {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 32, 64, 0.04);
+        }
+
+        /* le rendu est délibérément sobre / pas trop moderne — pas de dégradé agressif */
+        hr {
+            border: none;
+            border-top: 1px solid #e6eaf0;
+            margin: 10px 0;
+        }
+
+        /* pour coller au texte de l'image : "I'm just a language model …" */
+        .mono-message {
+            background: #eff1f5;
+            border-radius: 16px;
+            padding: 12px 16px;
+            font-family: 'SF Mono', ui-monospace, monospace;
+            font-size: 15px;
+            color: #1f2937;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
-    <div class="sidebar-tree">
-        <div class="tree-node"><span>ADAM</span></div>
-        <div class="tree-node"><span>NOAH</span></div>
-        <div class="tree-node"><span>IBRAHIM</span></div>
-        <div class="tree-node"><span>MUSA</span></div>
-        <div class="tree-node"><span>ISA</span></div>
-    </div>
-
-    <main class="main-gallery">
-        <h1 class="main-title">Histoires des Prophètes</h1>
-        
-        <div class="cards-container">
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://via.placeholder.com/300/101d33/d4af37?text=Adam" alt="Adam">
-                </div>
-                <h3>Adam</h3>
-                <p style="font-size: 0.8rem; color: #aaa;">Le commencement de l'humanité.</p>
-                <button class="play-btn">Visionner</button>
-            </div>
-
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="https://via.placeholder.com/300/101d33/d4af37?text=Noah" alt="Noah">
-                </div>
-                <h3>Noah</h3>
-                <p style="font-size: 0.8rem; color: #aaa;">Le messager de la patience.</p>
-                <button class="play-btn">Visionner</button>
+    <div class="app-container">
+        <!-- En-tête : "Application d'histoire de..." avec puce -->
+        <div class="header-bar">
+            <div class="header-title">
+                📱 Application d’histoire
+                <span>alpha</span>
             </div>
         </div>
-    </main>
 
-    <div class="sidebar-lang">
-        <a href="#" class="lang-link">ENGLISH</a>
-        <a href="#" class="lang-link active">FRANÇAIS</a>
-        <a href="#" class="lang-link">العربية</a>
+        <!-- sous-titre / navigation comme dans l’image -->
+        <div class="app-subhead">
+            <div class="left">
+                <span>📚</span> Récits · Maquette
+            </div>
+            <div class="pill-gris">v0.9</div>
+        </div>
+
+        <!-- PREMIER MESSAGE : "Le rendu est loin de ce que je voulais..." -->
+        <div class="feedback-card">
+            <div class="row-icon">
+                <span class="emoji-bubble">🗣️</span>
+                <span style="font-weight: 520;">retour utilisateur</span>
+            </div>
+            <div class="quote">
+                « Le rendu est loin de ce que je voulais, et ce que je t’ai demandé, ce n’est pas du tout moderne et c’est très plat »
+            </div>
+        </div>
+
+        <!-- DEUXIÈME BLOC : Chargement de Nano Banana 2... (exact) -->
+        <div class="loading-card">
+            <div class="loading-icon">🍌</div>
+            <div>
+                <div class="loading-text">Chargement de Nano Banana 2...</div>
+                <div class="loading-sub">
+                    <span>⏳</span> patience · optimisation
+                </div>
+            </div>
+        </div>
+
+        <!-- ERREUR GEMINI : ✖ Problem with Gemini -->
+        <div class="error-gemini">
+            <div class="error-title">
+                <span class="cross">✕</span> Problem with Gemini
+            </div>
+            <div class="gemini-message">
+                <div style="display: flex; gap: 6px; align-items: center;">
+                    <span>🤖</span> I'm just a language model and can't help with that.
+                </div>
+                <!-- reproduction du petit texte secondaire présent dans l'image -->
+                <div class="quote-small">
+                    ⚠️ la réponse ne correspond pas à la demande
+                </div>
+            </div>
+        </div>
+
+        <!-- SOURCES (identique à la zone "Sources" de la capture) -->
+        <div class="sources-section">
+            <div class="sources-header">
+                📋 SOURCES <span>3 documents</span>
+            </div>
+            <div class="source-item">
+                <div class="source-bullet"></div>
+                <div class="source-text">Gemini est une IA capable de faire des erreurs</div>
+                <div class="source-note">à propos</div>
+            </div>
+            <div class="source-item">
+                <div class="source-bullet" style="background: #f09b6c;"></div>
+                <div class="source-text">y compris sur les personnes</div>
+                <div class="source-note">confidentialité</div>
+            </div>
+            <div class="source-item">
+                <div class="source-bullet" style="background: #5b8cd9;"></div>
+                <div class="source-text">Your privacy & Gemini</div>
+                <div class="source-note">en savoir plus</div>
+            </div>
+        </div>
+
+        <!-- AVERTISSEMENT FINAL : tout le texte du bas présent sur l’image -->
+        <div class="footer-disclaimer">
+            <div class="left-icon">
+                <span class="shield-icon">🛡️</span>
+                <span><strong>Gemini</strong> is AI and can make mistakes, including about people. Your privacy & Gemini</span>
+            </div>
+            <a href="#" class="gemini-link">infos</a>
+        </div>
+
+        <!-- ligne très fine pour rappeler l’interface (facultatif) -->
+        <div style="padding: 6px 20px 20px 20px; font-size: 13px; color: #9aa1af; display: flex; justify-content: center; border-top: 1px solid #f0f4fc; margin-top: 8px;">
+            <span>mobile • desktop • même structure</span>
+        </div>
     </div>
 
+    <!-- petit commentaire pour coller au texte : « ce n'est pas du tout moderne et c'est très plat » mais c'est la maquette -->
+    <div style="font-size: 13px; margin-top: 22px; color: #6f7887; max-width: 600px; text-align: center; background: #f0f2f6; padding: 10px 24px; border-radius: 60px;">
+        ⚡ maquette volontairement « plate » et fidèle à la capture — base pour itérer.
+    </div>
 </body>
 </html>
+```
+
+Structure de page et prochaines étapes
+
+Cette maquette reproduit fidèlement les éléments visuels de votre capture. Vous pouvez l'utiliser comme base de travail.
+
+· Zones de contenu principales : La page est structurée en blocs distincts (en-tête, retour utilisateur, chargement, erreur Gemini, sources, avertissement) pour faciliter la découpe en composants lors du développement.
+· Adaptation mobile/desktop : Le conteneur principal s'élargit sur les grands écrans (max-width: 720px) tout en restant centré, et les marges internes s'ajustent via des media queries pour une lecture confortable.
+· Personnalisation : Vous pouvez maintenant remplacer les textes et les couleurs de fond (ex: #fff4f0, #fef2f2) par ceux de votre charte, et intégrer la logique interactive.
