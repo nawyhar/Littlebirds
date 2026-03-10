@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Histoires des Prophètes • maquette</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histoires des Prophètes · Celestial Gold</title>
+  <!-- Fonts & icons (Font Awesome for play button) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* RESET & BASE */
     * {
       margin: 0;
       padding: 0;
@@ -13,469 +14,537 @@
     }
 
     body {
-      background: #f3efe7;  /* fond doux, rappelle le vieux papier */
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0b0c1a; /* deep midnight base */
+      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 16px;
+      padding: 2rem 1rem;
     }
 
-    /* CARTE PRINCIPALE – reprend l’esprit de l’image */
-    .card {
-      max-width: 1200px;
+    /* 4K friendly container */
+    .responsive-showcase {
+      max-width: 1800px;
       width: 100%;
-      background: #ffffff;
-      border-radius: 36px 36px 32px 32px;
-      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.15), 0 8px 12px -4px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: all 0.2s ease;
-    }
-
-    /* en-tête avec "Historique / FR / EN" */
-    .top-bar {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px 12px 24px;
-      border-bottom: 1px solid #eeece5;
+      flex-direction: column;
+      gap: 3rem;
     }
 
-    .historique {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #7f6e5a;
-      letter-spacing: 0.3px;
-    }
-
-    .historique span {
-      font-size: 1.2rem;
-      margin-right: 4px;
-    }
-
-    .lang-flags {
-      display: flex;
-      gap: 14px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #a58e7a;
-    }
-
-    .lang-flags .fr, .lang-flags .en {
-      cursor: default;
-      padding: 4px 10px;
-      border-radius: 40px;
-      background: #f4f1ea;
-      line-height: 1;
-    }
-
-    .lang-flags .fr { background: #e7e1d7; color: #5e4d3b; }
-    .lang-flags .en { background: #f4f1ea; color: #7b6b58; }
-
-    /* SECTION PROPHÈTE (titre + double drapeau) */
-    .prophete-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      padding: 18px 24px 8px 24px;
-    }
-
-    .prophete-tag {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .prophete-tag .label {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #ab8f74;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    .prophete-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #3a2c1e;
-      line-height: 1.2;
-    }
-
-    .prophete-name.ibrahim {
-      background: #f0eadd;
-      padding: 4px 16px 4px 12px;
-      border-radius: 60px;
-      display: inline-block;
-      margin-left: 8px;
-      font-size: 1.6rem;
-    }
-
-    .double-flag {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #f8f5f0;
-      padding: 6px 16px;
-      border-radius: 60px;
-    }
-
-    .double-flag span {
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #5f4d3a;
-    }
-
-    .double-flag .separator {
-      width: 2px;
-      height: 24px;
-      background: #dcd5cc;
-    }
-
-    /* PROGRESS BAR + compteur */
-    .progress-section {
-      padding: 10px 24px 0 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .counter {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #4f4236;
-      background: #f2ede6;
-      padding: 6px 20px;
-      border-radius: 50px;
-      white-space: nowrap;
-    }
-
-    .bar-container {
-      flex: 1;
-      min-width: 180px;
-      height: 10px;
-      background: #e4dbd0;
-      border-radius: 100px;
+    /* === laptop / desktop mock (21:9 vibe) === */
+    .laptop-view {
+      width: 100%;
+      background: radial-gradient(ellipse at 30% 40%, #1a1f2f, #030514 90%);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 2.5rem 2rem;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.9), 0 0 0 2px rgba(212, 175, 55, 0.15) inset, 0 0 40px #ffd96625;
+      backdrop-filter: blur(2px);
+      position: relative;
       overflow: hidden;
     }
 
-    .bar-fill {
-      width: 20%; /* 5/25 = 20% */
-      height: 100%;
-      background: #b08f72;
-      border-radius: 100px;
+    /* golden sparks / dust particles (pure css) */
+    .laptop-view::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><circle cx="15%" cy="22%" r="2" fill="%23eab308" opacity="0.5"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="6s" repeatCount="indefinite" /></circle><circle cx="87%" cy="45%" r="3" fill="%23fbbf24" opacity="0.4"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="5s" repeatCount="indefinite" /></circle><circle cx="44%" cy="81%" r="2" fill="%23ffd966" opacity="0.5"><animate attributeName="r" values="1;3;1" dur="4s" repeatCount="indefinite" /></circle><circle cx="71%" cy="13%" r="2" fill="%23d4a017" opacity="0.3"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="7s" repeatCount="indefinite" /></circle><circle cx="8%" cy="67%" r="3" fill="%23eab308" opacity="0.5"><animate attributeName="r" values="2;4;2" dur="6s" repeatCount="indefinite" /></circle><circle cx="93%" cy="92%" r="2" fill="%23f5c542" opacity="0.6"><animate attributeName="opacity" values="0.2;1;0.2" dur="8s" repeatCount="indefinite" /></circle><circle cx="33%" cy="5%" r="3" fill="%23ffd966" opacity="0.3"><animate attributeName="r" values="2;5;2" dur="9s" repeatCount="indefinite" /></circle></svg>');
+      background-size: cover;
+      pointer-events: none;
+      z-index: 2;
+      mix-blend-mode: screen;
     }
 
-    /* MINIATURE TEMPS / LECTURE */
-    .time-box {
-      padding: 12px 24px 4px 24px;
+    /* main grid layout (laptop) */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 280px 1fr 120px;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ----- left sidebar (family tree, hexagonal nodes) ----- */
+    .family-tree {
+      background: rgba(5, 10, 24, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 2rem 1rem;
+      box-shadow: 0 20px 40px -10px black, 0 0 0 1px #d4af3780 inset;
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 2.5rem;
+      position: relative;
     }
 
-    .time-chip {
-      background: #e8dfd4;
-      border-radius: 40px;
-      padding: 10px 22px;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #3b2e21;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    /* golden glowing line (connector) */
+    .tree-line {
+      position: absolute;
+      width: 4px;
+      background: linear-gradient(180deg, transparent, #f5c542, #b8860b, #f5c542, transparent);
+      left: 50%;
+      transform: translateX(-50%);
+      top: 5%;
+      height: 90%;
+      border-radius: 4px;
+      box-shadow: 0 0 20px #ffbf00, 0 0 40px #d4a017;
+      z-index: 0;
     }
 
-    .time-chip .icon {
-      font-size: 1.4rem;
-    }
-
-    /* DOUBLE BOUTON "Lire l'histoire" */
-    .double-lire {
+    .hex-node {
+      position: relative;
+      z-index: 5;
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding: 24px 24px 16px 24px;
-      border-bottom: 2px solid #f0eae2;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.2rem 0;
     }
 
-    .lire-btn {
-      flex: 1 1 200px;
-      background: #fcf9f5;
-      border: 2px solid #eadbcb;
-      border-radius: 120px;
-      padding: 16px 10px;
-      font-size: 1.35rem;
-      font-weight: 650;
-      color: #4f3d2c;
-      text-align: center;
-      transition: 0.15s;
-      box-shadow: 0 3px 0 #ddd2c5;
-      letter-spacing: -0.2px;
+    /* hexagon shaped container */
+    .hex {
+      width: 100px;
+      height: 110px;
+      background: #0f1424;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 30px #eab308, 0 0 10px #ffd966 inset;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      padding: 5px;
+      transition: all 0.3s;
     }
 
-    .lire-btn .small-flag {
-      font-size: 0.9rem;
-      background: #e2cfbc;
-      padding: 2px 12px;
-      border-radius: 40px;
-      font-weight: 600;
-      color: #3f2f1f;
+    .hex:hover {
+      border-color: #fff3b0;
+      box-shadow: 0 0 45px #f5c542;
     }
 
-    .lire-btn:hover {
-      background: #f5efe8;
-      border-color: #cbb8a5;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 0 #cbb8a5;
+    /* realistic, cinematic portrait (simulated with gradients & emojis? but we use images via css) */
+    .prophet-portrait {
+      width: 94px;
+      height: 100px;
+      clip-path: polygon(24% 0%, 76% 0%, 100% 24%, 100% 76%, 76% 100%, 24% 100%, 0% 76%, 0% 24%);
+      background-size: cover;
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-color: #2c2416;
+      box-shadow: inset 0 0 30px #e5b13b, 0 4px 10px rgba(0,0,0,0.7);
     }
 
-    /* DEUXIÈME occurrence PROPHÈTE (Ibrahim + drapeaux) */
-    .prophete-block {
-      padding: 18px 24px 8px 24px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      background: #fefcf9;
+    /* unique portraits for each prophet (cinematic style) — we use different background images generated with gradients & filters to mimic realistic paintings */
+    .portrait-adam {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233d2e1b"/><circle cx="50" cy="45" r="25" fill="%23c69c6d"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 60 Q50 75,60 60" stroke="%23b87c4b" stroke-width="3" fill="none"/><rect x="40" y="70" width="20" height="30" fill="%23543e1f"/></svg>');
+      background-size: cover;
+    }
+    .portrait-idris {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%232f2a1f"/><circle cx="50" cy="45" r="25" fill="%23dbb484"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23222"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23222"/><path d="M40 60 Q50 80,60 60" stroke="%23945e3a" stroke-width="3" fill="none"/><rect x="42" y="73" width="16" height="25" fill="%235a3e2b"/></svg>');
+    }
+    .portrait-nuh {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233f2d18"/><circle cx="50" cy="45" r="25" fill="%23be8a5c"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 62 Q50 77,60 62" stroke="%2380522c" stroke-width="3" fill="none"/><rect x="42" y="70" width="16" height="28" fill="%23735237"/></svg>');
+    }
+    .portrait-ibrahim {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233d2815"/><circle cx="50" cy="45" r="25" fill="%23d7a46b"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 58 Q50 75,60 58" stroke="%23ad6b3c" stroke-width="3" fill="none"/><rect x="42" y="72" width="16" height="28" fill="%237a5837"/></svg>');
     }
 
-    .prophete-large {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .prophete-large .badge {
+    .prophet-name {
       font-size: 1rem;
-      font-weight: 500;
-      color: #8f765d;
+      letter-spacing: 0.1rem;
+      color: #e9d198;
+      text-shadow: 0 0 8px #f3ba2f, 0 2px 4px black;
+      margin-top: 0.5rem;
+      font-weight: 600;
       text-transform: uppercase;
     }
 
-    .prophete-large .name-xl {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #2f241b;
-      background: #f0e5db;
-      padding: 5px 25px;
-      border-radius: 60px;
-      line-height: 1.3;
+    /* center gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
-    .flag-pair {
+    /* elegant vertical card */
+    .gold-card {
+      background: rgba(8, 12, 27, 0.7);
+      backdrop-filter: blur(6px);
+      border: 2px solid #d4af37;
+      border-radius: 2rem;
+      padding: 1.2rem 0.8rem 1.2rem 0.8rem;
+      box-shadow: 0 20px 30px -10px black, 0 0 30px #ffbf0050, 0 0 0 1px #ffd966 inset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: 0.2s;
+    }
+
+    .gold-card:hover {
+      box-shadow: 0 20px 40px -8px #eab308, 0 0 40px #f5c542;
+      transform: scale(1.02);
+    }
+
+    .card-portrait {
+      width: 100%;
+      aspect-ratio: 2/3;
+      border-radius: 1.5rem;
+      background-size: cover;
+      background-position: center 30%;
+      border: 2px solid #e5b13b;
+      box-shadow: inset 0 -30px 40px #00000099, 0 10px 25px black;
+      margin-bottom: 1rem;
+    }
+
+    /* different portraits for cards */
+    .card-adam { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233a2c18"/><circle cx="50" cy="50" r="35" fill="%23c9a177"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 75 Q50 95,65 75" stroke="%23955e3a" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%234f3e28"/></svg>'); }
+    .card-idris { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233a2f1e"/><circle cx="50" cy="50" r="35" fill="%23dab38b"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 78 Q50 98,65 78" stroke="%23a66034" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%235d4a2f"/></svg>'); }
+    .card-nuh { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233f2d18"/><circle cx="50" cy="50" r="35" fill="%23cf9f6e"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 74 Q50 96,65 74" stroke="%238d572a" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%236d5438"/></svg>'); }
+    .card-ibrahim { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233d2812"/><circle cx="50" cy="50" r="35" fill="%23e0b782"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 72 Q50 94,65 72" stroke="%23b16f3c" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%237e623e"/></svg>'); }
+    .card-mousa { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233d2b14"/><circle cx="50" cy="50" r="35" fill="%23ca9e6b"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 75 Q50 97,65 75" stroke="%239f6234" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%236b4f31"/></svg>'); }
+    .card-issa { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%2338281a"/><circle cx="50" cy="50" r="35" fill="%23d9aa75"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 70 Q50 92,65 70" stroke="%23b17444" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%23745537"/></svg>'); }
+
+    .card-title {
+      font-size: 1.8rem;
+      color: #ecd99b;
+      text-shadow: 0 0 10px gold, 0 2px 5px black;
+      font-weight: 600;
+      border-top: 1px solid #d4af37;
+      border-bottom: 1px solid #d4af37;
+      padding: 0.3rem 0;
+      width: 100%;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* right sidebar language selector */
+    .lang-sidebar {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 3rem;
+      padding: 2rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+      border: 1px solid #d4af3760;
+      box-shadow: 0 0 30px #d4af3720;
+    }
+
+    .lang-item {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e6c27a;
+      text-shadow: 0 0 15px #eab308;
+      letter-spacing: 0.3rem;
+      cursor: default;
+      transition: 0.2s;
+      padding: 0.5rem 0;
+      border-radius: 30px;
+    }
+
+    .lang-item:hover {
+      text-shadow: 0 0 30px #ffd966;
+      color: #f5e1a8;
+      transform: rotate(180deg) scale(1.1);
+    }
+
+    /* ---------- Pop-up Quick View (glassmorphism + desert) ---------- */
+    .popup-quickview {
+      position: absolute;
+      top: 15%;
+      left: 40%;
+      width: 400px;
+      background: rgba(10, 18, 30, 0.5);
+      backdrop-filter: blur(20px);
+      border-radius: 3rem;
+      border: 2px solid #e9c576;
+      box-shadow: 0 30px 60px black, 0 0 80px #ffd966, 0 0 0 1px #ffdb9d inset;
+      padding: 1.5rem;
+      z-index: 50;
+      transform: perspective(1200px) rotateY(-2deg) rotateX(2deg);
+      animation: floatGlow 5s infinite alternate ease-in-out;
+    }
+
+    @keyframes floatGlow {
+      0% { box-shadow: 0 30px 60px black, 0 0 50px #d4a017, 0 0 0 1px #f3c26b inset; transform: perspective(1200px) rotateY(-2deg) rotateX(2deg) translateY(0); }
+      100% { box-shadow: 0 40px 70px black, 0 0 90px #f5c542, 0 0 0 2px #ffecb3 inset; transform: perspective(1200px) rotateY(-3deg) rotateX(3deg) translateY(-8px); }
+    }
+
+    .desert-scene {
+      width: 100%;
+      height: 180px;
+      border-radius: 2rem;
+      background: radial-gradient(circle at 30% 80%, #c9a52c, #6d4c1a, #2c2410);
+      box-shadow: 0 10px 20px black, 0 0 50px #f1c40f;
+      position: relative;
+      border: 1px solid #e9b13b;
+      overflow: hidden;
+    }
+    /* dunes */
+    .desert-scene::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background: linear-gradient(180deg, transparent, #b47d40 70%, #7a561f);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #d4af37dd;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 14px;
-      background: #efe8df;
-      padding: 6px 20px;
-      border-radius: 60px;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: #0b0c1a;
+      box-shadow: 0 0 50px #f1c40f, 0 10px 20px black;
+      border: 3px solid #fff2bf;
+      backdrop-filter: blur(2px);
     }
 
-    .flag-pair span {
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: #5b4c3d;
+    .popup-quickview p {
+      color: #e9d198;
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 1rem 0 0 0;
+      text-shadow: 0 0 15px gold;
     }
 
-    .flag-pair .divider {
-      width: 2px;
-      height: 26px;
-      background: #cdc0b2;
+    /* ----- iPhone mock (responsive) ----- */
+    .iphone-view {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
     }
 
-    /* bas de carte : "Histoires des Prophètes" avec drapeaux */
-    .footer-title {
-      padding: 20px 24px 24px 24px;
+    .iphone-frame {
+      width: 360px;
+      background: #0c0f1c;
+      border-radius: 3rem;
+      padding: 1.5rem 1rem;
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 70px #eab308, 0 30px 40px black;
+      backdrop-filter: blur(10px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* compact family tree row */
+    .mobile-tree {
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      border-top: 1px solid #ece3d9;
+      justify-content: center;
+      gap: 0.6rem;
+      background: #02061780;
+      border-radius: 2rem;
+      padding: 1rem 0.5rem;
+      border: 1px solid #d4af37;
     }
 
-    .footer-title .main-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #3a3027;
-      letter-spacing: -0.3px;
-      line-height: 1.2;
+    .mobile-hex {
+      width: 70px;
+      height: 75px;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+      background-size: cover;
+      border: 2px solid #f3ba2f;
     }
 
-    .footer-title .main-title small {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #b29880;
-      margin-left: 8px;
+    .mobile-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
     }
 
-    .footer-flags {
+    .mobile-card {
+      background: #0f1424d9;
+      border: 1px solid #dbaa37;
+      border-radius: 1.2rem;
+      padding: 0.5rem;
+    }
+
+    .mobile-card .card-portrait {
+      aspect-ratio: 1/1.4;
+    }
+
+    .mobile-lang {
+      flex-direction: row;
+      justify-content: space-around;
       display: flex;
-      gap: 12px;
-      background: #ebe1d6;
-      padding: 6px 24px;
-      border-radius: 60px;
+      padding: 0.5rem;
     }
 
-    .footer-flags span {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #4f3b28;
+    .mobile-lang span {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: 1.2rem;
     }
 
-    /* aucun détail superflu, tout est visible */
-    .attribution {
-      margin-top: 14px;
-      color: #ac9b89;
-      font-size: 0.8rem;
+    .iphone-popup-preview {
+      background: #1d2338b0;
+      backdrop-filter: blur(20px);
+      border-radius: 2rem;
+      border: 1px solid #eab308;
+      padding: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    /* --- RESPONSIVE TWEAKS (mobile first, mais déjà flexible) --- */
-    @media (max-width: 600px) {
-      body { padding: 8px; }
-      .card { border-radius: 24px; }
-
-      .top-bar { padding: 16px 18px 8px; }
-      .historique { font-size: 0.9rem; }
-      .lang-flags { gap: 6px; }
-      .lang-flags .fr, .lang-flags .en { padding: 3px 8px; font-size: 0.9rem; }
-
-      .prophete-row { padding: 12px 18px 4px; }
-      .prophete-name.ibrahim { font-size: 1.3rem; padding: 3px 14px; }
-      .double-flag { padding: 4px 10px; gap: 6px; }
-      .double-flag span { font-size: 1rem; }
-
-      .progress-section { padding: 8px 18px 0; gap: 10px; }
-      .counter { font-size: 0.9rem; padding: 4px 14px; }
-      .bar-container { min-width: 120px; }
-
-      .time-box { padding: 6px 18px 0; }
-      .time-chip { padding: 6px 14px; font-size: 1rem; }
-
-      .double-lire { padding: 16px 18px; gap: 10px; }
-      .lire-btn { padding: 12px 8px; font-size: 1.1rem; }
-
-      .prophete-block { padding: 14px 18px 4px; }
-      .prophete-large .name-xl { font-size: 1.6rem; padding: 4px 18px; }
-      .flag-pair { padding: 4px 12px; }
-      .flag-pair span { font-size: 1.1rem; }
-
-      .footer-title { padding: 16px 18px 20px; }
-      .footer-title .main-title { font-size: 1.3rem; }
-      .footer-flags { padding: 4px 16px; }
-      .footer-flags span { font-size: 1.1rem; }
+    .iphone-desert {
+      width: 80px;
+      height: 80px;
+      border-radius: 1rem;
+      background: #b68b40;
+      position: relative;
     }
 
-    /* ajustement pour très petits écrans */
-    @media (max-width: 400px) {
-      .prophete-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .double-flag { align-self: flex-start; }
-      .prophete-block { flex-direction: column; align-items: start; gap: 10px; }
-      .footer-title { flex-direction: column; gap: 12px; }
+    .iphone-play {
+      font-size: 2rem;
+      color: gold;
     }
 
-    /* on garde la proportion du texte */
-    .lire-btn .small-flag {
-      background: #dacfc4;
+    /* global text styles */
+    h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+    }
+
+    .footnote {
+      color: #c7b07b;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.4rem;
+      text-shadow: 0 0 8px #f5cb5c;
+      letter-spacing: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <!-- ligne Historique / FR - EN (identique à l'image) -->
-    <div class="top-bar">
-      <div class="historique">
-        <span>📜</span> Historique
+<div class="responsive-showcase">
+  <!-- LAPTOP VERSION (4K / desktop) -->
+  <div class="laptop-view">
+    <div class="dashboard">
+      <!-- LEFT SIDEBAR : family tree glowing -->
+      <div class="family-tree">
+        <div class="tree-line"></div> <!-- golden connector line -->
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-adam"></div></div>
+          <span class="prophet-name">ADAM</span>
+        </div>
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-idris"></div></div>
+          <span class="prophet-name">IDRIS</span>
+        </div>
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-nuh"></div></div>
+          <span class="prophet-name">NŪH</span>
+        </div>
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-ibrahim"></div></div>
+          <span class="prophet-name">IBRĀHĪM</span>
+        </div>
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-adam" style="background-position: center;"></div></div>
+          <span class="prophet-name">MŪSĀ</span>
+        </div>
+        <div class="hex-node">
+          <div class="hex"><div class="prophet-portrait portrait-idris"></div></div>
+          <span class="prophet-name">‘ĪSĀ</span>
+        </div>
       </div>
-      <div class="lang-flags">
-        <span class="fr">FR</span>
-        <span class="en">EN</span>
+
+      <!-- CENTER GALLERY (grid of ornate cards) -->
+      <div class="gallery-grid">
+        <div class="gold-card">
+          <div class="card-portrait card-adam"></div>
+          <div class="card-title">ADAM</div>
+        </div>
+        <div class="gold-card">
+          <div class="card-portrait card-idris"></div>
+          <div class="card-title">IDRIS</div>
+        </div>
+        <div class="gold-card">
+          <div class="card-portrait card-nuh"></div>
+          <div class="card-title">NŪH</div>
+        </div>
+        <div class="gold-card">
+          <div class="card-portrait card-ibrahim"></div>
+          <div class="card-title">IBRĀHĪM</div>
+        </div>
+        <div class="gold-card">
+          <div class="card-portrait card-mousa"></div>
+          <div class="card-title">MŪSĀ</div>
+        </div>
+        <div class="gold-card">
+          <div class="card-portrait card-issa"></div>
+          <div class="card-title">‘ĪSĀ</div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDEBAR : language -->
+      <div class="lang-sidebar">
+        <span class="lang-item">FR</span>
+        <span class="lang-item">EN</span>
+        <span class="lang-item">AR</span>
       </div>
     </div>
 
-    <!-- Prophète Ibrahim (première apparition) + drapeaux FR EN à droite -->
-    <div class="prophete-row">
-      <div class="prophete-tag">
-        <span class="label">Prophète</span>
-        <span class="prophete-name ibrahim">Prophète Ibrahim</span>
+    <!-- POP-UP GLASSMORPHISM QUICK VIEW (overlay) -->
+    <div class="popup-quickview">
+      <div class="desert-scene">
+        <div class="play-button"><i class="fas fa-play"></i></div>
       </div>
-      <div class="double-flag">
-        <span>FR</span>
-        <span class="separator"></span>
-        <span>EN</span>
-      </div>
+      <p>✦ QUR’ĀN 19:16–21 ✦</p>
     </div>
-
-    <!-- barre de progression : 5 / 25 Histoires visionnés -->
-    <div class="progress-section">
-      <div class="counter">5 / 25 Histoires visionnés</div>
-      <div class="bar-container">
-        <div class="bar-fill" style="width:20%"></div>
-      </div>
-    </div>
-
-    <!-- bloc 1.24 | 11:09  (time chip) -->
-    <div class="time-box">
-      <div class="time-chip">
-        <span class="icon">⏳</span> 1.24 | 11:09
-      </div>
-    </div>
-
-    <!-- DOUBLE BOUTON Lire l'histoire (FR/EN) -->
-    <div class="double-lire">
-      <div class="lire-btn"><span>Lire l'histoire</span> <span class="small-flag">FR</span></div>
-      <div class="lire-btn"><span>Lire l'histoire</span> <span class="small-flag">EN</span></div>
-    </div>
-
-    <!-- ligne Prophète (encore une fois, comme dans l'image) avec Prophète Ibrahim et FR / EN côte à côte -->
-    <div class="prophete-block">
-      <div class="prophete-large">
-        <span class="badge">Prophète</span>
-        <span class="name-xl">Prophète Ibrahim</span>
-      </div>
-      <div class="flag-pair">
-        <span>FR</span>
-        <span class="divider"></span>
-        <span>EN</span>
-      </div>
-    </div>
-
-    <!-- dernier bloc : Histoires des Prophètes + FR / EN (conforme à l'image) -->
-    <div class="footer-title">
-      <div class="main-title">
-        Histoires des Prophètes
-        <small></small>
-      </div>
-      <div class="footer-flags">
-        <span>FR</span>
-        <span style="color:#b9a38e;">|</span>
-        <span>EN</span>
-      </div>
-    </div>
-
-    <!-- petit rappel visuel du nom (présent sur l'image en bas) -->
-    <div style="padding: 6px 24px 20px 24px; font-size: 0.9rem; color: #b4a088; display: flex; gap: 16px; flex-wrap: wrap; border-top: 1px dashed #f0e4d8;">
-      <span>📖 Prophète Ibrahim • 5/25</span>
-      <span>1.24 | 11:09</span>
-    </div>
-    <!-- on garde l'esprit dense de la maquette -->
   </div>
 
-  <!-- simple légende pour le contexte de maquette -->
-  <div class="attribution">
-    maquette conforme à l'image • structure identique • mobile/desktop ready
+  <!-- IPHONE VERSION (responsive comparison) -->
+  <div class="iphone-view">
+    <div class="iphone-frame">
+      <h3 style="color:#e6c27a; text-align:center;">Histoires des Prophètes · mobile</h3>
+      <!-- tree mini -->
+      <div class="mobile-tree">
+        <div class="mobile-hex portrait-adam"></div>
+        <div class="mobile-hex portrait-idris"></div>
+        <div class="mobile-hex portrait-nuh"></div>
+        <div class="mobile-hex portrait-ibrahim"></div>
+      </div>
+      <!-- gallery 2x2 -->
+      <div class="mobile-gallery">
+        <div class="mobile-card"><div class="card-portrait card-adam"></div><div class="card-title" style="font-size:1.2rem;">ADAM</div></div>
+        <div class="mobile-card"><div class="card-portrait card-idris"></div><div class="card-title" style="font-size:1.2rem;">IDRIS</div></div>
+        <div class="mobile-card"><div class="card-portrait card-nuh"></div><div class="card-title" style="font-size:1.2rem;">NŪH</div></div>
+        <div class="mobile-card"><div class="card-portrait card-ibrahim"></div><div class="card-title" style="font-size:1.2rem;">IBRĀHĪM</div></div>
+      </div>
+      <!-- minimalist popup preview -->
+      <div class="iphone-popup-preview">
+        <div class="iphone-desert"></div>
+        <div class="iphone-play"><i class="fas fa-play" style="color:#d4af37;"></i> Quick view</div>
+        <span style="color:#b8944e;">desert</span>
+      </div>
+      <!-- language row -->
+      <div class="mobile-lang lang-sidebar" style="flex-direction:row; padding:0.5rem; gap:2rem;">
+        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">FR</span>
+        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">EN</span>
+        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">AR</span>
+      </div>
+    </div>
   </div>
+  <div class="footnote">✦ celestial gold · midnight haze · 4k hyperreal ✦</div>
+</div>
 </body>
 </html>
