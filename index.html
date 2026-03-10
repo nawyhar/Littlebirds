@@ -3,163 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Histoires des Prophètes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <title>Les Prophètes - Expérience Immersive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0B1320;
-            --gold: #D4AF37;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text-color: #E0E0E0;
+            --dark-bg: #050a12;
+            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f1d37e 50%, #b8860b 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --gold-border: rgba(212, 175, 55, 0.3);
         }
 
         body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1, h2 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; }
-
-        /* Main Layout */
-        .main-container {
             display: flex;
             height: 100vh;
-            padding-top: 20px;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #101d33 0%, #050a12 100%);
         }
 
-        /* 1. Left Sidebar: The Tree */
-        .sidebar-left {
-            width: 20%;
-            border-right: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 20px;
-            overflow-y: auto;
-            text-align: center;
-        }
-        
-        .tree-line { width: 2px; height: 30px; background: var(--gold); margin: 5px auto; opacity: 0.5; }
-        .tree-node { 
-            border: 1px solid var(--gold); 
-            padding: 8px; 
-            border-radius: 5px; 
-            font-size: 0.8rem; 
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .tree-node:hover { background: var(--gold); color: black; }
-
-        /* 2. Center: The Card Gallery */
-        .content-center {
-            width: 70%;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 25px;
-            padding: 20px;
-        }
-
-        .prophet-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .prophet-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(214, 175, 55, 0.2);
-            border-color: var(--gold);
-        }
-
-        .prophet-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            margin-bottom: 15px;
-            object-fit: cover;
-        }
-
-        /* 3. Right Sidebar: Languages */
-        .sidebar-right {
-            width: 10%;
+        /* 1. SIDEBAR LEFT: TREE */
+        .sidebar-tree {
+            width: 280px;
+            border-right: 1px solid var(--gold-border);
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            padding-top: 50px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.2);
         }
 
-        .lang-btn {
-            background: none;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px;
-            width: 40px;
-            border-radius: 5px;
+        .tree-node {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+            background: var(--glass);
+            transition: 0.3s;
             cursor: pointer;
-            font-weight: bold;
         }
 
-        .lang-btn.active { background: var(--gold); color: black; }
+        .tree-node span { transform: rotate(-45deg); font-family: 'Cinzel'; font-size: 10px; color: #d4af37; font-weight: bold; }
+        .tree-node:hover { box-shadow: 0 0 15px #d4af37; background: rgba(212, 175, 55, 0.1); }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .main-container { flex-direction: column; height: auto; }
-            .sidebar-left, .content-center, .sidebar-right { width: 100%; border: none; height: auto; }
-            .sidebar-right { flex-direction: row; justify-content: center; order: -1; padding: 10px; }
-            .sidebar-left { display: none; } /* Tree hidden on small mobile to save space */
+        /* 2. MAIN CONTENT: CARDS */
+        .main-gallery {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            justify-items: center;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid var(--gold-border);
+            border-radius: 20px;
+            padding: 30px;
+            width: 250px;
+            position: relative;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #d4af37;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.2);
+        }
+
+        .card-img-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            padding: 5px;
+            box-shadow: 0 0 15px rgba(212,175,55,0.4);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card h3 { font-family: 'Cinzel'; color: #f1d37e; margin: 15px 0 10px; font-size: 1.4rem; }
+        
+        .play-btn {
+            background: var(--gold-gradient);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #050a12;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        /* 3. LANGUAGE SIDEBAR RIGHT */
+        .sidebar-lang {
+            width: 80px;
+            border-left: 1px solid var(--gold-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .lang-link {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .lang-link.active, .lang-link:hover { opacity: 1; text-shadow: 0 0 10px #d4af37; }
+
+        /* RESPONSIVE FOR IPHONE */
+        @media (max-width: 900px) {
+            body { flex-direction: column; overflow-y: auto; height: auto; }
+            .sidebar-tree, .sidebar-lang { width: 100%; height: auto; border: none; flex-direction: row; padding: 20px; overflow-x: auto;}
+            .sidebar-tree { order: 2; border-top: 1px solid var(--gold-border); }
+            .sidebar-lang { order: 1; padding: 10px; gap: 40px;}
+            .lang-link { writing-mode: horizontal-tb; }
+            .main-gallery { order: 3; }
         }
     </style>
 </head>
 <body>
 
-    <h1>Histoires des Prophètes</h1>
+    <div class="sidebar-tree">
+        <div class="tree-node"><span>ADAM</span></div>
+        <div class="tree-node"><span>NOAH</span></div>
+        <div class="tree-node"><span>IBRAHIM</span></div>
+        <div class="tree-node"><span>MUSA</span></div>
+        <div class="tree-node"><span>ISA</span></div>
+    </div>
 
-    <div class="main-container">
+    <main class="main-gallery">
+        <h1 class="main-title">Histoires des Prophètes</h1>
         
-        <div class="sidebar-left">
-            <h3 style="color:var(--gold)">Lignée</h3>
-            <div class="tree-node">Adam</div>
-            <div class="tree-line"></div>
-            <div class="tree-node">Enoch</div>
-            <div class="tree-line"></div>
-            <div class="tree-node">Noah</div>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://via.placeholder.com/300/101d33/d4af37?text=Adam" alt="Adam">
+                </div>
+                <h3>Adam</h3>
+                <p style="font-size: 0.8rem; color: #aaa;">Le commencement de l'humanité.</p>
+                <button class="play-btn">Visionner</button>
             </div>
 
-        <div class="content-center">
-            <div class="cards-grid">
-                <div class="prophet-card" onclick="alert('Lancement de la vidéo d\'Adam...')">
-                    <img src="https://via.placeholder.com/150/0B1320/D4AF37?text=Adam" alt="Adam" class="prophet-img">
-                    <h3>Adam</h3>
-                    <p style="font-size: 0.8rem; opacity: 0.7;">Le premier homme et prophète.</p>
-                    <button style="background:var(--gold); border:none; padding: 5px 15px; border-radius: 5px; cursor:pointer;">Visionner</button>
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://via.placeholder.com/300/101d33/d4af37?text=Noah" alt="Noah">
                 </div>
-
-                <div class="prophet-card" style="opacity: 0.5;">
-                    <img src="https://via.placeholder.com/150/0B1320/D4AF37?text=?" alt="Next" class="prophet-img">
-                    <h3>Prochainement</h3>
-                    <p style="font-size: 0.8rem;">En cours de préparation...</p>
-                </div>
+                <h3>Noah</h3>
+                <p style="font-size: 0.8rem; color: #aaa;">Le messager de la patience.</p>
+                <button class="play-btn">Visionner</button>
             </div>
         </div>
+    </main>
 
-        <div class="sidebar-right">
-            <button class="lang-btn">EN</button>
-            <button class="lang-btn active">FR</button>
-            <button class="lang-btn">AR</button>
-        </div>
-
+    <div class="sidebar-lang">
+        <a href="#" class="lang-link">ENGLISH</a>
+        <a href="#" class="lang-link active">FRANÇAIS</a>
+        <a href="#" class="lang-link">العربية</a>
     </div>
 
 </body>
