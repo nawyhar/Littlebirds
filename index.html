@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histoires des Prophètes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B1320;
+            --gold: #D4AF37;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #E0E0E0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* 1. Left Sidebar: The Tree */
+        .sidebar-left {
+            width: 20%;
+            border-right: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px;
+            overflow-y: auto;
+            text-align: center;
+        }
+        
+        .tree-line { width: 2px; height: 30px; background: var(--gold); margin: 5px auto; opacity: 0.5; }
+        .tree-node { 
+            border: 1px solid var(--gold); 
+            padding: 8px; 
+            border-radius: 5px; 
+            font-size: 0.8rem; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tree-node:hover { background: var(--gold); color: black; }
+
+        /* 2. Center: The Card Gallery */
+        .content-center {
+            width: 70%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .prophet-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .prophet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(214, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        .prophet-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        /* 3. Right Sidebar: Languages */
+        .sidebar-right {
+            width: 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding-top: 50px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px;
+            width: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .lang-btn.active { background: var(--gold); color: black; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column; height: auto; }
+            .sidebar-left, .content-center, .sidebar-right { width: 100%; border: none; height: auto; }
+            .sidebar-right { flex-direction: row; justify-content: center; order: -1; padding: 10px; }
+            .sidebar-left { display: none; } /* Tree hidden on small mobile to save space */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Histoires des Prophètes</h1>
+
+    <div class="main-container">
+        
+        <div class="sidebar-left">
+            <h3 style="color:var(--gold)">Lignée</h3>
+            <div class="tree-node">Adam</div>
+            <div class="tree-line"></div>
+            <div class="tree-node">Enoch</div>
+            <div class="tree-line"></div>
+            <div class="tree-node">Noah</div>
+            </div>
+
+        <div class="content-center">
+            <div class="cards-grid">
+                <div class="prophet-card" onclick="alert('Lancement de la vidéo d\'Adam...')">
+                    <img src="https://via.placeholder.com/150/0B1320/D4AF37?text=Adam" alt="Adam" class="prophet-img">
+                    <h3>Adam</h3>
+                    <p style="font-size: 0.8rem; opacity: 0.7;">Le premier homme et prophète.</p>
+                    <button style="background:var(--gold); border:none; padding: 5px 15px; border-radius: 5px; cursor:pointer;">Visionner</button>
+                </div>
+
+                <div class="prophet-card" style="opacity: 0.5;">
+                    <img src="https://via.placeholder.com/150/0B1320/D4AF37?text=?" alt="Next" class="prophet-img">
+                    <h3>Prochainement</h3>
+                    <p style="font-size: 0.8rem;">En cours de préparation...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-right">
+            <button class="lang-btn">EN</button>
+            <button class="lang-btn active">FR</button>
+            <button class="lang-btn">AR</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
