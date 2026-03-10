@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Histoires des Prophètes · Celestial Gold</title>
-  <!-- Fonts & icons (Font Awesome for play button) -->
+  <!-- Google Fonts: Cinzel (headings/serif) & Poppins (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) for search & close icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* RESET & GLOBAL */
     * {
       margin: 0;
       padding: 0;
@@ -14,537 +19,580 @@
     }
 
     body {
-      background-color: #0b0c1a; /* deep midnight base */
-      font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background-color: #0B1320; /* deep midnight blue base */
+      font-family: 'Poppins', sans-serif;
+      color: #f0f0f0;
+      line-height: 1.5;
       min-height: 100vh;
-      padding: 2rem 1rem;
-    }
-
-    /* 4K friendly container */
-    .responsive-showcase {
-      max-width: 1800px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
-
-    /* === laptop / desktop mock (21:9 vibe) === */
-    .laptop-view {
-      width: 100%;
-      background: radial-gradient(ellipse at 30% 40%, #1a1f2f, #030514 90%);
-      border-radius: 2.5rem;
-      padding: 2rem 2rem 2.5rem 2rem;
-      box-shadow: 0 30px 50px rgba(0,0,0,0.9), 0 0 0 2px rgba(212, 175, 55, 0.15) inset, 0 0 40px #ffd96625;
-      backdrop-filter: blur(2px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* golden sparks / dust particles (pure css) */
-    .laptop-view::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><circle cx="15%" cy="22%" r="2" fill="%23eab308" opacity="0.5"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="6s" repeatCount="indefinite" /></circle><circle cx="87%" cy="45%" r="3" fill="%23fbbf24" opacity="0.4"><animate attributeName="opacity" values="0.3;0.9;0.3" dur="5s" repeatCount="indefinite" /></circle><circle cx="44%" cy="81%" r="2" fill="%23ffd966" opacity="0.5"><animate attributeName="r" values="1;3;1" dur="4s" repeatCount="indefinite" /></circle><circle cx="71%" cy="13%" r="2" fill="%23d4a017" opacity="0.3"><animate attributeName="opacity" values="0.1;0.7;0.1" dur="7s" repeatCount="indefinite" /></circle><circle cx="8%" cy="67%" r="3" fill="%23eab308" opacity="0.5"><animate attributeName="r" values="2;4;2" dur="6s" repeatCount="indefinite" /></circle><circle cx="93%" cy="92%" r="2" fill="%23f5c542" opacity="0.6"><animate attributeName="opacity" values="0.2;1;0.2" dur="8s" repeatCount="indefinite" /></circle><circle cx="33%" cy="5%" r="3" fill="%23ffd966" opacity="0.3"><animate attributeName="r" values="2;5;2" dur="9s" repeatCount="indefinite" /></circle></svg>');
-      background-size: cover;
-      pointer-events: none;
-      z-index: 2;
-      mix-blend-mode: screen;
-    }
-
-    /* main grid layout (laptop) */
-    .dashboard {
-      display: grid;
-      grid-template-columns: 280px 1fr 120px;
-      gap: 1.8rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* ----- left sidebar (family tree, hexagonal nodes) ----- */
-    .family-tree {
-      background: rgba(5, 10, 24, 0.5);
-      backdrop-filter: blur(4px);
-      border-radius: 2rem;
-      padding: 2rem 1rem;
-      box-shadow: 0 20px 40px -10px black, 0 0 0 1px #d4af3780 inset;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      position: relative;
-    }
-
-    /* golden glowing line (connector) */
-    .tree-line {
-      position: absolute;
-      width: 4px;
-      background: linear-gradient(180deg, transparent, #f5c542, #b8860b, #f5c542, transparent);
-      left: 50%;
-      transform: translateX(-50%);
-      top: 5%;
-      height: 90%;
-      border-radius: 4px;
-      box-shadow: 0 0 20px #ffbf00, 0 0 40px #d4a017;
-      z-index: 0;
-    }
-
-    .hex-node {
-      position: relative;
-      z-index: 5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0.2rem 0;
-    }
-
-    /* hexagon shaped container */
-    .hex {
-      width: 100px;
-      height: 110px;
-      background: #0f1424;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
-      border: 2px solid #d4af37;
-      box-shadow: 0 0 30px #eab308, 0 0 10px #ffd966 inset;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px;
-      transition: all 0.3s;
+      padding: 1.5rem;
+      /* subtle golden stardust radial gradient overlay */
+      background-image: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
+                        linear-gradient(145deg, #0b1320 0%, #0f1a2b 100%);
     }
 
-    .hex:hover {
-      border-color: #fff3b0;
-      box-shadow: 0 0 45px #f5c542;
+    /* main container – holds both desktop & mobile adaptations are within same DOM */
+    .app-container {
+      max-width: 1600px;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 2.5rem;
+      background: rgba(10, 20, 35, 0.35);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 25px 50px -8px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 175, 55, 0.25) inset;
+      overflow: hidden;
+      padding: 2rem 1.5rem;
     }
 
-    /* realistic, cinematic portrait (simulated with gradients & emojis? but we use images via css) */
-    .prophet-portrait {
-      width: 94px;
-      height: 100px;
-      clip-path: polygon(24% 0%, 76% 0%, 100% 24%, 100% 76%, 76% 100%, 24% 100%, 0% 76%, 0% 24%);
-      background-size: cover;
-      background-position: center 20%;
-      background-repeat: no-repeat;
-      background-color: #2c2416;
-      box-shadow: inset 0 0 30px #e5b13b, 0 4px 10px rgba(0,0,0,0.7);
-    }
-
-    /* unique portraits for each prophet (cinematic style) — we use different background images generated with gradients & filters to mimic realistic paintings */
-    .portrait-adam {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233d2e1b"/><circle cx="50" cy="45" r="25" fill="%23c69c6d"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 60 Q50 75,60 60" stroke="%23b87c4b" stroke-width="3" fill="none"/><rect x="40" y="70" width="20" height="30" fill="%23543e1f"/></svg>');
-      background-size: cover;
-    }
-    .portrait-idris {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%232f2a1f"/><circle cx="50" cy="45" r="25" fill="%23dbb484"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23222"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23222"/><path d="M40 60 Q50 80,60 60" stroke="%23945e3a" stroke-width="3" fill="none"/><rect x="42" y="73" width="16" height="25" fill="%235a3e2b"/></svg>');
-    }
-    .portrait-nuh {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233f2d18"/><circle cx="50" cy="45" r="25" fill="%23be8a5c"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 62 Q50 77,60 62" stroke="%2380522c" stroke-width="3" fill="none"/><rect x="42" y="70" width="16" height="28" fill="%23735237"/></svg>');
-    }
-    .portrait-ibrahim {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect width="100" height="120" fill="%233d2815"/><circle cx="50" cy="45" r="25" fill="%23d7a46b"/><ellipse cx="45" cy="40" rx="4" ry="5" fill="%23332"/><ellipse cx="55" cy="40" rx="4" ry="5" fill="%23332"/><path d="M40 58 Q50 75,60 58" stroke="%23ad6b3c" stroke-width="3" fill="none"/><rect x="42" y="72" width="16" height="28" fill="%237a5837"/></svg>');
-    }
-
-    .prophet-name {
-      font-size: 1rem;
-      letter-spacing: 0.1rem;
-      color: #e9d198;
-      text-shadow: 0 0 8px #f3ba2f, 0 2px 4px black;
-      margin-top: 0.5rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    /* center gallery grid */
-    .gallery-grid {
+    /* === DESKTOP 3-COLUMN GRID (default) === */
+    .desktop-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 25% 65% 10%; /* left, center, right */
       gap: 1.5rem;
+      align-items: start;
     }
 
-    /* elegant vertical card */
-    .gold-card {
-      background: rgba(8, 12, 27, 0.7);
-      backdrop-filter: blur(6px);
-      border: 2px solid #d4af37;
+    /* ---------- LEFT SIDEBAR (sticky family tree) ---------- */
+    .left-sidebar {
+      position: sticky;
+      top: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 2rem;
-      padding: 1.2rem 0.8rem 1.2rem 0.8rem;
-      box-shadow: 0 20px 30px -10px black, 0 0 30px #ffbf0050, 0 0 0 1px #ffd966 inset;
+      padding: 2rem 1rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 15px 35px -10px black, 0 0 20px rgba(212, 175, 55, 0.2) inset;
+    }
+
+    .tree-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      color: #D4AF37;
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 0.2rem;
+      border-bottom: 1px dashed #D4AF37;
+      padding-bottom: 1rem;
+    }
+
+    /* family tree nodes & lines */
+    .tree-nodes {
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+    }
+
+    .node-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0.8rem 0;
+      position: relative;
+      width: 100%;
+    }
+
+    /* golden glowing line connector (vertical) */
+    .node-item:not(:last-child)::after {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 2rem;
+      background: linear-gradient(to bottom, #D4AF37, #f9e281, #D4AF37);
+      box-shadow: 0 0 15px #e9b13b, 0 0 25px #ffd966;
+      margin-top: 0.8rem;
+      border-radius: 2px;
+    }
+
+    /* hexagon node */
+    .hex-node {
+      width: 70px;
+      height: 70px;
+      background: #0f1a28;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+      border: 2px solid #D4AF37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px #D4AF37, 0 0 10px #b8860b inset;
       transition: 0.2s;
     }
 
-    .gold-card:hover {
-      box-shadow: 0 20px 40px -8px #eab308, 0 0 40px #f5c542;
-      transform: scale(1.02);
+    .hex-node:hover {
+      box-shadow: 0 0 50px #f5c542, 0 0 20px #fff2bf inset;
+      border-color: #fff2b0;
     }
 
-    .card-portrait {
-      width: 100%;
-      aspect-ratio: 2/3;
-      border-radius: 1.5rem;
+    /* circular portrait inside hex (with gold outer glow) */
+    .portrait-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #2f3e5a, #1b263b);
+      border: 2px solid #D4AF37;
+      box-shadow: 0 0 20px #D4AF37;
       background-size: cover;
-      background-position: center 30%;
-      border: 2px solid #e5b13b;
-      box-shadow: inset 0 -30px 40px #00000099, 0 10px 25px black;
+      background-position: center;
+    }
+
+    /* mini portraits (diverse symbolic faces – abstract but cinematic) */
+    .p1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23a77b55"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 80,65 65" stroke="%23b0855c" stroke-width="5" fill="none"/></svg>'); }
+    .p2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58b5d"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 82,65 65" stroke="%23b9844a" stroke-width="5" fill="none"/></svg>'); }
+    .p3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%239c6f42"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 78,65 65" stroke="%23a56e3b" stroke-width="5" fill="none"/></svg>'); }
+    .p4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 85,65 65" stroke="%23b87a41" stroke-width="5" fill="none"/></svg>'); }
+    .p5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ad7a4b"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 80,65 65" stroke="%23a56832" stroke-width="5" fill="none"/></svg>'); }
+
+    .node-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: #D4AF37;
+      margin-top: 0.3rem;
+      text-shadow: 0 0 8px gold;
+    }
+
+    /* ---------- CENTER COLUMN (gallery) ---------- */
+    .center-gallery {
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: #D4AF37 #0f1a2b;
+    }
+
+    .center-gallery::-webkit-scrollbar {
+      width: 6px;
+    }
+    .center-gallery::-webkit-scrollbar-track {
+      background: #0f1a2b;
+      border-radius: 10px;
+    }
+    .center-gallery::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 10px;
+      box-shadow: inset 0 0 6px #ffd966;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1.8rem;
+      padding: 0.2rem 0.2rem 1rem 0.2rem;
+    }
+
+    /* prophet card */
+    .prophet-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid #D4AF37;
+      border-radius: 2rem;
+      padding: 1.8rem 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.8), 0 0 0 1px #D4AF37 inset, 0 0 15px rgba(212,175,55,0.3);
+      cursor: pointer;
+    }
+
+    .prophet-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -8px black, 0 0 35px #D4AF37, 0 0 0 2px #f5d76e inset;
+      border-color: #fae28b;
+    }
+
+    /* circular portrait with glow (same style as left hex) */
+    .card-portrait {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #D4AF37;
+      box-shadow: 0 0 40px #D4AF37, 0 10px 20px black;
       margin-bottom: 1rem;
+      background-size: cover;
+      background-position: center;
+      background-color: #1e2a3a;
     }
 
-    /* different portraits for cards */
-    .card-adam { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233a2c18"/><circle cx="50" cy="50" r="35" fill="%23c9a177"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 75 Q50 95,65 75" stroke="%23955e3a" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%234f3e28"/></svg>'); }
-    .card-idris { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233a2f1e"/><circle cx="50" cy="50" r="35" fill="%23dab38b"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 78 Q50 98,65 78" stroke="%23a66034" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%235d4a2f"/></svg>'); }
-    .card-nuh { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233f2d18"/><circle cx="50" cy="50" r="35" fill="%23cf9f6e"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 74 Q50 96,65 74" stroke="%238d572a" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%236d5438"/></svg>'); }
-    .card-ibrahim { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233d2812"/><circle cx="50" cy="50" r="35" fill="%23e0b782"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 72 Q50 94,65 72" stroke="%23b16f3c" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%237e623e"/></svg>'); }
-    .card-mousa { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%233d2b14"/><circle cx="50" cy="50" r="35" fill="%23ca9e6b"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 75 Q50 97,65 75" stroke="%239f6234" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%236b4f31"/></svg>'); }
-    .card-issa { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140"><rect width="100" height="140" fill="%2338281a"/><circle cx="50" cy="50" r="35" fill="%23d9aa75"/><ellipse cx="40" cy="45" rx="5" ry="6" fill="%23332"/><ellipse cx="60" cy="45" rx="5" ry="6" fill="%23332"/><path d="M35 70 Q50 92,65 70" stroke="%23b17444" stroke-width="4" fill="none"/><rect x="35" y="85" width="30" height="40" fill="%23745537"/></svg>'); }
+    /* different card portraits (for variety) */
+    .cp1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
+    .cp2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58450"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 86,70 68" stroke="%23945e36" stroke-width="5" fill="none"/></svg>'); }
+    .cp3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b07c48"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 90,70 68" stroke="%238a572c" stroke-width="5" fill="none"/></svg>'); }
+    .cp4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23cfa269"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 84,70 68" stroke="%23ac703e" stroke-width="5" fill="none"/></svg>'); }
+    .cp5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b98d58"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 87,70 68" stroke="%239b6435" stroke-width="5" fill="none"/></svg>'); }
+    .cp6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c09460"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 83,70 68" stroke="%239a6437" stroke-width="5" fill="none"/></svg>'); }
 
-    .card-title {
-      font-size: 1.8rem;
-      color: #ecd99b;
-      text-shadow: 0 0 10px gold, 0 2px 5px black;
-      font-weight: 600;
-      border-top: 1px solid #d4af37;
-      border-bottom: 1px solid #d4af37;
-      padding: 0.3rem 0;
-      width: 100%;
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
+    .card-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #D4AF37;
+      text-shadow: 0 0 12px #f5c542;
+      letter-spacing: 0.1rem;
     }
 
-    /* right sidebar language selector */
-    .lang-sidebar {
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(8px);
+    /* ---------- RIGHT SIDEBAR (sticky lang + search) ---------- */
+    .right-sidebar {
+      position: sticky;
+      top: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 3rem;
       padding: 2rem 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.5rem;
-      border: 1px solid #d4af3760;
-      box-shadow: 0 0 30px #d4af3720;
+      gap: 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) inset;
     }
 
-    .lang-item {
+    .lang-btn {
       writing-mode: vertical-rl;
       transform: rotate(180deg);
+      font-family: 'Cinzel', serif;
       font-size: 1.5rem;
       font-weight: 700;
-      color: #e6c27a;
-      text-shadow: 0 0 15px #eab308;
-      letter-spacing: 0.3rem;
-      cursor: default;
-      transition: 0.2s;
-      padding: 0.5rem 0;
+      color: #D4AF37;
+      text-decoration: none;
+      padding: 0.5rem 0.2rem;
       border-radius: 30px;
-    }
-
-    .lang-item:hover {
-      text-shadow: 0 0 30px #ffd966;
-      color: #f5e1a8;
-      transform: rotate(180deg) scale(1.1);
-    }
-
-    /* ---------- Pop-up Quick View (glassmorphism + desert) ---------- */
-    .popup-quickview {
-      position: absolute;
-      top: 15%;
-      left: 40%;
-      width: 400px;
-      background: rgba(10, 18, 30, 0.5);
-      backdrop-filter: blur(20px);
-      border-radius: 3rem;
-      border: 2px solid #e9c576;
-      box-shadow: 0 30px 60px black, 0 0 80px #ffd966, 0 0 0 1px #ffdb9d inset;
-      padding: 1.5rem;
-      z-index: 50;
-      transform: perspective(1200px) rotateY(-2deg) rotateX(2deg);
-      animation: floatGlow 5s infinite alternate ease-in-out;
-    }
-
-    @keyframes floatGlow {
-      0% { box-shadow: 0 30px 60px black, 0 0 50px #d4a017, 0 0 0 1px #f3c26b inset; transform: perspective(1200px) rotateY(-2deg) rotateX(2deg) translateY(0); }
-      100% { box-shadow: 0 40px 70px black, 0 0 90px #f5c542, 0 0 0 2px #ffecb3 inset; transform: perspective(1200px) rotateY(-3deg) rotateX(3deg) translateY(-8px); }
-    }
-
-    .desert-scene {
-      width: 100%;
-      height: 180px;
-      border-radius: 2rem;
-      background: radial-gradient(circle at 30% 80%, #c9a52c, #6d4c1a, #2c2410);
-      box-shadow: 0 10px 20px black, 0 0 50px #f1c40f;
-      position: relative;
-      border: 1px solid #e9b13b;
-      overflow: hidden;
-    }
-    /* dunes */
-    .desert-scene::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 70px;
-      background: linear-gradient(180deg, transparent, #b47d40 70%, #7a561f);
-      border-radius: 50% 50% 0 0;
-    }
-
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #d4af37dd;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      color: #0b0c1a;
-      box-shadow: 0 0 50px #f1c40f, 0 10px 20px black;
-      border: 3px solid #fff2bf;
-      backdrop-filter: blur(2px);
-    }
-
-    .popup-quickview p {
-      color: #e9d198;
-      font-size: 1.5rem;
-      text-align: center;
-      margin: 1rem 0 0 0;
+      transition: 0.2s;
+      letter-spacing: 0.3rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
       text-shadow: 0 0 15px gold;
     }
 
-    /* ----- iPhone mock (responsive) ----- */
-    .iphone-view {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+    .lang-btn:hover {
+      text-shadow: 0 0 35px #ffdfa0;
+      transform: rotate(180deg) scale(1.1);
+    }
+
+    .search-icon {
+      color: #D4AF37;
+      font-size: 1.8rem;
       margin-top: 1rem;
+      cursor: default;
+      filter: drop-shadow(0 0 12px gold);
     }
 
-    .iphone-frame {
-      width: 360px;
-      background: #0c0f1c;
-      border-radius: 3rem;
-      padding: 1.5rem 1rem;
-      border: 2px solid #d4af37;
-      box-shadow: 0 0 70px #eab308, 0 30px 40px black;
-      backdrop-filter: blur(10px);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    /* compact family tree row */
-    .mobile-tree {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      background: #02061780;
-      border-radius: 2rem;
-      padding: 1rem 0.5rem;
-      border: 1px solid #d4af37;
-    }
-
-    .mobile-hex {
-      width: 70px;
-      height: 75px;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
-      background-size: cover;
-      border: 2px solid #f3ba2f;
-    }
-
-    .mobile-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem;
-    }
-
-    .mobile-card {
-      background: #0f1424d9;
-      border: 1px solid #dbaa37;
-      border-radius: 1.2rem;
-      padding: 0.5rem;
-    }
-
-    .mobile-card .card-portrait {
-      aspect-ratio: 1/1.4;
-    }
-
-    .mobile-lang {
-      flex-direction: row;
-      justify-content: space-around;
-      display: flex;
-      padding: 0.5rem;
-    }
-
-    .mobile-lang span {
-      writing-mode: horizontal-tb;
-      transform: none;
-      font-size: 1.2rem;
-    }
-
-    .iphone-popup-preview {
-      background: #1d2338b0;
-      backdrop-filter: blur(20px);
-      border-radius: 2rem;
-      border: 1px solid #eab308;
-      padding: 0.8rem;
+    /* ---------- MODAL / QUICK VIEW (glassmorphism) ---------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.25s ease;
     }
 
-    .iphone-desert {
-      width: 80px;
-      height: 80px;
-      border-radius: 1rem;
-      background: #b68b40;
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: rgba(20, 30, 50, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid #D4AF37;
+      border-radius: 3rem;
+      max-width: 500px;
+      width: 90%;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 50px 80px -20px black, 0 0 70px #D4AF37;
+      text-align: center;
       position: relative;
     }
 
-    .iphone-play {
-      font-size: 2rem;
-      color: gold;
+    .close-modal {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      color: #D4AF37;
+      cursor: pointer;
+      filter: drop-shadow(0 0 10px gold);
+      transition: 0.2s;
     }
 
-    /* global text styles */
-    h3, h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
+    .close-modal:hover {
+      transform: scale(1.2);
+      color: #f5d76e;
     }
 
-    .footnote {
-      color: #c7b07b;
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 1.4rem;
-      text-shadow: 0 0 8px #f5cb5c;
-      letter-spacing: 4px;
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: radial-gradient(circle at 30% 40%, #aa8745, #1a251c);
+      border-radius: 2rem;
+      border: 2px solid #D4AF37;
+      box-shadow: 0 0 60px #D4AF37, inset 0 0 30px #b68b40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .play-icon {
+      font-size: 4rem;
+      color: #D4AF37;
+      filter: drop-shadow(0 0 20px gold);
+      opacity: 0.9;
+    }
+
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: #D4AF37;
+      text-shadow: 0 0 20px gold;
+    }
+
+    /* ---------- MOBILE (max 800px) overwrites ---------- */
+    @media (max-width: 800px) {
+      .desktop-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .left-sidebar {
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 1rem;
+      }
+
+      /* horizontal mini tree */
+      .tree-nodes {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+
+      .node-item:not(:last-child)::after {
+        display: none; /* remove vertical line */
+      }
+
+      .node-item {
+        margin: 0;
+        flex-shrink: 0;
+      }
+
+      .hex-node {
+        width: 60px;
+        height: 60px;
+      }
+      .portrait-circle {
+        width: 48px;
+        height: 48px;
+      }
+
+      .right-sidebar {
+        display: none; /* we will have bottom nav instead */
+      }
+
+      /* bottom navigation bar for mobile */
+      .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid #D4AF37;
+        padding: 0.8rem 0;
+        margin-top: 1rem;
+        border-radius: 2rem;
+      }
+
+      .mobile-bottom-nav span {
+        font-family: 'Cinzel', serif;
+        color: #D4AF37;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-shadow: 0 0 10px gold;
+        padding: 0 0.8rem;
+        border-right: 2px solid #D4AF37;
+      }
+      .mobile-bottom-nav span:last-child {
+        border-right: none;
+      }
+      .mobile-bottom-nav i {
+        color: #D4AF37;
+        font-size: 1.8rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr; /* stacked cards */
+      }
+
+      .prophet-card {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+
+    /* default hide mobile nav on desktop */
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    /* ensure right sidebar hides on mobile and nav appears */
+    @media (max-width: 800px) {
+      .mobile-bottom-nav {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
-<div class="responsive-showcase">
-  <!-- LAPTOP VERSION (4K / desktop) -->
-  <div class="laptop-view">
-    <div class="dashboard">
-      <!-- LEFT SIDEBAR : family tree glowing -->
-      <div class="family-tree">
-        <div class="tree-line"></div> <!-- golden connector line -->
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-adam"></div></div>
-          <span class="prophet-name">ADAM</span>
+<div class="app-container">
+  <!-- DESKTOP 3-COLUMN LAYOUT -->
+  <div class="desktop-grid">
+    <!-- LEFT SIDEBAR (sticky tree) -->
+    <aside class="left-sidebar">
+      <div class="tree-title">ARBRE DES PROPHÈTES</div>
+      <div class="tree-nodes">
+        <div class="node-item">
+          <div class="hex-node"><div class="portrait-circle p1"></div></div>
+          <span class="node-name">ADAM</span>
         </div>
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-idris"></div></div>
-          <span class="prophet-name">IDRIS</span>
+        <div class="node-item">
+          <div class="hex-node"><div class="portrait-circle p2"></div></div>
+          <span class="node-name">IDRĪS</span>
         </div>
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-nuh"></div></div>
-          <span class="prophet-name">NŪH</span>
+        <div class="node-item">
+          <div class="hex-node"><div class="portrait-circle p3"></div></div>
+          <span class="node-name">NŪH</span>
         </div>
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-ibrahim"></div></div>
-          <span class="prophet-name">IBRĀHĪM</span>
+        <div class="node-item">
+          <div class="hex-node"><div class="portrait-circle p4"></div></div>
+          <span class="node-name">IBRĀHĪM</span>
         </div>
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-adam" style="background-position: center;"></div></div>
-          <span class="prophet-name">MŪSĀ</span>
-        </div>
-        <div class="hex-node">
-          <div class="hex"><div class="prophet-portrait portrait-idris"></div></div>
-          <span class="prophet-name">‘ĪSĀ</span>
+        <div class="node-item">
+          <div class="hex-node"><div class="portrait-circle p5"></div></div>
+          <span class="node-name">MŪSĀ</span>
         </div>
       </div>
+    </aside>
 
-      <!-- CENTER GALLERY (grid of ornate cards) -->
-      <div class="gallery-grid">
-        <div class="gold-card">
-          <div class="card-portrait card-adam"></div>
-          <div class="card-title">ADAM</div>
+    <!-- CENTER GALLERY (scrollable cards) -->
+    <main class="center-gallery">
+      <div class="cards-grid">
+        <!-- prophet cards data attributes hold name for modal -->
+        <div class="prophet-card" data-prophet="ADAM">
+          <div class="card-portrait cp1"></div>
+          <div class="card-name">ADAM</div>
         </div>
-        <div class="gold-card">
-          <div class="card-portrait card-idris"></div>
-          <div class="card-title">IDRIS</div>
+        <div class="prophet-card" data-prophet="IDRĪS">
+          <div class="card-portrait cp2"></div>
+          <div class="card-name">IDRĪS</div>
         </div>
-        <div class="gold-card">
-          <div class="card-portrait card-nuh"></div>
-          <div class="card-title">NŪH</div>
+        <div class="prophet-card" data-prophet="NŪH">
+          <div class="card-portrait cp3"></div>
+          <div class="card-name">NŪH</div>
         </div>
-        <div class="gold-card">
-          <div class="card-portrait card-ibrahim"></div>
-          <div class="card-title">IBRĀHĪM</div>
+        <div class="prophet-card" data-prophet="IBRĀHĪM">
+          <div class="card-portrait cp4"></div>
+          <div class="card-name">IBRĀHĪM</div>
         </div>
-        <div class="gold-card">
-          <div class="card-portrait card-mousa"></div>
-          <div class="card-title">MŪSĀ</div>
+        <div class="prophet-card" data-prophet="MŪSĀ">
+          <div class="card-portrait cp5"></div>
+          <div class="card-name">MŪSĀ</div>
         </div>
-        <div class="gold-card">
-          <div class="card-portrait card-issa"></div>
-          <div class="card-title">‘ĪSĀ</div>
+        <div class="prophet-card" data-prophet="‘ĪSĀ">
+          <div class="card-portrait cp6"></div>
+          <div class="card-name">‘ĪSĀ</div>
         </div>
       </div>
+    </main>
 
-      <!-- RIGHT SIDEBAR : language -->
-      <div class="lang-sidebar">
-        <span class="lang-item">FR</span>
-        <span class="lang-item">EN</span>
-        <span class="lang-item">AR</span>
-      </div>
-    </div>
-
-    <!-- POP-UP GLASSMORPHISM QUICK VIEW (overlay) -->
-    <div class="popup-quickview">
-      <div class="desert-scene">
-        <div class="play-button"><i class="fas fa-play"></i></div>
-      </div>
-      <p>✦ QUR’ĀN 19:16–21 ✦</p>
-    </div>
+    <!-- RIGHT SIDEBAR (vertical lang + search) desktop only -->
+    <aside class="right-sidebar">
+      <button class="lang-btn" aria-label="French">FR</button>
+      <button class="lang-btn" aria-label="Arabic">AR</button>
+      <button class="lang-btn" aria-label="English">EN</button>
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+    </aside>
   </div>
 
-  <!-- IPHONE VERSION (responsive comparison) -->
-  <div class="iphone-view">
-    <div class="iphone-frame">
-      <h3 style="color:#e6c27a; text-align:center;">Histoires des Prophètes · mobile</h3>
-      <!-- tree mini -->
-      <div class="mobile-tree">
-        <div class="mobile-hex portrait-adam"></div>
-        <div class="mobile-hex portrait-idris"></div>
-        <div class="mobile-hex portrait-nuh"></div>
-        <div class="mobile-hex portrait-ibrahim"></div>
-      </div>
-      <!-- gallery 2x2 -->
-      <div class="mobile-gallery">
-        <div class="mobile-card"><div class="card-portrait card-adam"></div><div class="card-title" style="font-size:1.2rem;">ADAM</div></div>
-        <div class="mobile-card"><div class="card-portrait card-idris"></div><div class="card-title" style="font-size:1.2rem;">IDRIS</div></div>
-        <div class="mobile-card"><div class="card-portrait card-nuh"></div><div class="card-title" style="font-size:1.2rem;">NŪH</div></div>
-        <div class="mobile-card"><div class="card-portrait card-ibrahim"></div><div class="card-title" style="font-size:1.2rem;">IBRĀHĪM</div></div>
-      </div>
-      <!-- minimalist popup preview -->
-      <div class="iphone-popup-preview">
-        <div class="iphone-desert"></div>
-        <div class="iphone-play"><i class="fas fa-play" style="color:#d4af37;"></i> Quick view</div>
-        <span style="color:#b8944e;">desert</span>
-      </div>
-      <!-- language row -->
-      <div class="mobile-lang lang-sidebar" style="flex-direction:row; padding:0.5rem; gap:2rem;">
-        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">FR</span>
-        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">EN</span>
-        <span class="lang-item" style="writing-mode:horizontal-tb; transform:none;">AR</span>
-      </div>
-    </div>
+  <!-- MOBILE BOTTOM NAV (only visible on small screens) -->
+  <div class="mobile-bottom-nav">
+    <span>FR</span>
+    <span>AR</span>
+    <span>EN</span>
+    <i class="fas fa-search"></i>
   </div>
-  <div class="footnote">✦ celestial gold · midnight haze · 4k hyperreal ✦</div>
 </div>
+
+<!-- MODAL Quick View (glassmorphism) -->
+<div class="modal-overlay" id="quickViewModal">
+  <div class="modal-content">
+    <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+    <div class="video-placeholder">
+      <i class="fas fa-play play-icon"></i>
+    </div>
+    <h2 class="modal-title" id="modalProphetName">ADAM</h2>
+    <p style="color: #e6d5a8; margin-top: 0.5rem;">Cinematic desert · Récit inspirant</p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const modal = document.getElementById('quickViewModal');
+    const modalName = document.getElementById('modalProphetName');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    // open modal when any prophet card is clicked
+    const cards = document.querySelectorAll('.prophet-card');
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        const prophet = this.getAttribute('data-prophet') || 'Prophète';
+        modalName.textContent = prophet;
+        modal.classList.add('active');
+      });
+    });
+
+    // close modal
+    const closeModal = () => {
+      modal.classList.remove('active');
+    };
+    closeBtn.addEventListener('click', closeModal);
+
+    // click outside to close (optional)
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // language buttons (desktop) – simple console placeholder
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        console.log('Language selected: ' + e.target.innerText);
+      });
+    });
+
+    // mobile nav languages (no action needed for demo)
+  })();
+</script>
+<!-- subtle gold dust overlay (just for atmosphere) -->
 </body>
 </html>
