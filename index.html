@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Histoires des Prophètes · Odyssée Sacrée</title>
+  <title>Stories of the Prophets · Mes petits oisillons</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,7 +100,7 @@
       border-bottom: 2px solid #fff2bf;
     }
 
-    /* TITRE INTRO */
+    /* TITRE INTRO - Message pour les oisillons */
     .intro-section {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -130,7 +130,19 @@
       font-style: italic;
     }
 
-    /* GRILLE DES PROPHÈTES - 2 CARTES PAR LIGNE */
+    .heart-icon {
+      color: #D4AF37;
+      margin: 0 0.3rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* GRILLE DES PROPHÈTES */
     .prophets-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -173,7 +185,7 @@
       background-color: #1e2a3a;
     }
 
-    /* Portraits variés (SVG symboliques) */
+    /* Portraits variés */
     .portrait-1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
     .portrait-2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58450"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 86,70 68" stroke="%23945e36" stroke-width="5" fill="none"/></svg>'); }
     .portrait-3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b07c48"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 90,70 68" stroke="%238a572c" stroke-width="5" fill="none"/></svg>'); }
@@ -191,12 +203,12 @@
       line-height: 1.4;
     }
 
-    /* Modal */
+    /* Modal vidéo */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.7);
-      backdrop-filter: blur(12px);
+      background-color: rgba(0,0,0,0.8);
+      backdrop-filter: blur(15px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -212,11 +224,11 @@
     }
 
     .modal-content {
-      background: rgba(20, 30, 50, 0.4);
+      background: rgba(20, 30, 50, 0.5);
       backdrop-filter: blur(20px);
       border: 2px solid #D4AF37;
       border-radius: 3rem;
-      max-width: 500px;
+      max-width: 800px;
       width: 90%;
       padding: 2rem;
       box-shadow: 0 50px 80px -20px black, 0 0 70px #D4AF37;
@@ -232,6 +244,23 @@
       font-size: 2.2rem;
       color: #D4AF37;
       cursor: pointer;
+      z-index: 10;
+    }
+
+    /* Conteneur vidéo */
+    .video-container {
+      width: 100%;
+      margin: 1rem 0;
+      border-radius: 2rem;
+      overflow: hidden;
+      border: 2px solid #D4AF37;
+      box-shadow: 0 0 50px #D4AF37;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .video-placeholder {
@@ -245,18 +274,31 @@
       align-items: center;
       justify-content: center;
       margin: 1.5rem 0 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .video-placeholder:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 80px #f5c542;
     }
 
     .play-icon {
-      font-size: 4rem;
+      font-size: 5rem;
       color: #D4AF37;
-      filter: drop-shadow(0 0 20px gold);
+      filter: drop-shadow(0 0 30px gold);
     }
 
     .modal-title {
       font-family: 'Cinzel', serif;
       font-size: 2.2rem;
       color: #D4AF37;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-footer {
+      color: #e6d5a8;
+      font-style: italic;
     }
 
     /* Mobile */
@@ -264,9 +306,6 @@
       .prophets-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
-      }
-      .global-header {
-        margin-bottom: 1.5rem;
       }
       .language-selector {
         gap: 1rem;
@@ -276,105 +315,147 @@
         font-size: 1.5rem;
       }
     }
+
+    /* RTL pour arabe */
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
   </style>
 </head>
 <body>
 <div class="app-container">
-  <!-- GLOBE + LANGUES EN HAUT -->
+  <!-- GLOBE + LANGUES -->
   <div class="global-header">
     <i class="fas fa-globe-asia globe-icon"></i>
     <div class="language-selector">
-      <button class="lang-option active" id="langFR" data-lang="FR">FR</button>
       <button class="lang-option" id="langEN" data-lang="EN">EN</button>
       <button class="lang-option" id="langAR" data-lang="AR">AR</button>
+      <button class="lang-option" id="langFR" data-lang="FR">FR</button>
     </div>
   </div>
 
-  <!-- INTRODUCTION DYNAMIQUE -->
+  <!-- INTRODUCTION - Message pour les oisillons -->
   <div class="intro-section">
-    <h1 class="intro-title" id="mainTitle">HISTOIRES DES PROPHÈTES</h1>
+    <h1 class="intro-title" id="mainTitle">
+      <i class="fas fa-heart heart-icon"></i> 
+      FOR MY LITTLE BIRDLINGS 
+      <i class="fas fa-heart heart-icon"></i>
+    </h1>
     <div class="intro-text" id="introParagraph">
-      <span id="dynamicIntro">De la création d'Adam au dernier messager Muhammad, plongez dans l'épopée des prophètes à travers les âges. Récits, sagesse et miracles vous attendent dans cette odyssée sacrée.</span>
+      <span id="dynamicIntro">
+        To my precious little ones, this is my legacy for you. A treasure of stories, wisdom and light, 
+        so you may always find your way. May it be a continuous charity <i class="fas fa-heart heart-icon" style="font-size: 1rem;"></i> صدقة جارية 
+        that accompanies you throughout your lives. With all my love, forever.
+      </span>
     </div>
   </div>
 
-  <!-- GRILLE DES PROPHÈTES (ordre exact de l'arbre) -->
+  <!-- GRILLE DES PROPHÈTES -->
   <div class="prophets-grid" id="prophetsGrid">
-    <!-- Les cartes seront générées en JS pour respecter l'ordre -->
+    <!-- Généré par JS -->
   </div>
 </div>
 
-<!-- MODAL QUICK VIEW -->
+<!-- MODAL VIDÉO -->
 <div class="modal-overlay" id="quickViewModal">
   <div class="modal-content">
     <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
-    <div class="video-placeholder">
+    <h2 class="modal-title" id="modalProphetName">ADAM</h2>
+    
+    <!-- Conteneur vidéo (à personnaliser) -->
+    <div class="video-container" id="videoContainer">
+      <!-- Placez l'URL de votre vidéo ici -->
+      <video id="prophetVideo" controls>
+        <source src="" type="video/mp4" id="videoSource">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <!-- Placeholder si pas de vidéo (cliquez pour lancer) -->
+    <div class="video-placeholder" id="videoPlaceholder" style="display: none;">
       <i class="fas fa-play play-icon"></i>
     </div>
-    <h2 class="modal-title" id="modalProphetName">ADAM</h2>
-    <p style="color: #e6d5a8;">Aperçu cinématique · Récit inspirant</p>
+    
+    <p class="modal-footer" id="modalFooter">A message of love for you, my little ones</p>
+    <p style="color: #D4AF37; margin-top: 0.5rem; font-size: 0.9rem;">
+      <i class="fas fa-heart heart-icon"></i> Mon héritage pour vous · My legacy for you · تركتي لكم
+    </p>
   </div>
 </div>
 
 <script>
   (function() {
-    // ---------- DONNÉES TRILINGUES ----------
+    // ---------- DONNÉES DES PROPHÈTES ----------
     const prophetsData = [
-      { id: "adam", names: { FR: "Adam", EN: "Adam", AR: "آدم" } },
-      { id: "enoch", names: { FR: "Idris (Enoch)", EN: "Enoch (Idris)", AR: "إدريس" } },
-      { id: "noah", names: { FR: "Nūh (Noé)", EN: "Noah (Nuh)", AR: "نوح" } },
-      { id: "salih", names: { FR: "Sālih", EN: "Salih", AR: "صالح" } },
-      { id: "lot", names: { FR: "Lūt (Lot)", EN: "Lot (Lut)", AR: "لوط" } },
-      { id: "hud", names: { FR: "Hūd", EN: "Hud", AR: "هود" } },
-      { id: "ibrahim", names: { FR: "Ibrāhīm (Abraham)", EN: "Abraham (Ibrahim)", AR: "إبراهيم" } },
-      { id: "shoaib", names: { FR: "Shu‘ayb", EN: "Shuaib", AR: "شعيب" } },
-      { id: "ismael", names: { FR: "Ismā‘īl", EN: "Ishmael (Ismail)", AR: "إسماعيل" } },
-      { id: "isaac", names: { FR: "Ishāq (Isaac)", EN: "Isaac (Ishaq)", AR: "إسحاق" } },
-      { id: "jacob", names: { FR: "Ya‘qūb (Jacob)", EN: "Jacob (Yaqub)", AR: "يعقوب" } },
-      { id: "joseph", names: { FR: "Yūsuf (Joseph)", EN: "Joseph (Yusuf)", AR: "يوسف" } },
-      { id: "job", names: { FR: "Ayyūb (Job)", EN: "Job (Ayyub)", AR: "أيوب" } },
-      { id: "moses", names: { FR: "Mūsā & Hārūn", EN: "Moses & Aaron", AR: "موسى وهارون" } },
-      { id: "ezekiel", names: { FR: "Dhūl-Kifl (Ézéchiel)", EN: "Ezekiel (Dhul-Kifl)", AR: "ذو الكفل" } },
-      { id: "elijah", names: { FR: "Ilyās & Alyasa‘", EN: "Elijah & Elisha", AR: "إلياس واليسع" } },
-      { id: "jonah", names: { FR: "Yūnus (Jonas)", EN: "Jonah (Yunus)", AR: "يونس" } },
-      { id: "david", names: { FR: "Dāwūd & Sulaymān", EN: "David & Solomon", AR: "داود وسليمان" } },
-      { id: "zakaria", names: { FR: "Zakariyyā & Yahyā", EN: "Zechariah & John", AR: "زكريا ويحيى" } },
-      { id: "jesus", names: { FR: "‘Īsā (Jésus)", EN: "Jesus (Isa)", AR: "عيسى" } },
-      { id: "muhammad", names: { FR: "Muhammad ⚘", EN: "Muhammad ⚘", AR: "محمد ﷺ" } }
+      { id: "adam", names: { EN: "Adam", AR: "آدم", FR: "Adam" } },
+      { id: "enoch", names: { EN: "Enoch (Idris)", AR: "إدريس", FR: "Idris (Enoch)" } },
+      { id: "noah", names: { EN: "Noah (Nuh)", AR: "نوح", FR: "Nūh (Noé)" } },
+      { id: "salih", names: { EN: "Salih", AR: "صالح", FR: "Sālih" } },
+      { id: "lot", names: { EN: "Lot (Lut)", AR: "لوط", FR: "Lūt (Lot)" } },
+      { id: "hud", names: { EN: "Hud", AR: "هود", FR: "Hūd" } },
+      { id: "ibrahim", names: { EN: "Abraham (Ibrahim)", AR: "إبراهيم", FR: "Ibrāhīm (Abraham)" } },
+      { id: "shoaib", names: { EN: "Shuaib", AR: "شعيب", FR: "Shu‘ayb" } },
+      { id: "ismael", names: { EN: "Ishmael (Ismail)", AR: "إسماعيل", FR: "Ismā‘īl" } },
+      { id: "isaac", names: { EN: "Isaac (Ishaq)", AR: "إسحاق", FR: "Ishāq (Isaac)" } },
+      { id: "jacob", names: { EN: "Jacob (Yaqub)", AR: "يعقوب", FR: "Ya‘qūb (Jacob)" } },
+      { id: "joseph", names: { EN: "Joseph (Yusuf)", AR: "يوسف", FR: "Yūsuf (Joseph)" } },
+      { id: "job", names: { EN: "Job (Ayyub)", AR: "أيوب", FR: "Ayyūb (Job)" } },
+      { id: "moses", names: { EN: "Moses & Aaron", AR: "موسى وهارون", FR: "Mūsā & Hārūn" } },
+      { id: "ezekiel", names: { EN: "Ezekiel (Dhul-Kifl)", AR: "ذو الكفل", FR: "Dhūl-Kifl (Ézéchiel)" } },
+      { id: "elijah", names: { EN: "Elijah & Elisha", AR: "إلياس واليسع", FR: "Ilyās & Alyasa‘" } },
+      { id: "jonah", names: { EN: "Jonah (Yunus)", AR: "يونس", FR: "Yūnus (Jonas)" } },
+      { id: "david", names: { EN: "David & Solomon", AR: "داود وسليمان", FR: "Dāwūd & Sulaymān" } },
+      { id: "zakaria", names: { EN: "Zechariah & John", AR: "زكريا ويحيى", FR: "Zakariyyā & Yahyā" } },
+      { id: "jesus", names: { EN: "Jesus (Isa)", AR: "عيسى", FR: "‘Īsā (Jésus)" } },
+      { id: "muhammad", names: { EN: "Muhammad ⚘", AR: "محمد ﷺ", FR: "Muhammad ⚘" } }
     ];
 
-    // Portraits cycliques
+    // Portraits
     const portraitClasses = [
       "portrait-1", "portrait-2", "portrait-3", 
       "portrait-4", "portrait-5", "portrait-6"
     ];
 
-    // Textes d'intro par langue
+    // Messages d'intro pour les oisillons (3 langues)
     const introTexts = {
-      FR: "✨ De la création d'Adam au dernier messager Muhammad, plongez dans l'épopée des prophètes à travers les âges. Récits, sagesse et miracles vous attendent dans cette odyssée sacrée.",
-      EN: "✨ From the creation of Adam to the final messenger Muhammad, dive into the epic of the prophets through the ages. Stories, wisdom and miracles await in this sacred odyssey.",
-      AR: "✨ من خلق آدم إلى الرسول الأخير محمد، انغمس في ملحمة الأنبياء عبر العصور. قصص وحكم ومعجزات تنتظركم في هذه الرحلة المباركة."
+      EN: "✨ To my precious little ones, this is my legacy for you. A treasure of stories, wisdom and light, so you may always find your way. May it be a continuous charity صدقة جارية that accompanies you throughout your lives. With all my love, forever.",
+      AR: "✨ إلى صغاري الأعزاء، هذا تركتي لكم. كنز من القصص والحكمة والنور، لكي تجدوا طريقكم دائماً. جعله الله صدقة جارية ترافقكم طول حياتكم. بكل حبي، إلى الأبد.",
+      FR: "✨ À mes petits oisillons adorés, voici mon héritage pour vous. Un trésor d'histoires, de sagesse et de lumière, pour que vous trouviez toujours votre chemin. Puisse-t-il être une aumône continue صدقة جارية qui vous accompagne toute votre vie. Avec tout mon amour, pour toujours."
     };
 
     const titleTexts = {
-      FR: "HISTOIRES DES PROPHÈTES",
-      EN: "STORIES OF THE PROPHETS",
-      AR: "قصص الأنبياء"
+      EN: "FOR MY LITTLE BIRDLINGS",
+      AR: "إلى صغاري الأعزاء",
+      FR: "À MES PETITS OISILLONS"
+    };
+
+    const modalFooters = {
+      EN: "A message of love for you, my little ones",
+      AR: "رسالة حب لكم، يا صغاري",
+      FR: "Un message d'amour pour vous, mes petits oisillons"
     };
 
     // Éléments DOM
     const grid = document.getElementById('prophetsGrid');
     const modal = document.getElementById('quickViewModal');
     const modalName = document.getElementById('modalProphetName');
+    const modalFooter = document.getElementById('modalFooter');
     const closeBtn = document.getElementById('closeModalBtn');
     const introSpan = document.getElementById('dynamicIntro');
     const mainTitle = document.getElementById('mainTitle');
+    
+    // Éléments vidéo
+    const video = document.getElementById('prophetVideo');
+    const videoSource = document.getElementById('videoSource');
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    const videoContainer = document.getElementById('videoContainer');
 
-    let currentLang = 'FR';
+    let currentLang = 'EN';
 
-    // Fonction pour générer les cartes selon la langue
+    // Fonction pour générer les cartes
     function renderProphets(lang) {
-      grid.innerHTML = ''; // vide la grille
+      grid.innerHTML = '';
       prophetsData.forEach((prophet, index) => {
         const card = document.createElement('div');
         card.className = 'prophet-card';
@@ -385,7 +466,7 @@
 
         const nameDiv = document.createElement('div');
         nameDiv.className = 'card-name';
-        nameDiv.textContent = prophet.names[lang] || prophet.names.FR; // fallback FR
+        nameDiv.textContent = prophet.names[lang] || prophet.names.EN;
 
         card.appendChild(portraitDiv);
         card.appendChild(nameDiv);
@@ -393,6 +474,37 @@
         // Event pour ouvrir modal
         card.addEventListener('click', () => {
           modalName.textContent = prophet.names[lang];
+          modalFooter.textContent = modalFooters[lang] || modalFooters.EN;
+          
+          // Si c'est Adam, on charge la vidéo (à personnaliser)
+          if (prophet.id === 'adam') {
+            // >>> REMPLACEZ L'URL CI-DESSOUS PAR CELLE DE VOTRE VIDÉE <<<
+            const videoUrl = 'chemin/vers/votre-video-adam.mp4'; // À MODIFIER !
+            
+            if (videoUrl !== 'chemin/vers/votre-video-adam.mp4') {
+              videoSource.src = videoUrl;
+              video.load();
+              videoContainer.style.display = 'block';
+              videoPlaceholder.style.display = 'none';
+            } else {
+              // Si pas de vidéo, afficher le placeholder
+              videoContainer.style.display = 'none';
+              videoPlaceholder.style.display = 'flex';
+              
+              // Cliquer sur le placeholder ouvre un lien (exemple YouTube)
+              videoPlaceholder.onclick = () => {
+                window.open('https://www.youtube.com/watch?v=exemple', '_blank');
+              };
+            }
+          } else {
+            // Pour les autres prophètes, pas de vidéo
+            videoContainer.style.display = 'none';
+            videoPlaceholder.style.display = 'flex';
+            videoPlaceholder.onclick = () => {
+              alert(`Histoire de ${prophet.names[lang]} à venir inch'Allah !`);
+            };
+          }
+          
           modal.classList.add('active');
         });
 
@@ -400,11 +512,10 @@
       });
     }
 
-    // Mise à jour de la langue
+    // Changement de langue
     function setLanguage(lang) {
       currentLang = lang;
       
-      // Mettre à jour les classes actives des boutons
       document.querySelectorAll('.lang-option').forEach(btn => {
         if (btn.dataset.lang === lang) {
           btn.classList.add('active');
@@ -413,26 +524,41 @@
         }
       });
 
-      // Texte intro et titre
-      introSpan.textContent = introTexts[lang] || introTexts.FR;
-      mainTitle.textContent = titleTexts[lang] || titleTexts.FR;
+      introSpan.innerHTML = introTexts[lang] || introTexts.EN;
+      mainTitle.innerHTML = `<i class="fas fa-heart heart-icon"></i> ${titleTexts[lang] || titleTexts.EN} <i class="fas fa-heart heart-icon"></i>`;
 
-      // Re-rendre les cartes
+      // RTL pour arabe
+      const introSection = document.querySelector('.intro-section');
+      if (lang === 'AR') {
+        introSection.classList.add('rtl');
+        document.querySelector('.app-container').setAttribute('dir', 'rtl');
+      } else {
+        introSection.classList.remove('rtl');
+        document.querySelector('.app-container').setAttribute('dir', 'ltr');
+      }
+
       renderProphets(lang);
     }
 
-    // Initialisation FR
-    setLanguage('FR');
+    // Initialisation
+    setLanguage('EN');
 
-    // Écouteurs sur les boutons de langue
-    document.getElementById('langFR').addEventListener('click', () => setLanguage('FR'));
+    // Écouteurs langue
     document.getElementById('langEN').addEventListener('click', () => setLanguage('EN'));
     document.getElementById('langAR').addEventListener('click', () => setLanguage('AR'));
+    document.getElementById('langFR').addEventListener('click', () => setLanguage('FR'));
 
-    // Modal close
-    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    // Fermeture modal
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      video.pause();
+    });
+    
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        video.pause();
+      }
     });
 
   })();
