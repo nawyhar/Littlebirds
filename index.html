@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Histoires des Prophètes · Celestial Gold</title>
-  <!-- Google Fonts: Cinzel (headings/serif) & Poppins (body) -->
+  <title>Histoires des Prophètes · Odyssée Céleste</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free) for search & close icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* RESET & GLOBAL */
     * {
       margin: 0;
       padding: 0;
@@ -19,22 +18,19 @@
     }
 
     body {
-      background-color: #0B1320; /* deep midnight blue base */
+      background-color: #0B1320;
       font-family: 'Poppins', sans-serif;
       color: #f0f0f0;
-      line-height: 1.5;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      /* subtle golden stardust radial gradient overlay */
       background-image: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
                         radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
                         linear-gradient(145deg, #0b1320 0%, #0f1a2b 100%);
     }
 
-    /* main container – holds both desktop & mobile adaptations are within same DOM */
     .app-container {
       max-width: 1600px;
       width: 100%;
@@ -47,15 +43,15 @@
       padding: 2rem 1.5rem;
     }
 
-    /* === DESKTOP 3-COLUMN GRID (default) === */
+    /* desktop 3 colonnes */
     .desktop-grid {
       display: grid;
-      grid-template-columns: 25% 65% 10%; /* left, center, right */
+      grid-template-columns: 25% 65% 10%;
       gap: 1.5rem;
       align-items: start;
     }
 
-    /* ---------- LEFT SIDEBAR (sticky family tree) ---------- */
+    /* left sidebar : maintenant c'est le texte d'intro */
     .left-sidebar {
       position: sticky;
       top: 2rem;
@@ -63,98 +59,45 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 2rem;
-      padding: 2rem 1rem;
+      padding: 2rem 1.5rem;
       border: 1px solid rgba(212, 175, 55, 0.3);
       box-shadow: 0 15px 35px -10px black, 0 0 20px rgba(212, 175, 55, 0.2) inset;
     }
 
-    .tree-title {
+    .intro-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       color: #D4AF37;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       letter-spacing: 0.2rem;
       border-bottom: 1px dashed #D4AF37;
       padding-bottom: 1rem;
     }
 
-    /* family tree nodes & lines */
-    .tree-nodes {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
+    .intro-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #f0e6d2;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.2);
+      padding: 1.2rem;
+      border-radius: 1.5rem;
+      border-left: 4px solid #D4AF37;
+      font-style: italic;
     }
 
-    .node-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0.8rem 0;
-      position: relative;
-      width: 100%;
-    }
-
-    /* golden glowing line connector (vertical) */
-    .node-item:not(:last-child)::after {
-      content: '';
-      display: block;
-      width: 2px;
-      height: 2rem;
-      background: linear-gradient(to bottom, #D4AF37, #f9e281, #D4AF37);
-      box-shadow: 0 0 15px #e9b13b, 0 0 25px #ffd966;
-      margin-top: 0.8rem;
-      border-radius: 2px;
-    }
-
-    /* hexagon node */
-    .hex-node {
-      width: 70px;
-      height: 70px;
-      background: #0f1a28;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
-      border: 2px solid #D4AF37;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 30px #D4AF37, 0 0 10px #b8860b inset;
-      transition: 0.2s;
-    }
-
-    .hex-node:hover {
-      box-shadow: 0 0 50px #f5c542, 0 0 20px #fff2bf inset;
-      border-color: #fff2b0;
-    }
-
-    /* circular portrait inside hex (with gold outer glow) */
-    .portrait-circle {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #2f3e5a, #1b263b);
-      border: 2px solid #D4AF37;
-      box-shadow: 0 0 20px #D4AF37;
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* mini portraits (diverse symbolic faces – abstract but cinematic) */
-    .p1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23a77b55"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 80,65 65" stroke="%23b0855c" stroke-width="5" fill="none"/></svg>'); }
-    .p2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58b5d"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 82,65 65" stroke="%23b9844a" stroke-width="5" fill="none"/></svg>'); }
-    .p3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%239c6f42"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 78,65 65" stroke="%23a56e3b" stroke-width="5" fill="none"/></svg>'); }
-    .p4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 85,65 65" stroke="%23b87a41" stroke-width="5" fill="none"/></svg>'); }
-    .p5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ad7a4b"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M35 65 Q50 80,65 65" stroke="%23a56832" stroke-width="5" fill="none"/></svg>'); }
-
-    .node-name {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
+    .intro-text i {
       color: #D4AF37;
-      margin-top: 0.3rem;
-      text-shadow: 0 0 8px gold;
+      margin-right: 0.5rem;
     }
 
-    /* ---------- CENTER COLUMN (gallery) ---------- */
+    .highlight-gold {
+      color: #f5d76e;
+      font-weight: 600;
+    }
+
+    /* centre : cartes */
     .center-gallery {
       max-height: 80vh;
       overflow-y: auto;
@@ -183,7 +126,6 @@
       padding: 0.2rem 0.2rem 1rem 0.2rem;
     }
 
-    /* prophet card */
     .prophet-card {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
@@ -205,7 +147,6 @@
       border-color: #fae28b;
     }
 
-    /* circular portrait with glow (same style as left hex) */
     .card-portrait {
       width: 120px;
       height: 120px;
@@ -218,7 +159,7 @@
       background-color: #1e2a3a;
     }
 
-    /* different card portraits (for variety) */
+    /* portraits variés (svg) */
     .cp1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
     .cp2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58450"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 86,70 68" stroke="%23945e36" stroke-width="5" fill="none"/></svg>'); }
     .cp3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b07c48"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 90,70 68" stroke="%238a572c" stroke-width="5" fill="none"/></svg>'); }
@@ -235,7 +176,7 @@
       letter-spacing: 0.1rem;
     }
 
-    /* ---------- RIGHT SIDEBAR (sticky lang + search) ---------- */
+    /* right sidebar : langues cliquables */
     .right-sidebar {
       position: sticky;
       top: 2rem;
@@ -259,7 +200,6 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: #D4AF37;
-      text-decoration: none;
       padding: 0.5rem 0.2rem;
       border-radius: 30px;
       transition: 0.2s;
@@ -283,7 +223,7 @@
       filter: drop-shadow(0 0 12px gold);
     }
 
-    /* ---------- MODAL / QUICK VIEW (glassmorphism) ---------- */
+    /* modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -327,12 +267,6 @@
       color: #D4AF37;
       cursor: pointer;
       filter: drop-shadow(0 0 10px gold);
-      transition: 0.2s;
-    }
-
-    .close-modal:hover {
-      transform: scale(1.2);
-      color: #f5d76e;
     }
 
     .video-placeholder {
@@ -352,7 +286,6 @@
       font-size: 4rem;
       color: #D4AF37;
       filter: drop-shadow(0 0 20px gold);
-      opacity: 0.9;
     }
 
     .modal-title {
@@ -362,140 +295,71 @@
       text-shadow: 0 0 20px gold;
     }
 
-    /* ---------- MOBILE (max 800px) overwrites ---------- */
+    /* mobile */
     @media (max-width: 800px) {
       .desktop-grid {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
       }
 
       .left-sidebar {
         position: relative;
         top: 0;
-        width: 100%;
-        padding: 1rem;
-      }
-
-      /* horizontal mini tree */
-      .tree-nodes {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-      }
-
-      .node-item:not(:last-child)::after {
-        display: none; /* remove vertical line */
-      }
-
-      .node-item {
-        margin: 0;
-        flex-shrink: 0;
-      }
-
-      .hex-node {
-        width: 60px;
-        height: 60px;
-      }
-      .portrait-circle {
-        width: 48px;
-        height: 48px;
       }
 
       .right-sidebar {
-        display: none; /* we will have bottom nav instead */
+        display: none;
       }
 
-      /* bottom navigation bar for mobile */
       .mobile-bottom-nav {
         display: flex;
         justify-content: space-around;
         background: rgba(0,0,0,0.5);
         backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
         border-top: 1px solid #D4AF37;
         padding: 0.8rem 0;
         margin-top: 1rem;
         border-radius: 2rem;
       }
 
-      .mobile-bottom-nav span {
+      .mobile-bottom-nav span,
+      .mobile-bottom-nav i {
         font-family: 'Cinzel', serif;
         color: #D4AF37;
         font-size: 1.5rem;
-        font-weight: 700;
         text-shadow: 0 0 10px gold;
-        padding: 0 0.8rem;
-        border-right: 2px solid #D4AF37;
-      }
-      .mobile-bottom-nav span:last-child {
-        border-right: none;
-      }
-      .mobile-bottom-nav i {
-        color: #D4AF37;
-        font-size: 1.8rem;
+        cursor: pointer;
       }
 
       .cards-grid {
-        grid-template-columns: 1fr; /* stacked cards */
-      }
-
-      .prophet-card {
-        width: 90%;
-        margin: 0 auto;
+        grid-template-columns: 1fr;
       }
     }
 
-    /* default hide mobile nav on desktop */
     .mobile-bottom-nav {
       display: none;
-    }
-
-    /* ensure right sidebar hides on mobile and nav appears */
-    @media (max-width: 800px) {
-      .mobile-bottom-nav {
-        display: flex;
-      }
     }
   </style>
 </head>
 <body>
 <div class="app-container">
-  <!-- DESKTOP 3-COLUMN LAYOUT -->
   <div class="desktop-grid">
-    <!-- LEFT SIDEBAR (sticky tree) -->
+    <!-- LEFT SIDEBAR - INTRODUCTION (remplace l'arbre) -->
     <aside class="left-sidebar">
-      <div class="tree-title">ARBRE DES PROPHÈTES</div>
-      <div class="tree-nodes">
-        <div class="node-item">
-          <div class="hex-node"><div class="portrait-circle p1"></div></div>
-          <span class="node-name">ADAM</span>
-        </div>
-        <div class="node-item">
-          <div class="hex-node"><div class="portrait-circle p2"></div></div>
-          <span class="node-name">IDRĪS</span>
-        </div>
-        <div class="node-item">
-          <div class="hex-node"><div class="portrait-circle p3"></div></div>
-          <span class="node-name">NŪH</span>
-        </div>
-        <div class="node-item">
-          <div class="hex-node"><div class="portrait-circle p4"></div></div>
-          <span class="node-name">IBRĀHĪM</span>
-        </div>
-        <div class="node-item">
-          <div class="hex-node"><div class="portrait-circle p5"></div></div>
-          <span class="node-name">MŪSĀ</span>
-        </div>
+      <div class="intro-title">📖 HISTOIRES DES PROPHÈTES</div>
+      <div class="intro-text" id="introParagraph">
+        <i class="fas fa-quote-right"></i>
+        <span id="dynamicIntro">
+          De la poussière d'Adam au dernier messager Mohammed ⚡, parcourez l'épopée des prophètes. Des récits qui traversent les siècles, entre miracles, sagesse et bonnes anecdotes ! Ici, on lit, on regarde, et on voyage en trois langues.
+        </span>
       </div>
+      <!-- petite signature amusante -->
+      <p style="color: #D4AF37; margin-top: 1rem; font-size: 0.9rem; text-align: center;">✨ cliquez sur les cartes pour un aperçu vidéo</p>
     </aside>
 
-    <!-- CENTER GALLERY (scrollable cards) -->
+    <!-- CENTER GALLERY (cartes) -->
     <main class="center-gallery">
       <div class="cards-grid">
-        <!-- prophet cards data attributes hold name for modal -->
         <div class="prophet-card" data-prophet="ADAM">
           <div class="card-portrait cp1"></div>
           <div class="card-name">ADAM</div>
@@ -520,28 +384,33 @@
           <div class="card-portrait cp6"></div>
           <div class="card-name">‘ĪSĀ</div>
         </div>
+        <!-- petite carte pour Mohammed (pour faire joli) -->
+        <div class="prophet-card" data-prophet="MUHAMMAD">
+          <div class="card-portrait cp2"></div>
+          <div class="card-name">MUHAMMAD</div>
+        </div>
       </div>
     </main>
 
-    <!-- RIGHT SIDEBAR (vertical lang + search) desktop only -->
+    <!-- RIGHT SIDEBAR : langues cliquables -->
     <aside class="right-sidebar">
-      <button class="lang-btn" aria-label="French">FR</button>
-      <button class="lang-btn" aria-label="Arabic">AR</button>
-      <button class="lang-btn" aria-label="English">EN</button>
+      <button class="lang-btn" id="langFR">FR</button>
+      <button class="lang-btn" id="langEN">EN</button>
+      <button class="lang-btn" id="langAR">AR</button>
       <div class="search-icon"><i class="fas fa-search"></i></div>
     </aside>
   </div>
 
-  <!-- MOBILE BOTTOM NAV (only visible on small screens) -->
+  <!-- mobile bottom nav (langues aussi cliquables) -->
   <div class="mobile-bottom-nav">
-    <span>FR</span>
-    <span>AR</span>
-    <span>EN</span>
+    <span id="mobileFR">FR</span>
+    <span id="mobileEN">EN</span>
+    <span id="mobileAR">AR</span>
     <i class="fas fa-search"></i>
   </div>
 </div>
 
-<!-- MODAL Quick View (glassmorphism) -->
+<!-- MODAL -->
 <div class="modal-overlay" id="quickViewModal">
   <div class="modal-content">
     <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
@@ -549,50 +418,57 @@
       <i class="fas fa-play play-icon"></i>
     </div>
     <h2 class="modal-title" id="modalProphetName">ADAM</h2>
-    <p style="color: #e6d5a8; margin-top: 0.5rem;">Cinematic desert · Récit inspirant</p>
+    <p style="color: #e6d5a8;">aperçu cinématique · désert doré</p>
   </div>
 </div>
 
 <script>
   (function() {
+    // ---------- MODAL ----------
     const modal = document.getElementById('quickViewModal');
     const modalName = document.getElementById('modalProphetName');
     const closeBtn = document.getElementById('closeModalBtn');
 
-    // open modal when any prophet card is clicked
-    const cards = document.querySelectorAll('.prophet-card');
-    cards.forEach(card => {
-      card.addEventListener('click', function(e) {
-        const prophet = this.getAttribute('data-prophet') || 'Prophète';
-        modalName.textContent = prophet;
+    document.querySelectorAll('.prophet-card').forEach(card => {
+      card.addEventListener('click', function() {
+        modalName.textContent = this.getAttribute('data-prophet') || 'Prophète';
         modal.classList.add('active');
       });
     });
 
-    // close modal
-    const closeModal = () => {
-      modal.classList.remove('active');
-    };
+    const closeModal = () => modal.classList.remove('active');
     closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    // click outside to close (optional)
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeModal();
+    // ---------- TEXTE INTRO TRILINGUE (amusant) ----------
+    const introSpan = document.getElementById('dynamicIntro');
+    const introBox = document.getElementById('introParagraph');
+
+    const texts = {
+      FR: "De la poussière d'Adam au dernier messager Mohammed ⚡, parcourez l'épopée des prophètes. Des récits qui traversent les siècles, entre miracles, sagesse et bonnes anecdotes ! Ici, on lit, on regarde, et on voyage en trois langues.",
+      EN: "From Adam's clay to the final messenger Muhammad ⚡, journey through the prophets' epic. Tales spanning centuries, filled with miracles, wisdom, and a few good stories! Read, watch, and explore in three languages.",
+      AR: "من طين آدم إلى الرسول الأخير محمد ⚡، رحلة عبر ملحمة الأنبياء. حكايات تعبر القرون، بين المعجزات والحكمة والطرائف! هنا نقرأ، نشاهد، ونسافر بثلاث لغات."
+    };
+
+    function setLanguage(lang) {
+      if (texts[lang]) {
+        introSpan.textContent = texts[lang];
       }
-    });
+    }
 
-    // language buttons (desktop) – simple console placeholder
-    const langBtns = document.querySelectorAll('.lang-btn');
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        console.log('Language selected: ' + e.target.innerText);
-      });
-    });
+    // boutons desktop
+    document.getElementById('langFR').addEventListener('click', () => setLanguage('FR'));
+    document.getElementById('langEN').addEventListener('click', () => setLanguage('EN'));
+    document.getElementById('langAR').addEventListener('click', () => setLanguage('AR'));
 
-    // mobile nav languages (no action needed for demo)
+    // boutons mobile
+    document.getElementById('mobileFR').addEventListener('click', () => setLanguage('FR'));
+    document.getElementById('mobileEN').addEventListener('click', () => setLanguage('EN'));
+    document.getElementById('mobileAR').addEventListener('click', () => setLanguage('AR'));
+
+    // Par défaut FR
+    setLanguage('FR');
   })();
 </script>
-<!-- subtle gold dust overlay (just for atmosphere) -->
 </body>
 </html>
