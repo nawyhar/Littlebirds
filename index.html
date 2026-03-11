@@ -77,8 +77,6 @@
       transition: 0.2s;
     }
 
-    .lang-option:hover { transform: scale(1.1); }
-
     .lang-option.active {
       color: #fff2bf;
       text-shadow: 0 0 20px gold;
@@ -153,9 +151,9 @@
       justify-content: center;
     }
 
-    /* Nouvel Arbre Naturel Céleste Doré pour Adam */
+    /* === NOUVEL ARBRE NATUREL ET TOUFFU (Inspiré de la référence) === */
     .portrait-adam { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 90 L52 90 L53 55 C53 50, 60 45, 65 40 M52 65 C52 60, 40 55, 35 50" stroke="%23D4AF37" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="50" cy="30" r="15" fill="%23D4AF37" opacity="0.8"/><circle cx="35" cy="45" r="10" fill="%23D4AF37" opacity="0.6"/><circle cx="65" cy="40" r="11" fill="%23D4AF37" opacity="0.7"/><circle cx="50" cy="15" r="8" fill="%23D4AF37" opacity="0.9"/><circle cx="25" cy="35" r="6" fill="%23D4AF37" opacity="0.5"/><circle cx="75" cy="30" r="7" fill="%23D4AF37" opacity="0.6"/><circle cx="50" cy="90" r="4" fill="%23D4AF37"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" stroke="%23A6822B" stroke-width="1"/><path d="M50 60 C30 65, 10 55, 15 40 C20 25, 40 20, 50 30 C60 20, 80 25, 85 40 C90 55, 70 65, 50 60 Z M50 35 C65 30, 75 35, 75 45 C75 55, 65 60, 50 55 M50 35 C35 30, 25 35, 25 45 C25 55, 35 60, 50 55" fill="%23D4AF37" opacity="0.95" stroke="%23D4AF37" stroke-width="1"/><circle cx="35" cy="40" r="1.5" fill="white" opacity="0.6"/><circle cx="65" cy="40" r="1.5" fill="white" opacity="0.6"/><circle cx="50" cy="25" r="1.5" fill="white" opacity="0.6"/><circle cx="30" cy="50" r="1" fill="white" opacity="0.5"/><circle cx="70" cy="50" r="1" fill="white" opacity="0.5"/><path d="M48 85 L52 85 Z" fill="white" opacity="0.3" stroke="%23D4AF37" stroke-width="3"/></svg>');
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.9));
     }
 
@@ -192,7 +190,7 @@
 
     .close-modal { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; font-size: 2.5rem; color: #D4AF37; cursor: pointer; }
 
-    .video-container { width: 100%; margin: 1.5rem 0 0 0; border-radius: 1.5rem; overflow: hidden; border: 1px solid #D4AF37; background: #000;}
+    .video-container { width: 100%; margin: 1.5rem 0; border-radius: 1.5rem; overflow: hidden; border: 1px solid #D4AF37; background: #000;}
 
     video { width: 100%; display: block; }
 
@@ -231,7 +229,8 @@
         <source src="" type="video/mp4" id="videoSource">
       </video>
     </div>
-    </div>
+    <p style="color: #D4AF37; font-style: italic;" id="modalFooter"></p>
+  </div>
 </div>
 
 <script>
@@ -260,6 +259,7 @@
       { id: "muhammad", names: { EN: "Muhammad ⚘", AR: "محمد ﷺ", FR: "Muhammad ⚘" } }
     ];
 
+    /* === TEXTES D'INTRODUCTION CORRIGÉS (Clairs et Simples) === */
     const introTexts = {
       EN: "As the day ends and the lights grow soft, it is time for our stories to begin. 🕊️<br>This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart. It is a moment of peace for my little birds, and a quiet light for every path that finds its way here before sleep.",
       FR: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. 🕊️<br>C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher, à l'écoute de la vie des Prophètes. Leurs parcours, faits de bonté et de courage, sont des lumières qui parlent à chaque cœur. Un instant de sérénité pour mes petits oisillons, et un souffle de paix pour quiconque s'arrête ici avant de s'endormir.",
@@ -267,6 +267,7 @@
     };
 
     const titleTexts = { EN: "Stories of the Prophets", FR: "L'histoire des Prophètes", AR: "قصص الأنبياء" };
+    const modalFooters = { EN: "A legacy of love", FR: "Un héritage d'amour", AR: "أثر من الحب" };
 
     const grid = document.getElementById('prophetsGrid');
     const modal = document.getElementById('quickViewModal');
@@ -284,15 +285,13 @@
         
         card.onclick = () => {
           document.getElementById('modalProphetName').textContent = prophet.names[lang];
+          document.getElementById('modalFooter').textContent = modalFooters[lang];
           if(prophet.id === 'adam') {
-            // Charger la vidéo correspondante à la langue de la page
-            videoSource.src = `Video ${lang} mp4.mp4`;
+            videoSource.src = "Video EN mp4.mp4";
             video.load();
             document.getElementById('videoContainer').style.display = 'block';
-            
-            // Tentative de lecture automatique (souvent bloquée par les navigateurs)
             video.play().catch(error => {
-                console.log("La lecture automatique a été bloquée. L'utilisateur doit cliquer sur lecture.", error);
+                console.log("Auto-play was prevented by the browser. User interaction needed.");
             });
           } else {
             document.getElementById('videoContainer').style.display = 'none';
@@ -320,23 +319,19 @@
     document.getElementById('langAR').onclick = () => setLanguage('AR');
     document.getElementById('langFR').onclick = () => setLanguage('FR');
     
-    // Fonction pour fermer la modal proprement
     function closeModal() {
         modal.classList.remove('active');
         video.pause();
-        video.currentTime = 0; // Remettre la vidéo au début
+        video.currentTime = 0; 
     }
 
     document.getElementById('closeModalBtn').onclick = closeModal;
-    
-    // Fermer si on clique en dehors de la modal
     modal.onclick = (e) => {
         if (e.target === modal) {
             closeModal();
         }
     };
 
-    // Langue par défaut
     setLanguage('EN');
   })();
 </script>
