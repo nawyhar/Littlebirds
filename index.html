@@ -9,11 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background-color: #0B1320;
@@ -41,13 +37,11 @@
       padding: 2rem 1.5rem;
     }
 
-    /* GLOBE EN HAUT */
     .global-header {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 2.5rem;
-      position: relative;
     }
 
     .globe-icon {
@@ -67,11 +61,9 @@
       display: flex;
       gap: 2rem;
       background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(10px);
       padding: 0.8rem 2rem;
       border-radius: 4rem;
       border: 1px solid #D4AF37;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
     }
 
     .lang-option {
@@ -80,37 +72,24 @@
       font-weight: 700;
       color: #D4AF37;
       cursor: pointer;
-      padding: 0 0.5rem;
-      transition: all 0.2s;
-      text-shadow: 0 0 10px gold;
       background: none;
       border: none;
-    }
-
-    .lang-option:hover {
-      transform: scale(1.2);
-      text-shadow: 0 0 30px #ffd966;
+      transition: 0.2s;
     }
 
     .lang-option.active {
       color: #fff2bf;
-      text-shadow: 0 0 30px #f5e56b;
+      text-shadow: 0 0 20px gold;
       border-bottom: 2px solid #fff2bf;
     }
 
-    /* TITRE INTRO - Message pour les oisillons */
-    .intro-section {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      padding: 0 1rem;
-    }
+    .intro-section { text-align: center; margin-bottom: 2.5rem; }
 
     .intro-title {
       font-family: 'Cinzel', serif;
       font-size: 2.2rem;
       color: #D4AF37;
       margin-bottom: 1.5rem;
-      letter-spacing: 0.1rem;
       text-shadow: 0 0 20px gold;
     }
 
@@ -124,155 +103,96 @@
       border-radius: 2rem;
       border-top: 1px solid rgba(212, 175, 55, 0.3);
       border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      backdrop-filter: blur(5px);
       font-style: italic;
-      color: #e0e0e0;
     }
 
-    .heart-icon {
-      color: #D4AF37;
-      margin: 0 0.5rem;
-      animation: pulse 2s infinite;
-      vertical-align: middle;
-    }
+    .heart-icon { color: #D4AF37; margin: 0 0.5rem; animation: pulse 2s infinite; vertical-align: middle; }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.15); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
-    /* GRILLE DES PROPHÈTES */
     .prophets-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       max-width: 900px;
       margin: 0 auto;
-      padding: 1rem;
     }
 
     .prophet-card {
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
       border: 2px solid #D4AF37;
       border-radius: 1.8rem;
       padding: 1.5rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
+      transition: 0.3s;
       cursor: pointer;
     }
 
-    .prophet-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 35px -8px black, 0 0 35px rgba(212, 175, 55, 0.4);
-      border-color: #fae28b;
-    }
+    .prophet-card:hover { transform: translateY(-5px); border-color: #fff; }
 
     .card-portrait {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       border: 3px solid #D4AF37;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
       margin-bottom: 1rem;
-      background-size: cover;
+      background-size: 70%;
+      background-repeat: no-repeat;
       background-position: center;
-      background-color: #1e2a3a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Arbre Doré pour Adam */
-    .portrait-adam { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 85 V40 M50 55 L30 40 M50 55 L70 40 M50 45 L35 25 M50 45 L65 25" stroke="%23D4AF37" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="50" cy="25" r="12" fill="%23D4AF37" opacity="0.6"/><circle cx="30" cy="40" r="10" fill="%23D4AF37" opacity="0.6"/><circle cx="70" cy="40" r="10" fill="%23D4AF37" opacity="0.6"/><circle cx="50" cy="15" r="8" fill="%23D4AF37" opacity="0.8"/><circle cx="50" cy="85" r="5" fill="%23D4AF37"/></svg>');
       background-color: #0d1b2a;
-      filter: drop-shadow(0 0 10px gold);
     }
 
-    /* Autres portraits */
-    .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
-
-    .card-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #D4AF37;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-      text-align: center;
+    /* Natural Tree SVG for Adam */
+    .portrait-adam { 
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 L52 85 L52 50 L48 50 Z" fill="%23D4AF37"/><path d="M50 55 C30 55 20 40 25 30 C30 20 45 15 50 25 C55 15 70 20 75 30 C80 40 70 55 50 55" fill="%23D4AF37" opacity="0.8"/><circle cx="50" cy="35" r="18" fill="%23D4AF37" opacity="0.6"/><circle cx="40" cy="45" r="12" fill="%23D4AF37" opacity="0.5"/><circle cx="60" cy="45" r="12" fill="%23D4AF37" opacity="0.5"/><circle cx="50" cy="22" r="10" fill="%23D4AF37" opacity="0.7"/></svg>');
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
     }
 
-    /* Modal vidéo */
+    .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><path d="M30 68 Q50 88,70 68" stroke="%23332" stroke-width="5" fill="none"/></svg>'); }
+
+    .card-name { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #D4AF37; text-align: center; }
+
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      backdrop-filter: blur(15px);
+      background: rgba(0,0,0,0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1000;
       visibility: hidden;
       opacity: 0;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
 
-    .modal-overlay.active {
-      visibility: visible;
-      opacity: 1;
-    }
+    .modal-overlay.active { visibility: visible; opacity: 1; }
 
     .modal-content {
-      background: rgba(10, 20, 35, 0.8);
+      background: #0B1320;
       border: 2px solid #D4AF37;
-      border-radius: 2.5rem;
+      border-radius: 2rem;
       max-width: 800px;
       width: 95%;
-      padding: 2.5rem;
-      box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+      padding: 2rem;
       text-align: center;
       position: relative;
     }
 
-    .close-modal {
-      position: absolute;
-      top: 1rem; right: 1.5rem;
-      background: none;
-      border: none;
-      font-size: 2.5rem;
-      color: #D4AF37;
-      cursor: pointer;
-    }
+    .close-modal { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; font-size: 2.5rem; color: #D4AF37; cursor: pointer; }
 
-    .video-container {
-      width: 100%;
-      margin: 1.5rem 0;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid #D4AF37;
-      background: #000;
-    }
+    .video-container { width: 100%; margin: 1.5rem 0; border-radius: 1.5rem; overflow: hidden; border: 1px solid #D4AF37; }
 
     video { width: 100%; display: block; }
 
-    .modal-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: #D4AF37;
-    }
+    .rtl { direction: rtl; }
 
-    /* Mobile */
-    @media (max-width: 700px) {
-      .prophets-grid { grid-template-columns: 1fr; }
-      .intro-title { font-size: 1.6rem; }
-      .intro-text { font-size: 1rem; padding: 1.2rem; }
-    }
-
-    .rtl { direction: rtl; text-align: center; }
+    @media (max-width: 700px) { .prophets-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -288,7 +208,7 @@
 
   <div class="intro-section" id="introContainer">
     <h1 class="intro-title" id="mainTitle"></h1>
-    <div class="intro-text" id="introParagraph">
+    <div class="intro-text">
       <span id="dynamicIntro"></span>
     </div>
   </div>
@@ -299,7 +219,7 @@
 <div class="modal-overlay" id="quickViewModal">
   <div class="modal-content">
     <button class="close-modal" id="closeModalBtn">&times;</button>
-    <h2 class="modal-title" id="modalProphetName"></h2>
+    <h2 class="modal-title" id="modalProphetName" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 2rem;"></h2>
     <div class="video-container" id="videoContainer">
       <video id="prophetVideo" controls>
         <source src="" type="video/mp4" id="videoSource">
@@ -341,47 +261,29 @@
       AR: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. 🕊️<br>هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان. هي لحظة صفاء لعصافيري الصغار، ونسمة طمأنينة تسكن القلوب قبل المنام."
     };
 
-    const titleTexts = {
-      EN: "STORIES OF THE PROPHETS",
-      FR: "L'HISTOIRE DES PROPHÈTES",
-      AR: "قصص الأنبياء"
-    };
-
-    const modalFooters = {
-      EN: "A legacy of love and light",
-      FR: "Un héritage d'amour et de lumière",
-      AR: "أثر من الحب والنور"
-    };
+    const titleTexts = { EN: "Stories of the Prophets", FR: "L'histoire des Prophètes", AR: "قصص الأنبياء" };
+    const modalFooters = { EN: "A legacy of love", FR: "Un héritage d'amour", AR: "أثر من الحب" };
 
     const grid = document.getElementById('prophetsGrid');
     const modal = document.getElementById('quickViewModal');
-    const introSpan = document.getElementById('dynamicIntro');
-    const mainTitle = document.getElementById('mainTitle');
     const video = document.getElementById('prophetVideo');
     const videoSource = document.getElementById('videoSource');
+    let currentLang = 'EN';
 
     function renderProphets(lang) {
       grid.innerHTML = '';
       prophetsData.forEach((prophet) => {
         const card = document.createElement('div');
         card.className = 'prophet-card';
-        
-        const portrait = document.createElement('div');
-        // Appliquer l'arbre doré uniquement à Adam
-        portrait.className = `card-portrait ${prophet.id === 'adam' ? 'portrait-adam' : 'portrait-generic'}`;
-        
-        const name = document.createElement('div');
-        name.className = 'card-name';
-        name.textContent = prophet.names[lang];
-
-        card.appendChild(portrait);
-        card.appendChild(name);
+        card.innerHTML = `<div class="card-portrait ${prophet.id === 'adam' ? 'portrait-adam' : 'portrait-generic'}"></div>
+                          <div class="card-name">${prophet.names[lang]}</div>`;
         
         card.onclick = () => {
           document.getElementById('modalProphetName').textContent = prophet.names[lang];
           document.getElementById('modalFooter').textContent = modalFooters[lang];
           if(prophet.id === 'adam') {
-            videoSource.src = "Video EN mp4.mp4";
+            // Correct Video file based on page language
+            videoSource.src = `Video ${lang} mp4.mp4`;
             video.load();
             document.getElementById('videoContainer').style.display = 'block';
           } else {
@@ -394,19 +296,15 @@
     }
 
     function setLanguage(lang) {
+      currentLang = lang;
       document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      
-      mainTitle.innerHTML = `<i class="fas fa-heart heart-icon"></i> ${titleTexts[lang]} <i class="fas fa-heart heart-icon"></i>`;
-      introSpan.innerHTML = introTexts[lang];
+      document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${titleTexts[lang]} <i class="fas fa-heart heart-icon"></i>`;
+      document.getElementById('dynamicIntro').innerHTML = introTexts[lang];
       
       const container = document.querySelector('.app-container');
-      if(lang === 'AR') {
-        container.classList.add('rtl');
-        container.setAttribute('dir', 'rtl');
-      } else {
-        container.classList.remove('rtl');
-        container.setAttribute('dir', 'ltr');
-      }
+      if(lang === 'AR') { container.classList.add('rtl'); container.setAttribute('dir', 'rtl'); }
+      else { container.classList.remove('rtl'); container.setAttribute('dir', 'ltr'); }
+      
       renderProphets(lang);
     }
 
