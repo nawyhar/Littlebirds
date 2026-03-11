@@ -363,18 +363,12 @@
     <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
     <h2 class="modal-title" id="modalProphetName">ADAM</h2>
     
-    <!-- Conteneur vidéo (à personnaliser) -->
+    <!-- Conteneur vidéo -->
     <div class="video-container" id="videoContainer">
-      <!-- Placez l'URL de votre vidéo ici -->
       <video id="prophetVideo" controls>
         <source src="" type="video/mp4" id="videoSource">
         Your browser does not support the video tag.
       </video>
-    </div>
-    
-    <!-- Placeholder si pas de vidéo (cliquez pour lancer) -->
-    <div class="video-placeholder" id="videoPlaceholder" style="display: none;">
-      <i class="fas fa-play play-icon"></i>
     </div>
     
     <p class="modal-footer" id="modalFooter">A message of love for you, my little ones</p>
@@ -448,7 +442,6 @@
     // Éléments vidéo
     const video = document.getElementById('prophetVideo');
     const videoSource = document.getElementById('videoSource');
-    const videoPlaceholder = document.getElementById('videoPlaceholder');
     const videoContainer = document.getElementById('videoContainer');
 
     let currentLang = 'EN';
@@ -476,33 +469,28 @@
           modalName.textContent = prophet.names[lang];
           modalFooter.textContent = modalFooters[lang] || modalFooters.EN;
           
-          // Si c'est Adam, on charge la vidéo (à personnaliser)
+          // Si c'est Adam, on charge la vidéo
           if (prophet.id === 'adam') {
-            // >>> REMPLACEZ L'URL CI-DESSOUS PAR CELLE DE VOTRE VIDÉE <<<
-            const videoUrl = 'Video EN mp4.mp4'; // À MODIFIER !
+            // ==== CHANGEZ CETTE LIGNE AVEC LE CHEMIN DE VOTRE VIDÉO ====
+            const videoUrl = 'Video EN mp4.mp4'; // Met le bon chemin ici !
             
-            if (videoUrl !== 'Video EN mp4.mp4') {
-              videoSource.src = videoUrl;
-              video.load();
-              videoContainer.style.display = 'block';
-              videoPlaceholder.style.display = 'none';
-            } else {
-              // Si pas de vidéo, afficher le placeholder
-              videoContainer.style.display = 'none';
-              videoPlaceholder.style.display = 'flex';
-              
-              // Cliquer sur le placeholder ouvre un lien (exemple YouTube)
-              videoPlaceholder.onclick = () => {
-                window.open('https://www.youtube.com/watch?v=exemple', '_blank');
-              };
-            }
-          } else {
-            // Pour les autres prophètes, pas de vidéo
-            videoContainer.style.display = 'none';
-            videoPlaceholder.style.display = 'flex';
-            videoPlaceholder.onclick = () => {
-              alert(`Histoire de ${prophet.names[lang]} à venir inch'Allah !`);
+            console.log('Chargement de la vidéo:', videoUrl); // Pour debug
+            
+            // Configure la source vidéo
+            videoSource.src = videoUrl;
+            video.load(); // Recharge la vidéo avec la nouvelle source
+            
+            // Assure que le conteneur vidéo est visible
+            videoContainer.style.display = 'block';
+            
+            // Force le rechargement et la lecture
+            video.oncanplay = function() {
+              video.play().catch(e => console.log('Autoplay bloqué:', e));
             };
+            
+          } else {
+            // Pour les autres prophètes, on cache juste la vidéo
+            videoContainer.style.display = 'none';
           }
           
           modal.classList.add('active');
@@ -552,12 +540,14 @@
     closeBtn.addEventListener('click', () => {
       modal.classList.remove('active');
       video.pause();
+      video.currentTime = 0; // Remet au début
     });
     
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
         video.pause();
+        video.currentTime = 0;
       }
     });
 
