@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Histoires des Prophètes · Odyssée Céleste</title>
+  <title>Histoires des Prophètes · Odyssée Sacrée</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
     }
 
     .app-container {
-      max-width: 1600px;
+      max-width: 1200px;
       width: 100%;
       margin: 0 auto;
       border-radius: 2.5rem;
@@ -43,87 +43,101 @@
       padding: 2rem 1.5rem;
     }
 
-    /* desktop 3 colonnes */
-    .desktop-grid {
-      display: grid;
-      grid-template-columns: 25% 65% 10%;
-      gap: 1.5rem;
-      align-items: start;
+    /* GLOBE EN HAUT */
+    .global-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      position: relative;
     }
 
-    /* left sidebar : maintenant c'est le texte d'intro */
-    .left-sidebar {
-      position: sticky;
-      top: 2rem;
-      background: rgba(255, 255, 255, 0.03);
+    .globe-icon {
+      font-size: 4rem;
+      color: #D4AF37;
+      filter: drop-shadow(0 0 30px #f5c542);
+      animation: rotateGlobe 20s infinite linear;
+      margin-bottom: 0.8rem;
+    }
+
+    @keyframes rotateGlobe {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .language-selector {
+      display: flex;
+      gap: 2rem;
+      background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 2rem;
-      padding: 2rem 1.5rem;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      box-shadow: 0 15px 35px -10px black, 0 0 20px rgba(212, 175, 55, 0.2) inset;
+      padding: 0.8rem 2rem;
+      border-radius: 4rem;
+      border: 1px solid #D4AF37;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    }
+
+    .lang-option {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #D4AF37;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      transition: all 0.2s;
+      text-shadow: 0 0 10px gold;
+      background: none;
+      border: none;
+    }
+
+    .lang-option:hover {
+      transform: scale(1.2);
+      text-shadow: 0 0 30px #ffd966;
+    }
+
+    .lang-option.active {
+      color: #fff2bf;
+      text-shadow: 0 0 30px #f5e56b;
+      border-bottom: 2px solid #fff2bf;
+    }
+
+    /* TITRE INTRO */
+    .intro-section {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 0 1rem;
     }
 
     .intro-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       color: #D4AF37;
-      text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       letter-spacing: 0.2rem;
-      border-bottom: 1px dashed #D4AF37;
-      padding-bottom: 1rem;
+      text-shadow: 0 0 20px gold;
     }
 
     .intro-text {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #f0e6d2;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-      background: rgba(0,0,0,0.2);
-      padding: 1.2rem;
-      border-radius: 1.5rem;
-      border-left: 4px solid #D4AF37;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 3rem;
+      border-left: 5px solid #D4AF37;
+      border-right: 5px solid #D4AF37;
+      backdrop-filter: blur(5px);
       font-style: italic;
     }
 
-    .intro-text i {
-      color: #D4AF37;
-      margin-right: 0.5rem;
-    }
-
-    .highlight-gold {
-      color: #f5d76e;
-      font-weight: 600;
-    }
-
-    /* centre : cartes */
-    .center-gallery {
-      max-height: 80vh;
-      overflow-y: auto;
-      padding-right: 0.8rem;
-      scrollbar-width: thin;
-      scrollbar-color: #D4AF37 #0f1a2b;
-    }
-
-    .center-gallery::-webkit-scrollbar {
-      width: 6px;
-    }
-    .center-gallery::-webkit-scrollbar-track {
-      background: #0f1a2b;
-      border-radius: 10px;
-    }
-    .center-gallery::-webkit-scrollbar-thumb {
-      background: #D4AF37;
-      border-radius: 10px;
-      box-shadow: inset 0 0 6px #ffd966;
-    }
-
-    .cards-grid {
+    /* GRILLE DES PROPHÈTES - 2 CARTES PAR LIGNE */
+    .prophets-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 1.8rem;
-      padding: 0.2rem 0.2rem 1rem 0.2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem;
     }
 
     .prophet-card {
@@ -131,8 +145,8 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 2px solid #D4AF37;
-      border-radius: 2rem;
-      padding: 1.8rem 1rem 1.5rem;
+      border-radius: 1.8rem;
+      padding: 1.2rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -142,94 +156,47 @@
     }
 
     .prophet-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       box-shadow: 0 25px 35px -8px black, 0 0 35px #D4AF37, 0 0 0 2px #f5d76e inset;
       border-color: #fae28b;
     }
 
     .card-portrait {
-      width: 120px;
-      height: 120px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       border: 3px solid #D4AF37;
-      box-shadow: 0 0 40px #D4AF37, 0 10px 20px black;
-      margin-bottom: 1rem;
+      box-shadow: 0 0 30px #D4AF37, 0 5px 15px black;
+      margin-bottom: 0.8rem;
       background-size: cover;
       background-position: center;
       background-color: #1e2a3a;
     }
 
-    /* portraits variés (svg) */
-    .cp1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
-    .cp2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58450"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 86,70 68" stroke="%23945e36" stroke-width="5" fill="none"/></svg>'); }
-    .cp3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b07c48"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 90,70 68" stroke="%238a572c" stroke-width="5" fill="none"/></svg>'); }
-    .cp4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23cfa269"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 84,70 68" stroke="%23ac703e" stroke-width="5" fill="none"/></svg>'); }
-    .cp5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b98d58"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 87,70 68" stroke="%239b6435" stroke-width="5" fill="none"/></svg>'); }
-    .cp6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c09460"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 83,70 68" stroke="%239a6437" stroke-width="5" fill="none"/></svg>'); }
+    /* Portraits variés (SVG symboliques) */
+    .portrait-1 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 88,70 68" stroke="%239f6234" stroke-width="5" fill="none"/></svg>'); }
+    .portrait-2 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b58450"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 86,70 68" stroke="%23945e36" stroke-width="5" fill="none"/></svg>'); }
+    .portrait-3 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b07c48"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 90,70 68" stroke="%238a572c" stroke-width="5" fill="none"/></svg>'); }
+    .portrait-4 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23cfa269"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 84,70 68" stroke="%23ac703e" stroke-width="5" fill="none"/></svg>'); }
+    .portrait-5 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23b98d58"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 87,70 68" stroke="%239b6435" stroke-width="5" fill="none"/></svg>'); }
+    .portrait-6 { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c09460"/><circle cx="35" cy="40" r="6" fill="%23332"/><circle cx="65" cy="40" r="6" fill="%23332"/><path d="M30 68 Q50 83,70 68" stroke="%239a6437" stroke-width="5" fill="none"/></svg>'); }
 
     .card-name {
       font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #D4AF37;
-      text-shadow: 0 0 12px #f5c542;
-      letter-spacing: 0.1rem;
+      text-shadow: 0 0 10px #f5c542;
+      text-align: center;
+      line-height: 1.4;
     }
 
-    /* right sidebar : langues cliquables */
-    .right-sidebar {
-      position: sticky;
-      top: 2rem;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 3rem;
-      padding: 2rem 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) inset;
-    }
-
-    .lang-btn {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #D4AF37;
-      padding: 0.5rem 0.2rem;
-      border-radius: 30px;
-      transition: 0.2s;
-      letter-spacing: 0.3rem;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      text-shadow: 0 0 15px gold;
-    }
-
-    .lang-btn:hover {
-      text-shadow: 0 0 35px #ffdfa0;
-      transform: rotate(180deg) scale(1.1);
-    }
-
-    .search-icon {
-      color: #D4AF37;
-      font-size: 1.8rem;
-      margin-top: 1rem;
-      cursor: default;
-      filter: drop-shadow(0 0 12px gold);
-    }
-
-    /* modal */
+    /* Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.7);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -247,12 +214,11 @@
     .modal-content {
       background: rgba(20, 30, 50, 0.4);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border: 2px solid #D4AF37;
       border-radius: 3rem;
       max-width: 500px;
       width: 90%;
-      padding: 2rem 2rem 2.5rem;
+      padding: 2rem;
       box-shadow: 0 50px 80px -20px black, 0 0 70px #D4AF37;
       text-align: center;
       position: relative;
@@ -266,7 +232,6 @@
       font-size: 2.2rem;
       color: #D4AF37;
       cursor: pointer;
-      filter: drop-shadow(0 0 10px gold);
     }
 
     .video-placeholder {
@@ -275,7 +240,7 @@
       background: radial-gradient(circle at 30% 40%, #aa8745, #1a251c);
       border-radius: 2rem;
       border: 2px solid #D4AF37;
-      box-shadow: 0 0 60px #D4AF37, inset 0 0 30px #b68b40;
+      box-shadow: 0 0 60px #D4AF37;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -292,125 +257,54 @@
       font-family: 'Cinzel', serif;
       font-size: 2.2rem;
       color: #D4AF37;
-      text-shadow: 0 0 20px gold;
     }
 
-    /* mobile */
-    @media (max-width: 800px) {
-      .desktop-grid {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .left-sidebar {
-        position: relative;
-        top: 0;
-      }
-
-      .right-sidebar {
-        display: none;
-      }
-
-      .mobile-bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        background: rgba(0,0,0,0.5);
-        backdrop-filter: blur(20px);
-        border-top: 1px solid #D4AF37;
-        padding: 0.8rem 0;
-        margin-top: 1rem;
-        border-radius: 2rem;
-      }
-
-      .mobile-bottom-nav span,
-      .mobile-bottom-nav i {
-        font-family: 'Cinzel', serif;
-        color: #D4AF37;
-        font-size: 1.5rem;
-        text-shadow: 0 0 10px gold;
-        cursor: pointer;
-      }
-
-      .cards-grid {
+    /* Mobile */
+    @media (max-width: 700px) {
+      .prophets-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
-    }
-
-    .mobile-bottom-nav {
-      display: none;
+      .global-header {
+        margin-bottom: 1.5rem;
+      }
+      .language-selector {
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+      }
+      .lang-option {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 <div class="app-container">
-  <div class="desktop-grid">
-    <!-- LEFT SIDEBAR - INTRODUCTION (remplace l'arbre) -->
-    <aside class="left-sidebar">
-      <div class="intro-title">📖 HISTOIRES DES PROPHÈTES</div>
-      <div class="intro-text" id="introParagraph">
-        <i class="fas fa-quote-right"></i>
-        <span id="dynamicIntro">
-          De la poussière d'Adam au dernier messager Mohammed ⚡, parcourez l'épopée des prophètes. Des récits qui traversent les siècles, entre miracles, sagesse et bonnes anecdotes ! Ici, on lit, on regarde, et on voyage en trois langues.
-        </span>
-      </div>
-      <!-- petite signature amusante -->
-      <p style="color: #D4AF37; margin-top: 1rem; font-size: 0.9rem; text-align: center;">✨ cliquez sur les cartes pour un aperçu vidéo</p>
-    </aside>
-
-    <!-- CENTER GALLERY (cartes) -->
-    <main class="center-gallery">
-      <div class="cards-grid">
-        <div class="prophet-card" data-prophet="ADAM">
-          <div class="card-portrait cp1"></div>
-          <div class="card-name">ADAM</div>
-        </div>
-        <div class="prophet-card" data-prophet="IDRĪS">
-          <div class="card-portrait cp2"></div>
-          <div class="card-name">IDRĪS</div>
-        </div>
-        <div class="prophet-card" data-prophet="NŪH">
-          <div class="card-portrait cp3"></div>
-          <div class="card-name">NŪH</div>
-        </div>
-        <div class="prophet-card" data-prophet="IBRĀHĪM">
-          <div class="card-portrait cp4"></div>
-          <div class="card-name">IBRĀHĪM</div>
-        </div>
-        <div class="prophet-card" data-prophet="MŪSĀ">
-          <div class="card-portrait cp5"></div>
-          <div class="card-name">MŪSĀ</div>
-        </div>
-        <div class="prophet-card" data-prophet="‘ĪSĀ">
-          <div class="card-portrait cp6"></div>
-          <div class="card-name">‘ĪSĀ</div>
-        </div>
-        <!-- petite carte pour Mohammed (pour faire joli) -->
-        <div class="prophet-card" data-prophet="MUHAMMAD">
-          <div class="card-portrait cp2"></div>
-          <div class="card-name">MUHAMMAD</div>
-        </div>
-      </div>
-    </main>
-
-    <!-- RIGHT SIDEBAR : langues cliquables -->
-    <aside class="right-sidebar">
-      <button class="lang-btn" id="langFR">FR</button>
-      <button class="lang-btn" id="langEN">EN</button>
-      <button class="lang-btn" id="langAR">AR</button>
-      <div class="search-icon"><i class="fas fa-search"></i></div>
-    </aside>
+  <!-- GLOBE + LANGUES EN HAUT -->
+  <div class="global-header">
+    <i class="fas fa-globe-asia globe-icon"></i>
+    <div class="language-selector">
+      <button class="lang-option active" id="langFR" data-lang="FR">FR</button>
+      <button class="lang-option" id="langEN" data-lang="EN">EN</button>
+      <button class="lang-option" id="langAR" data-lang="AR">AR</button>
+    </div>
   </div>
 
-  <!-- mobile bottom nav (langues aussi cliquables) -->
-  <div class="mobile-bottom-nav">
-    <span id="mobileFR">FR</span>
-    <span id="mobileEN">EN</span>
-    <span id="mobileAR">AR</span>
-    <i class="fas fa-search"></i>
+  <!-- INTRODUCTION DYNAMIQUE -->
+  <div class="intro-section">
+    <h1 class="intro-title" id="mainTitle">HISTOIRES DES PROPHÈTES</h1>
+    <div class="intro-text" id="introParagraph">
+      <span id="dynamicIntro">De la création d'Adam au dernier messager Muhammad, plongez dans l'épopée des prophètes à travers les âges. Récits, sagesse et miracles vous attendent dans cette odyssée sacrée.</span>
+    </div>
+  </div>
+
+  <!-- GRILLE DES PROPHÈTES (ordre exact de l'arbre) -->
+  <div class="prophets-grid" id="prophetsGrid">
+    <!-- Les cartes seront générées en JS pour respecter l'ordre -->
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL QUICK VIEW -->
 <div class="modal-overlay" id="quickViewModal">
   <div class="modal-content">
     <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
@@ -418,56 +312,129 @@
       <i class="fas fa-play play-icon"></i>
     </div>
     <h2 class="modal-title" id="modalProphetName">ADAM</h2>
-    <p style="color: #e6d5a8;">aperçu cinématique · désert doré</p>
+    <p style="color: #e6d5a8;">Aperçu cinématique · Récit inspirant</p>
   </div>
 </div>
 
 <script>
   (function() {
-    // ---------- MODAL ----------
+    // ---------- DONNÉES TRILINGUES ----------
+    const prophetsData = [
+      { id: "adam", names: { FR: "Adam", EN: "Adam", AR: "آدم" } },
+      { id: "enoch", names: { FR: "Idris (Enoch)", EN: "Enoch (Idris)", AR: "إدريس" } },
+      { id: "noah", names: { FR: "Nūh (Noé)", EN: "Noah (Nuh)", AR: "نوح" } },
+      { id: "salih", names: { FR: "Sālih", EN: "Salih", AR: "صالح" } },
+      { id: "lot", names: { FR: "Lūt (Lot)", EN: "Lot (Lut)", AR: "لوط" } },
+      { id: "hud", names: { FR: "Hūd", EN: "Hud", AR: "هود" } },
+      { id: "ibrahim", names: { FR: "Ibrāhīm (Abraham)", EN: "Abraham (Ibrahim)", AR: "إبراهيم" } },
+      { id: "shoaib", names: { FR: "Shu‘ayb", EN: "Shuaib", AR: "شعيب" } },
+      { id: "ismael", names: { FR: "Ismā‘īl", EN: "Ishmael (Ismail)", AR: "إسماعيل" } },
+      { id: "isaac", names: { FR: "Ishāq (Isaac)", EN: "Isaac (Ishaq)", AR: "إسحاق" } },
+      { id: "jacob", names: { FR: "Ya‘qūb (Jacob)", EN: "Jacob (Yaqub)", AR: "يعقوب" } },
+      { id: "joseph", names: { FR: "Yūsuf (Joseph)", EN: "Joseph (Yusuf)", AR: "يوسف" } },
+      { id: "job", names: { FR: "Ayyūb (Job)", EN: "Job (Ayyub)", AR: "أيوب" } },
+      { id: "moses", names: { FR: "Mūsā & Hārūn", EN: "Moses & Aaron", AR: "موسى وهارون" } },
+      { id: "ezekiel", names: { FR: "Dhūl-Kifl (Ézéchiel)", EN: "Ezekiel (Dhul-Kifl)", AR: "ذو الكفل" } },
+      { id: "elijah", names: { FR: "Ilyās & Alyasa‘", EN: "Elijah & Elisha", AR: "إلياس واليسع" } },
+      { id: "jonah", names: { FR: "Yūnus (Jonas)", EN: "Jonah (Yunus)", AR: "يونس" } },
+      { id: "david", names: { FR: "Dāwūd & Sulaymān", EN: "David & Solomon", AR: "داود وسليمان" } },
+      { id: "zakaria", names: { FR: "Zakariyyā & Yahyā", EN: "Zechariah & John", AR: "زكريا ويحيى" } },
+      { id: "jesus", names: { FR: "‘Īsā (Jésus)", EN: "Jesus (Isa)", AR: "عيسى" } },
+      { id: "muhammad", names: { FR: "Muhammad ⚘", EN: "Muhammad ⚘", AR: "محمد ﷺ" } }
+    ];
+
+    // Portraits cycliques
+    const portraitClasses = [
+      "portrait-1", "portrait-2", "portrait-3", 
+      "portrait-4", "portrait-5", "portrait-6"
+    ];
+
+    // Textes d'intro par langue
+    const introTexts = {
+      FR: "✨ De la création d'Adam au dernier messager Muhammad, plongez dans l'épopée des prophètes à travers les âges. Récits, sagesse et miracles vous attendent dans cette odyssée sacrée.",
+      EN: "✨ From the creation of Adam to the final messenger Muhammad, dive into the epic of the prophets through the ages. Stories, wisdom and miracles await in this sacred odyssey.",
+      AR: "✨ من خلق آدم إلى الرسول الأخير محمد، انغمس في ملحمة الأنبياء عبر العصور. قصص وحكم ومعجزات تنتظركم في هذه الرحلة المباركة."
+    };
+
+    const titleTexts = {
+      FR: "HISTOIRES DES PROPHÈTES",
+      EN: "STORIES OF THE PROPHETS",
+      AR: "قصص الأنبياء"
+    };
+
+    // Éléments DOM
+    const grid = document.getElementById('prophetsGrid');
     const modal = document.getElementById('quickViewModal');
     const modalName = document.getElementById('modalProphetName');
     const closeBtn = document.getElementById('closeModalBtn');
-
-    document.querySelectorAll('.prophet-card').forEach(card => {
-      card.addEventListener('click', function() {
-        modalName.textContent = this.getAttribute('data-prophet') || 'Prophète';
-        modal.classList.add('active');
-      });
-    });
-
-    const closeModal = () => modal.classList.remove('active');
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-    // ---------- TEXTE INTRO TRILINGUE (amusant) ----------
     const introSpan = document.getElementById('dynamicIntro');
-    const introBox = document.getElementById('introParagraph');
+    const mainTitle = document.getElementById('mainTitle');
 
-    const texts = {
-      FR: "De la poussière d'Adam au dernier messager Mohammed ⚡, parcourez l'épopée des prophètes. Des récits qui traversent les siècles, entre miracles, sagesse et bonnes anecdotes ! Ici, on lit, on regarde, et on voyage en trois langues.",
-      EN: "From Adam's clay to the final messenger Muhammad ⚡, journey through the prophets' epic. Tales spanning centuries, filled with miracles, wisdom, and a few good stories! Read, watch, and explore in three languages.",
-      AR: "من طين آدم إلى الرسول الأخير محمد ⚡، رحلة عبر ملحمة الأنبياء. حكايات تعبر القرون، بين المعجزات والحكمة والطرائف! هنا نقرأ، نشاهد، ونسافر بثلاث لغات."
-    };
+    let currentLang = 'FR';
 
-    function setLanguage(lang) {
-      if (texts[lang]) {
-        introSpan.textContent = texts[lang];
-      }
+    // Fonction pour générer les cartes selon la langue
+    function renderProphets(lang) {
+      grid.innerHTML = ''; // vide la grille
+      prophetsData.forEach((prophet, index) => {
+        const card = document.createElement('div');
+        card.className = 'prophet-card';
+        card.setAttribute('data-prophet-id', prophet.id);
+
+        const portraitDiv = document.createElement('div');
+        portraitDiv.className = `card-portrait ${portraitClasses[index % portraitClasses.length]}`;
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'card-name';
+        nameDiv.textContent = prophet.names[lang] || prophet.names.FR; // fallback FR
+
+        card.appendChild(portraitDiv);
+        card.appendChild(nameDiv);
+
+        // Event pour ouvrir modal
+        card.addEventListener('click', () => {
+          modalName.textContent = prophet.names[lang];
+          modal.classList.add('active');
+        });
+
+        grid.appendChild(card);
+      });
     }
 
-    // boutons desktop
+    // Mise à jour de la langue
+    function setLanguage(lang) {
+      currentLang = lang;
+      
+      // Mettre à jour les classes actives des boutons
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Texte intro et titre
+      introSpan.textContent = introTexts[lang] || introTexts.FR;
+      mainTitle.textContent = titleTexts[lang] || titleTexts.FR;
+
+      // Re-rendre les cartes
+      renderProphets(lang);
+    }
+
+    // Initialisation FR
+    setLanguage('FR');
+
+    // Écouteurs sur les boutons de langue
     document.getElementById('langFR').addEventListener('click', () => setLanguage('FR'));
     document.getElementById('langEN').addEventListener('click', () => setLanguage('EN'));
     document.getElementById('langAR').addEventListener('click', () => setLanguage('AR'));
 
-    // boutons mobile
-    document.getElementById('mobileFR').addEventListener('click', () => setLanguage('FR'));
-    document.getElementById('mobileEN').addEventListener('click', () => setLanguage('EN'));
-    document.getElementById('mobileAR').addEventListener('click', () => setLanguage('AR'));
+    // Modal close
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
 
-    // Par défaut FR
-    setLanguage('FR');
   })();
 </script>
 </body>
