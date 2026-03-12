@@ -57,6 +57,7 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Ordre fixe : AR, EN, FR */
     .language-selector {
       display: flex;
       gap: 2rem;
@@ -64,6 +65,7 @@
       padding: 0.8rem 2rem;
       border-radius: 4rem;
       border: 1px solid #D4AF37;
+      direction: ltr; /* Assure que l'ordre visuel reste constant même en mode Arabe */
     }
 
     .lang-option {
@@ -76,6 +78,8 @@
       border: none;
       transition: 0.2s;
     }
+
+    .lang-option:hover { transform: scale(1.1); }
 
     .lang-option.active {
       color: #fff2bf;
@@ -134,8 +138,6 @@
       cursor: pointer;
     }
 
-    .prophet-card:hover { transform: translateY(-5px); border-color: #fff; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
-
     .card-portrait {
       width: 100px;
       height: 100px;
@@ -143,12 +145,7 @@
       border: 3px solid #D4AF37;
       margin-bottom: 1rem;
       background-size: cover;
-      background-repeat: no-repeat;
       background-position: center;
-      background-color: #0d1b2a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .portrait-adam { 
@@ -158,7 +155,7 @@
 
     .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><path d="M30 68 Q50 88,70 68" stroke="%23332" stroke-width="5" fill="none"/></svg>'); background-size: 70%;}
 
-    .card-name { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #D4AF37; text-align: center; text-shadow: 0 0 10px gold;}
+    .card-name { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #D4AF37; text-align: center; }
 
     .modal-overlay {
       position: fixed;
@@ -184,7 +181,6 @@
       padding: 3rem 2rem;
       text-align: center;
       position: relative;
-      box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
     }
 
     .close-modal { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; font-size: 2.5rem; color: #D4AF37; cursor: pointer; }
@@ -198,7 +194,6 @@
       font-size: 1.4rem;
       color: #D4AF37;
       font-style: italic;
-      line-height: 1.6;
     }
 
     .rtl { direction: rtl; }
@@ -211,8 +206,8 @@
   <div class="global-header">
     <i class="fas fa-globe-asia globe-icon"></i>
     <div class="language-selector">
-      <button class="lang-option" id="langEN" data-lang="EN">EN</button>
       <button class="lang-option" id="langAR" data-lang="AR">AR</button>
+      <button class="lang-option" id="langEN" data-lang="EN">EN</button>
       <button class="lang-option" id="langFR" data-lang="FR">FR</button>
     </div>
   </div>
@@ -269,18 +264,18 @@
     const translations = {
       EN: {
         title: "Stories of the Prophets",
-        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. 🕊️<br>This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart.",
-        comingSoon: "This story is still being written in the stars... It will be ready for your little birds very soon. ✨"
+        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. 🕊️<br>This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart. It is a moment of peace for my little birds.",
+        comingSoon: "This story is still being written in the stars... It will be ready for my little birds very soon. ✨"
       },
       FR: {
         title: "L'histoire des Prophètes",
-        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. 🕊️<br>C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher, à l'écoute de la vie des Prophètes. Leurs parcours sont des lumières qui parlent à chaque cœur.",
-        comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles... Elle sera bientôt prête pour vos petits oisillons. ✨"
+        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. 🕊️<br>C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher, à l'écoute de la vie des Prophètes. Leurs parcours sont des lumières qui parlent à chaque cœur. Un instant de sérénité pour mes petits oisillons.",
+        comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles... Elle sera bientôt prête pour mes petits oisillons. ✨"
       },
       AR: {
         title: "قصص الأنبياء",
-        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. 🕊️<br>هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان.",
-        comingSoon: "هذه القصة لا تزال تُكتب بين النجوم... ستكون جاهزة لعصافيركم الصغار قريباً جداً. ✨"
+        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. 🕊️<br>هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان. هي لحظة صفاء لعصافيري الصغار.",
+        comingSoon: "هذه القصة لا تزال تُكتب بين النجوم... ستكون جاهزة لعصافيري الصغار قريباً جداً. ✨"
       }
     };
 
@@ -290,8 +285,7 @@
     const videoSource = document.getElementById('videoSource');
     const videoContainer = document.getElementById('videoContainer');
     const progressMessage = document.getElementById('progressMessage');
-    let currentLang = 'EN';
-
+    
     function renderProphets(lang) {
       grid.innerHTML = '';
       prophetsData.forEach((prophet) => {
@@ -302,7 +296,6 @@
         
         card.onclick = () => {
           document.getElementById('modalProphetName').textContent = prophet.names[lang];
-          
           if(prophet.id === 'adam') {
             videoSource.src = `Video ${lang} mp4.mp4`;
             video.load();
@@ -320,7 +313,6 @@
     }
 
     function setLanguage(lang) {
-      currentLang = lang;
       document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
       document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${translations[lang].title} <i class="fas fa-heart heart-icon"></i>`;
       document.getElementById('dynamicIntro').innerHTML = translations[lang].intro;
@@ -344,7 +336,7 @@
     document.getElementById('closeModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 
-    setLanguage('EN');
+    setLanguage('EN'); // Langue par défaut
   })();
 </script>
 </body>
