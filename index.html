@@ -57,7 +57,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Ordre fixe : AR, EN, FR */
     .language-selector {
       display: flex;
       gap: 2rem;
@@ -65,7 +64,7 @@
       padding: 0.8rem 2rem;
       border-radius: 4rem;
       border: 1px solid #D4AF37;
-      direction: ltr; /* Assure que l'ordre visuel reste constant même en mode Arabe */
+      direction: ltr;
     }
 
     .lang-option {
@@ -78,8 +77,6 @@
       border: none;
       transition: 0.2s;
     }
-
-    .lang-option:hover { transform: scale(1.1); }
 
     .lang-option.active {
       color: #fff2bf;
@@ -194,6 +191,7 @@
       font-size: 1.4rem;
       color: #D4AF37;
       font-style: italic;
+      line-height: 1.6;
     }
 
     .rtl { direction: rtl; }
@@ -336,7 +334,7 @@
     document.getElementById('closeModalBtn').onclick = closeModal;
     modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 
-    setLanguage('EN'); // Langue par défaut
+    setLanguage('EN');
   })();
 </script>
 </body>
