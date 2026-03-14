@@ -6,218 +6,237 @@
   <title>Stories of the Prophets · Mes petits oisillons</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-glow: rgba(212, 175, 55, 0.4);
+      --dark-bg: #070B13;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: #0B1320;
+      background-color: var(--dark-bg);
       font-family: 'Poppins', sans-serif;
       color: #f0f0f0;
       min-height: 100vh;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                        linear-gradient(145deg, #0b1320 0%, #080d16 100%);
     }
 
-    /* Fixed Minimalist Language Selector */
+    /* Animated Background Stars */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 80%);
+      z-index: -1;
+    }
+
+    /* Subtle floating particles effect */
+    @keyframes moveParticles {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100px); }
+    }
+    .particles {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px);
+      background-size: 50px 50px;
+      opacity: 0.1;
+      animation: moveParticles 20s linear infinite;
+      z-index: -1;
+    }
+
+    /* Language Selector */
     .language-selector {
       position: fixed;
       top: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
       display: flex;
       gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      padding: 0.5rem 1.5rem;
-      border-radius: 2rem;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
       z-index: 2000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     .lang-option {
       font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: rgba(212, 175, 55, 0.6);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(212, 175, 55, 0.5);
       cursor: pointer;
-      background: none;
-      border: none;
-      transition: 0.3s;
+      background: none; border: none;
+      transition: 0.4s;
       letter-spacing: 1px;
     }
 
     .lang-option.active {
-      color: #D4AF37;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      color: var(--gold);
+      text-shadow: 0 0 8px var(--gold-glow);
     }
 
+    /* Container & Layout */
     .app-container {
-      max-width: 1000px;
+      max-width: 1100px;
       width: 100%;
-      margin-top: 4rem; /* Space for the fixed header */
-      padding: 0;
+      margin-top: 5rem;
+      z-index: 10;
     }
 
-    .intro-section { 
-      text-align: center; 
-      margin-bottom: 4rem; 
-      padding: 0 1rem;
-    }
+    /* Header & Luminous Hearts */
+    .intro-section { text-align: center; margin-bottom: 4rem; }
 
     .intro-title {
       font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: #D4AF37;
-      margin-bottom: 2rem;
-      font-weight: 400;
-      letter-spacing: 2px;
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .heart-icon {
+      font-size: 1.4rem;
+      color: var(--gold);
+      filter: drop-shadow(0 0 8px var(--gold));
+      animation: heartPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 15px var(--gold)); }
     }
 
     .intro-text {
-      font-size: 1.1rem;
-      line-height: 1.9;
-      max-width: 900px;
+      font-size: 1.15rem;
+      line-height: 2;
+      max-width: 800px;
       margin: 0 auto;
-      color: rgba(240, 240, 240, 0.8);
+      color: rgba(255, 255, 255, 0.8);
       font-style: italic;
-      font-weight: 300;
-      border-left: 1px solid rgba(212, 175, 55, 0.3);
-      border-right: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 1rem 2.5rem;
+      position: relative;
+      padding: 2rem;
+      background: rgba(212, 175, 55, 0.03);
+      border-radius: 2rem;
     }
 
+    /* Grid & Cards */
     .prophets-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding-bottom: 4rem;
+      gap: 2.5rem;
+      padding-bottom: 5rem;
     }
 
     .prophet-card {
+      position: relative;
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      border-radius: 1.5rem;
-      padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: 2rem;
+      padding: 3rem 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: pointer;
+      overflow: hidden;
+    }
+
+    .prophet-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: 0.5s;
     }
 
     .prophet-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(212, 175, 55, 0.5);
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     }
 
+    .prophet-card:hover::before { opacity: 1; }
+
     .card-portrait {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.2);
       margin-bottom: 1.5rem;
       background-size: cover;
       background-position: center;
-      transition: 0.4s;
+      z-index: 2;
+      transition: 0.5s;
     }
 
     .prophet-card:hover .card-portrait {
-      border-color: #D4AF37;
-      transform: scale(1.1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow);
     }
 
     .portrait-adam { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" opacity="0.8"/><path d="M50 60 C30 65, 10 55, 15 40 C20 25, 40 20, 50 30 C60 20, 80 25, 85 40 C90 55, 70 65, 50 60 Z" fill="%23D4AF37" opacity="0.6"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" opacity="0.8"/></svg>');
     }
 
     .portrait-generic { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23D4AF37" stroke-width="1" opacity="0.4"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.4"/></svg>');
     }
 
     .card-name { 
       font-family: 'Cinzel', serif; 
-      font-size: 1.1rem; 
-      color: #D4AF37; 
-      text-align: center; 
-      letter-spacing: 1px;
+      font-size: 1.2rem; 
+      color: var(--gold); 
+      z-index: 2;
+      letter-spacing: 1.5px;
     }
 
-    /* Modal Styling */
+    /* Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(7, 11, 19, 0.98);
+      background: rgba(5, 8, 15, 0.98);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 3000;
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.4s;
+      visibility: hidden; opacity: 0;
+      transition: 0.5s;
     }
 
     .modal-overlay.active { visibility: visible; opacity: 1; }
 
-    .modal-content {
-      max-width: 900px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-    }
-
-    .close-modal { 
-      position: absolute; 
-      top: -4rem; 
-      right: 0; 
-      background: none; 
-      border: none; 
-      font-size: 2rem; 
-      color: #D4AF37; 
-      cursor: pointer; 
-      opacity: 0.6;
-      transition: 0.3s;
-    }
-    
-    .close-modal:hover { opacity: 1; }
+    .modal-content { max-width: 850px; width: 90%; text-align: center; }
 
     .video-container { 
-      width: 100%; 
-      margin-top: 1rem; 
-      border-radius: 0.5rem; 
-      overflow: hidden; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    video { width: 100%; display: block; }
-
-    .progress-message {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #D4AF37;
-      font-weight: 300;
-      letter-spacing: 1px;
+      border-radius: 1rem; overflow: hidden; 
+      border: 1px solid var(--gold); 
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
     }
 
     .rtl { direction: rtl; }
-    .rtl .intro-text { border-left: none; border-right: none; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
 
     @media (max-width: 700px) {
       .intro-title { font-size: 1.8rem; }
-      .intro-text { padding: 1rem; font-size: 1rem; }
-      .language-selector { width: 90%; justify-content: center; }
+      .intro-text { font-size: 1rem; padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
+
+  <div class="particles"></div>
 
   <div class="language-selector">
     <button class="lang-option" id="langAR" data-lang="AR">AR</button>
@@ -228,7 +247,7 @@
   <div class="app-container">
     <div class="intro-section">
       <h1 class="intro-title" id="mainTitle"></h1>
-      <div class="intro-text"><span id="dynamicIntro"></span></div>
+      <div class="intro-text" id="dynamicIntro"></div>
     </div>
 
     <div class="prophets-grid" id="prophetsGrid"></div>
@@ -236,16 +255,12 @@
 
   <div class="modal-overlay" id="quickViewModal">
     <div class="modal-content">
-      <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
-      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem;"></h2>
-      
+      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 2rem; margin-bottom: 1.5rem;"></h2>
       <div class="video-container" id="videoContainer" style="display: none;">
-        <video id="prophetVideo" controls>
-          <source src="" type="video/mp4" id="videoSource">
-        </video>
+        <video id="prophetVideo" style="width:100%" controls><source src="" id="videoSource"></video>
       </div>
-
-      <div id="progressMessage" class="progress-message" style="display: none;"></div>
+      <div id="progressMessage" style="display: none; color: var(--gold); font-style: italic; font-size: 1.3rem;"></div>
+      <button onclick="closeModal()" style="margin-top: 2rem; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 2rem; border-radius: 2rem; cursor: pointer;">Close</button>
     </div>
   </div>
 
@@ -277,18 +292,18 @@
 
     const translations = {
       EN: {
-        title: "Prophets",
-        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart. It is a moment of peace for my little birds.",
+        title: "Stories of the Prophets",
+        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. This is where we gather for our special ritual to hear about the Prophets. Simple stories of kindness and courage for my little birds.",
         comingSoon: "This story is still being written in the stars for my little birds... ✨"
       },
       FR: {
-        title: "Prophètes",
-        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher. Leurs parcours sont des lumières qui parlent à chaque cœur. Un instant de sérénité pour mes petits oisillons.",
+        title: "Histoire des Prophètes",
+        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. Un moment de sérénité et de courage pour mes petits oisillons.",
         comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles pour mes petits oisillons... ✨"
       },
       AR: {
-        title: "الأنبياء",
-        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان. هي لحظة صفاء لعصافيري الصغار.",
+        title: "قصص الأنبياء",
+        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً لنستحضر سير الأنبياء؛ رحلات مليئة بالرحمة لعصافيري الصغار.",
         comingSoon: "هذه القصة لا تزال تُكتب بين النجوم لعصافيري الصغار... ✨"
       }
     };
@@ -328,12 +343,11 @@
 
     function setLanguage(lang) {
       document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      document.getElementById('mainTitle').textContent = translations[lang].title;
+      document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${translations[lang].title} <i class="fas fa-heart heart-icon"></i>`;
       document.getElementById('dynamicIntro').innerHTML = translations[lang].intro;
       
-      const container = document.body;
-      if(lang === 'AR') { container.classList.add('rtl'); container.setAttribute('dir', 'rtl'); }
-      else { container.classList.remove('rtl'); container.setAttribute('dir', 'ltr'); }
+      document.body.classList.toggle('rtl', lang === 'AR');
+      document.body.dir = (lang === 'AR' ? 'rtl' : 'ltr');
       
       renderProphets(lang);
     }
@@ -342,13 +356,10 @@
     document.getElementById('langAR').onclick = () => setLanguage('AR');
     document.getElementById('langFR').onclick = () => setLanguage('FR');
     
-    function closeModal() {
+    window.closeModal = () => {
         modal.classList.remove('active');
         video.pause();
     }
-
-    document.getElementById('closeModalBtn').onclick = closeModal;
-    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 
     setLanguage('EN');
   })();
