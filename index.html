@@ -10,63 +10,60 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      /* Palette Bleu Céleste Class & Chic */
-      --celestial-deep: #051937;
-      --celestial-mid: #002B5B;
-      --celestial-glow: rgba(0, 191, 255, 0.15); /* Légère lueur bleu ciel */
-
-      /* Palette Or Vive et Large */
-      --gold-vibrant: #FFD700; /* Or pur */
-      --gold-subtle: #D4AF37;
-      --gold-glow-vibrant: rgba(255, 215, 0, 0.6);
-      --dark-bg: var(--celestial-deep);
+      /* Deepened Celestial Blue - Midnight Chic */
+      --celestial-midnight: #020817;
+      --celestial-deep: #04122b;
+      
+      /* Vibrant Gold Palette */
+      --gold-vibrant: #FFD700;
+      --gold-glow-wide: rgba(255, 215, 0, 0.7);
+      --gold-glow-soft: rgba(255, 215, 0, 0.3);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: var(--dark-bg);
+      background-color: var(--celestial-midnight);
       font-family: 'Poppins', sans-serif;
       color: #f0f0f0;
       min-height: 100vh;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      /* Dégradé Bleu Céleste Profond */
-      background-image: radial-gradient(circle at 50% 30%, var(--celestial-mid) 0%, var(--celestial-deep) 70%);
+      /* Deeper radial gradient for a more "space" feel */
+      background-image: radial-gradient(circle at 50% 40%, var(--celestial-deep) 0%, var(--celestial-midnight) 85%);
+      background-attachment: fixed;
     }
 
-    /* Poussière d'étoiles dorées */
     .particles {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background-image: radial-gradient(var(--gold-vibrant) 0.8px, transparent 0.8px);
-      background-size: 80px 80px;
-      opacity: 0.2;
-      animation: drift 40s linear infinite;
+      background-size: 70px 70px;
+      opacity: 0.15;
+      animation: drift 50s linear infinite;
       z-index: -1;
     }
 
     @keyframes drift {
       from { transform: translateY(0); }
-      to { transform: translateY(-80px); }
+      to { transform: translateY(-70px); }
     }
 
-    /* Sélecteur de langue discret */
+    /* Discreet Selector */
     .language-selector {
       position: fixed;
       top: 1.5rem;
       display: flex;
       gap: 1.5rem;
-      background: rgba(5, 25, 55, 0.9);
-      backdrop-filter: blur(15px);
+      background: rgba(2, 8, 23, 0.85);
+      backdrop-filter: blur(20px);
       padding: 0.6rem 2.5rem;
       border-radius: 3rem;
-      border: 1px solid rgba(255, 215, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.4);
       z-index: 2000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.6);
     }
 
     .lang-option {
@@ -82,21 +79,19 @@
 
     .lang-option.active {
       color: var(--gold-vibrant);
-      text-shadow: 0 0 10px var(--gold-glow-vibrant);
+      text-shadow: 0 0 10px var(--gold-glow-wide);
     }
 
     .app-container {
-      max-width: 1000px;
+      max-width: 1050px;
       width: 100%;
       margin-top: 6rem;
       z-index: 10;
     }
 
-    /* Section Intro - Cadre Large et Lumineux */
     .intro-section {
       text-align: center;
-      margin-bottom: 6rem;
-      perspective: 1000px;
+      margin-bottom: 5rem;
     }
 
     .intro-title {
@@ -108,100 +103,88 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+      text-shadow: 0 0 20px var(--gold-glow-soft);
     }
 
     .heart-icon {
       font-size: 1.4rem;
       color: var(--gold-vibrant);
-      animation: pulse 2s infinite ease-in-out;
+      animation: pulse 2.5s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.6; filter: blur(1px); }
-      50% { transform: scale(1.3); opacity: 1; filter: blur(0px); text-shadow: 0 0 20px var(--gold-vibrant); }
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; text-shadow: 0 0 15px var(--gold-vibrant); }
     }
 
-    /* Cadre Intro Large et Lumineux */
-    .intro-card {
-      background: rgba(0, 43, 91, 0.3); /* Bleu mi-ton transparent */
-      padding: 3rem;
-      border-radius: 2rem;
-      /* Cadre doré large et lumineux */
+    /* Common Card Styling (Intro + Prophets) */
+    .highlight-card {
+      background: rgba(255, 255, 255, 0.03);
       border: 4px solid var(--gold-vibrant);
-      box-shadow: 0 0 20px var(--gold-glow-vibrant);
-      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-radius: 2rem;
+      box-shadow: 0 0 20px var(--gold-glow-soft);
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .highlight-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--gold-vibrant);
+      box-shadow: 0 0 45px var(--gold-glow-wide);
+      transform: translateY(-8px) scale(1.01);
+    }
+
+    .intro-card {
+      padding: 3rem;
       cursor: default;
     }
 
-    .intro-card:hover {
-      background: rgba(0, 43, 91, 0.5);
-      /* Lueur plus large et vive au survol */
-      box-shadow: 0 0 50px var(--gold-glow-vibrant);
-      transform: scale(1.02) translateY(-5px);
-    }
-
     .intro-text {
-      font-size: 1.15rem;
-      line-height: 2.1;
-      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      line-height: 2.2;
+      color: #fff;
       font-style: italic;
       font-weight: 300;
     }
 
-    /* Grille et Carrés Vidéo - Cadres Large et Lumineux */
+    /* Grid */
     .prophets-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
+      gap: 3rem;
       padding-bottom: 6rem;
     }
 
     .prophet-card {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 2rem;
-      padding: 3.5rem 1.5rem;
+      padding: 4rem 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: all 0.5s ease;
-      position: relative;
-      /* Cadre doré large et lumineux par défaut */
-      border: 3px solid var(--gold-vibrant);
-      box-shadow: 0 0 15px var(--gold-glow-vibrant);
-    }
-
-    .prophet-card:hover {
-      transform: translateY(-12px);
-      /* Lueur plus large et vive au survol */
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 40px var(--gold-glow-vibrant);
-      background: rgba(0, 43, 91, 0.4);
+      cursor: pointer;
     }
 
     /* Portrait Styling */
     .card-portrait {
-      width: 110px;
-      height: 110px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: 0.5s;
-      /* Cadre de portrait assorti */
       border: 2px solid var(--gold-vibrant);
+      transition: transform 0.4s ease;
     }
 
     .prophet-card:hover .card-portrait {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px var(--gold-glow-vibrant);
+      transform: scale(1.15);
+      box-shadow: 0 0 25px var(--gold-glow-wide);
     }
 
-    /* === Arbre Céleste Naturel d'Adam === */
+    /* Celestial Tree Adam */
     .portrait-adam { 
-      /* Arbre plus détaillé et naturel, silhouette dorée */
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 90 C48 70, 48 60, 48 45 L52 45 C52 60, 54 70, 52 90 Z" fill="%23FFD700" stroke="%23D4AF37" stroke-width="0.5"/><path d="M50 50 C25 50, 15 35, 20 20 C25 5, 45 5, 50 15 C55 5, 75 5, 80 20 C85 35, 75 50, 50 50 Z M50 25 C60 20, 70 25, 70 35 C70 45, 60 50, 50 45 M50 25 C40 20, 30 25, 30 35 C30 45, 40 50, 50 45" fill="%23FFD700" opacity="0.8"/><circle cx="50" cy="12" r="6" fill="%23FFD700" opacity="0.9"/><circle cx="20" cy="20" r="5" fill="%23FFD700" opacity="0.7"/><circle cx="80" cy="20" r="5" fill="%23FFD700" opacity="0.7"/></svg>');
-      background-size: 85%; /* Plus grand pour plus d'impact */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 90 C48 70, 48 60, 48 45 L52 45 C52 60, 54 70, 52 90 Z" fill="%23FFD700"/><path d="M50 50 C25 50, 15 35, 20 20 C25 5, 45 5, 50 15 C55 5, 75 5, 80 20 C85 35, 75 50, 50 50 Z M50 25 C60 20, 70 25, 70 35 C70 45, 60 50, 50 45 M50 25 C40 20, 30 25, 30 35 C30 45, 40 50, 50 45" fill="%23FFD700" opacity="0.8"/><circle cx="50" cy="12" r="5" fill="%23FFD700" opacity="0.9"/><circle cx="20" cy="20" r="4" fill="%23FFD700" opacity="0.7"/><circle cx="80" cy="20" r="4" fill="%23FFD700" opacity="0.7"/></svg>');
+      background-size: 80%;
+      background-color: rgba(255, 215, 0, 0.05);
     }
 
     .portrait-generic { 
@@ -210,48 +193,34 @@
 
     .card-name { 
       font-family: 'Cinzel', serif; 
-      font-size: 1.15rem; 
+      font-size: 1.25rem; 
       color: var(--gold-vibrant); 
-      letter-spacing: 1.5px;
-      transition: 0.3s;
-      text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .prophet-card:hover .card-name {
-      color: white;
-      text-shadow: 0 0 15px var(--gold-vibrant);
-    }
-
-    /* Video Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(3, 10, 25, 0.98);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3000;
-      visibility: hidden; opacity: 0;
-      transition: 0.5s;
+      background: rgba(1, 4, 12, 0.98);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 3000; visibility: hidden; opacity: 0; transition: 0.5s;
     }
 
     .modal-overlay.active { visibility: visible; opacity: 1; }
 
-    .modal-content { max-width: 850px; width: 90%; text-align: center; }
-
     .video-frame {
-      border: 2px solid var(--gold-vibrant);
-      border-radius: 1rem;
+      border: 3px solid var(--gold-vibrant);
+      border-radius: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 60px var(--gold-glow-soft);
     }
 
     .rtl { direction: rtl; }
 
     @media (max-width: 700px) {
-      .intro-title { font-size: 1.8rem; }
-      .intro-card { padding: 1.5rem; border-width: 2px;}
-      .prophet-card { border-width: 2px; }
+      .intro-title { font-size: 2rem; }
+      .highlight-card { border-width: 3px; }
     }
   </style>
 </head>
@@ -268,7 +237,7 @@
   <div class="app-container">
     <div class="intro-section">
       <h1 class="intro-title" id="mainTitle"></h1>
-      <div class="intro-card">
+      <div class="intro-card highlight-card">
         <div class="intro-text" id="dynamicIntro"></div>
       </div>
     </div>
@@ -277,13 +246,13 @@
   </div>
 
   <div class="modal-overlay" id="quickViewModal">
-    <div class="modal-content">
-      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold-vibrant); font-size: 2rem; margin-bottom: 2rem; text-shadow: 0 0 15px var(--gold-glow-vibrant);"></h2>
+    <div class="modal-content" style="max-width: 850px; width: 90%; text-align: center;">
+      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold-vibrant); font-size: 2.2rem; margin-bottom: 2rem;"></h2>
       <div class="video-frame" id="videoContainer" style="display: none;">
         <video id="prophetVideo" style="width:100%" controls><source src="" id="videoSource"></video>
       </div>
-      <div id="progressMessage" style="display: none; color: var(--gold-vibrant); font-style: italic; font-size: 1.2rem; padding: 2rem;"></div>
-      <button onclick="closeModal()" style="margin-top: 2rem; background: none; border: 1px solid var(--gold-vibrant); color: var(--gold-vibrant); padding: 0.5rem 2rem; border-radius: 2rem; cursor: pointer; font-family: 'Cinzel'; box-shadow: 0 0 10px var(--gold-glow-vibrant);">Close</button>
+      <div id="progressMessage" style="display: none; color: var(--gold-vibrant); font-style: italic; font-size: 1.3rem; padding: 2rem;"></div>
+      <button onclick="closeModal()" style="margin-top: 2rem; background: none; border: 2px solid var(--gold-vibrant); color: var(--gold-vibrant); padding: 0.6rem 2.5rem; border-radius: 2rem; cursor: pointer; font-family: 'Cinzel'; font-weight: bold;">Close</button>
     </div>
   </div>
 
@@ -314,21 +283,9 @@
     ];
 
     const translations = {
-      EN: {
-        title: "Stories of the Prophets",
-        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. This is where we gather for our special ritual to hear about the Prophets. Simple stories of kindness and courage for my little birds.",
-        comingSoon: "This story is still being written in the stars for my little birds... ✨"
-      },
-      FR: {
-        title: "Histoire des Prophètes",
-        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. C'est le moment de notre rituel sacré pour écouter la vie des Prophètes. Des récits de courage pour mes petits oisillons.",
-        comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles pour mes petits oisillons... ✨"
-      },
-      AR: {
-        title: "قصص الأنبياء",
-        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ رحلات مليئة بالرحمة والسكينة لعصافيري الصغار.",
-        comingSoon: "هذه القصة لا تزال تُكتب بين النجوم لعصافيري الصغار... ✨"
-      }
+      EN: { title: "Stories of the Prophets", intro: "As the day ends and the lights grow soft, it is time for our stories to begin. This is where we gather for our special ritual to hear about the Prophets. Simple stories of kindness and courage for my little birds.", comingSoon: "This story is still being written in the stars for my little birds... ✨" },
+      FR: { title: "Histoire des Prophètes", intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. C'est le moment de notre rituel sacré pour écouter la vie des Prophètes. Des récits de courage pour mes petits oisillons.", comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles pour mes petits oisillons... ✨" },
+      AR: { title: "قصص الأنبياء", intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ رحلات مليئة بالرحمة والسكينة لعصافيري الصغار.", comingSoon: "هذه القصة لا تزال تُكتب بين النجوم لعصافيري الصغار... ✨" }
     };
 
     const grid = document.getElementById('prophetsGrid');
@@ -342,7 +299,7 @@
       grid.innerHTML = '';
       prophetsData.forEach((prophet) => {
         const card = document.createElement('div');
-        card.className = 'prophet-card';
+        card.className = 'prophet-card highlight-card';
         card.innerHTML = `<div class="card-portrait ${prophet.id === 'adam' ? 'portrait-adam' : 'portrait-generic'}"></div>
                           <div class="card-name">${prophet.names[lang]}</div>`;
         
@@ -368,22 +325,15 @@
       document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
       document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${translations[lang].title} <i class="fas fa-heart heart-icon"></i>`;
       document.getElementById('dynamicIntro').innerHTML = translations[lang].intro;
-      
       document.body.classList.toggle('rtl', lang === 'AR');
       document.body.dir = (lang === 'AR' ? 'rtl' : 'ltr');
-      
       renderProphets(lang);
     }
 
     document.getElementById('langEN').onclick = () => setLanguage('EN');
     document.getElementById('langAR').onclick = () => setLanguage('AR');
     document.getElementById('langFR').onclick = () => setLanguage('FR');
-    
-    window.closeModal = () => {
-        modal.classList.remove('active');
-        video.pause();
-    }
-
+    window.closeModal = () => { modal.classList.remove('active'); video.pause(); }
     setLanguage('EN');
   })();
 </script>
