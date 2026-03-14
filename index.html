@@ -17,221 +17,237 @@
       color: #f0f0f0;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      background-image: radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 45%),
-                        linear-gradient(145deg, #0b1320 0%, #0f1a2b 100%);
-    }
-
-    .app-container {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      border-radius: 2.5rem;
-      background: rgba(10, 20, 35, 0.35);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 25px 50px -8px rgba(0,0,0,0.8), 0 0 0 1px rgba(212, 175, 55, 0.25) inset;
-      overflow: hidden;
-      padding: 2rem 1.5rem;
-    }
-
-    .global-header {
-      display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 2.5rem;
+      padding: 2rem 1rem;
+      background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                        linear-gradient(145deg, #0b1320 0%, #080d16 100%);
     }
 
-    .globe-icon {
-      font-size: 4rem;
-      color: #D4AF37;
-      filter: drop-shadow(0 0 30px #f5c542);
-      animation: rotateGlobe 20s infinite linear;
-      margin-bottom: 0.8rem;
-    }
-
-    @keyframes rotateGlobe {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
+    /* Fixed Minimalist Language Selector */
     .language-selector {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      gap: 2rem;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.8rem 2rem;
-      border-radius: 4rem;
-      border: 1px solid #D4AF37;
-      direction: ltr;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      z-index: 2000;
     }
 
     .lang-option {
       font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #D4AF37;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(212, 175, 55, 0.6);
       cursor: pointer;
       background: none;
       border: none;
-      transition: 0.2s;
+      transition: 0.3s;
+      letter-spacing: 1px;
     }
 
     .lang-option.active {
-      color: #fff2bf;
-      text-shadow: 0 0 20px gold;
-      border-bottom: 2px solid #fff2bf;
+      color: #D4AF37;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
 
-    .intro-section { text-align: center; margin-bottom: 2.5rem; }
+    .app-container {
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 4rem; /* Space for the fixed header */
+      padding: 0;
+    }
+
+    .intro-section { 
+      text-align: center; 
+      margin-bottom: 4rem; 
+      padding: 0 1rem;
+    }
 
     .intro-title {
       font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       color: #D4AF37;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 20px gold;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
     }
 
     .intro-text {
-      font-size: 1.15rem;
-      line-height: 1.8;
-      max-width: 850px;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      max-width: 900px;
       margin: 0 auto;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 2rem;
-      border-radius: 2rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      color: rgba(240, 240, 240, 0.8);
       font-style: italic;
-    }
-
-    .heart-icon { color: #D4AF37; margin: 0 0.5rem; animation: pulse 2s infinite; vertical-align: middle; }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      font-weight: 300;
+      border-left: 1px solid rgba(212, 175, 55, 0.3);
+      border-right: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 1rem 2.5rem;
     }
 
     .prophets-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding-bottom: 4rem;
     }
 
     .prophet-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid #D4AF37;
-      border-radius: 1.8rem;
-      padding: 1.5rem 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 1.5rem;
+      padding: 2.5rem 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       cursor: pointer;
     }
 
+    .prophet-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
     .card-portrait {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      border: 3px solid #D4AF37;
-      margin-bottom: 1rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 1.5rem;
       background-size: cover;
       background-position: center;
+      transition: 0.4s;
+    }
+
+    .prophet-card:hover .card-portrait {
+      border-color: #D4AF37;
+      transform: scale(1.1);
     }
 
     .portrait-adam { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" stroke="%23A6822B" stroke-width="1"/><path d="M50 60 C30 65, 10 55, 15 40 C20 25, 40 20, 50 30 C60 20, 80 25, 85 40 C90 55, 70 65, 50 60 Z M50 35 C65 30, 75 35, 75 45 C75 55, 65 60, 50 55 M50 35 C35 30, 25 35, 25 45 C25 55, 35 60, 50 55" fill="%23D4AF37" opacity="0.95" stroke="%23D4AF37" stroke-width="1"/><circle cx="35" cy="40" r="1.5" fill="white" opacity="0.6"/><circle cx="65" cy="40" r="1.5" fill="white" opacity="0.6"/><circle cx="50" cy="25" r="1.5" fill="white" opacity="0.6"/><circle cx="30" cy="50" r="1" fill="white" opacity="0.5"/><circle cx="70" cy="50" r="1" fill="white" opacity="0.5"/><path d="M48 85 L52 85 Z" fill="white" opacity="0.3" stroke="%23D4AF37" stroke-width="3"/></svg>');
-      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.9));
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" opacity="0.8"/><path d="M50 60 C30 65, 10 55, 15 40 C20 25, 40 20, 50 30 C60 20, 80 25, 85 40 C90 55, 70 65, 50 60 Z" fill="%23D4AF37" opacity="0.6"/></svg>');
     }
 
-    .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23c29a64"/><path d="M30 68 Q50 88,70 68" stroke="%23332" stroke-width="5" fill="none"/></svg>'); background-size: 70%;}
+    .portrait-generic { 
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23D4AF37" stroke-width="1" opacity="0.4"/></svg>');
+    }
 
-    .card-name { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #D4AF37; text-align: center; }
+    .card-name { 
+      font-family: 'Cinzel', serif; 
+      font-size: 1.1rem; 
+      color: #D4AF37; 
+      text-align: center; 
+      letter-spacing: 1px;
+    }
 
+    /* Modal Styling */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(7, 11, 19, 0.98);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
+      z-index: 3000;
       visibility: hidden;
       opacity: 0;
-      transition: 0.3s;
+      transition: 0.4s;
     }
 
     .modal-overlay.active { visibility: visible; opacity: 1; }
 
     .modal-content {
-      background: #0B1320;
-      border: 2px solid #D4AF37;
-      border-radius: 2rem;
-      max-width: 800px;
-      width: 95%;
-      padding: 3rem 2rem;
+      max-width: 900px;
+      width: 90%;
       text-align: center;
       position: relative;
     }
 
-    .close-modal { position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; font-size: 2.5rem; color: #D4AF37; cursor: pointer; }
+    .close-modal { 
+      position: absolute; 
+      top: -4rem; 
+      right: 0; 
+      background: none; 
+      border: none; 
+      font-size: 2rem; 
+      color: #D4AF37; 
+      cursor: pointer; 
+      opacity: 0.6;
+      transition: 0.3s;
+    }
+    
+    .close-modal:hover { opacity: 1; }
 
-    .video-container { width: 100%; margin-top: 1.5rem; border-radius: 1.5rem; overflow: hidden; border: 1px solid #D4AF37; background: #000;}
+    .video-container { 
+      width: 100%; 
+      margin-top: 1rem; 
+      border-radius: 0.5rem; 
+      overflow: hidden; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
 
     video { width: 100%; display: block; }
 
     .progress-message {
       margin-top: 2rem;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       color: #D4AF37;
-      font-style: italic;
-      line-height: 1.6;
+      font-weight: 300;
+      letter-spacing: 1px;
     }
 
     .rtl { direction: rtl; }
+    .rtl .intro-text { border-left: none; border-right: none; border-top: 1px solid rgba(212, 175, 55, 0.3); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
 
-    @media (max-width: 700px) { .prophets-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) {
+      .intro-title { font-size: 1.8rem; }
+      .intro-text { padding: 1rem; font-size: 1rem; }
+      .language-selector { width: 90%; justify-content: center; }
+    }
   </style>
 </head>
 <body>
-<div class="app-container">
-  <div class="global-header">
-    <i class="fas fa-globe-asia globe-icon"></i>
-    <div class="language-selector">
-      <button class="lang-option" id="langAR" data-lang="AR">AR</button>
-      <button class="lang-option" id="langEN" data-lang="EN">EN</button>
-      <button class="lang-option" id="langFR" data-lang="FR">FR</button>
-    </div>
+
+  <div class="language-selector">
+    <button class="lang-option" id="langAR" data-lang="AR">AR</button>
+    <button class="lang-option" id="langEN" data-lang="EN">EN</button>
+    <button class="lang-option" id="langFR" data-lang="FR">FR</button>
   </div>
 
-  <div class="intro-section">
-    <h1 class="intro-title" id="mainTitle"></h1>
-    <div class="intro-text"><span id="dynamicIntro"></span></div>
-  </div>
-
-  <div class="prophets-grid" id="prophetsGrid"></div>
-</div>
-
-<div class="modal-overlay" id="quickViewModal">
-  <div class="modal-content">
-    <button class="close-modal" id="closeModalBtn">&times;</button>
-    <h2 class="modal-title" id="modalProphetName" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 2rem;"></h2>
-    
-    <div class="video-container" id="videoContainer" style="display: none;">
-      <video id="prophetVideo" controls>
-        <source src="" type="video/mp4" id="videoSource">
-      </video>
+  <div class="app-container">
+    <div class="intro-section">
+      <h1 class="intro-title" id="mainTitle"></h1>
+      <div class="intro-text"><span id="dynamicIntro"></span></div>
     </div>
 
-    <div id="progressMessage" class="progress-message" style="display: none;"></div>
+    <div class="prophets-grid" id="prophetsGrid"></div>
   </div>
-</div>
+
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: #D4AF37; font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem;"></h2>
+      
+      <div class="video-container" id="videoContainer" style="display: none;">
+        <video id="prophetVideo" controls>
+          <source src="" type="video/mp4" id="videoSource">
+        </video>
+      </div>
+
+      <div id="progressMessage" class="progress-message" style="display: none;"></div>
+    </div>
+  </div>
 
 <script>
   (function() {
@@ -261,19 +277,19 @@
 
     const translations = {
       EN: {
-        title: "Stories of the Prophets",
-        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. 🕊️<br>This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart. It is a moment of peace for my little birds.",
-        comingSoon: "This story is still being written in the stars... It will be ready for my little birds very soon. ✨"
+        title: "Prophets",
+        intro: "As the day ends and the lights grow soft, it is time for our stories to begin. This is where we gather for our special ritual to hear about the Prophets. These are simple stories of kindness and courage that can light up any heart. It is a moment of peace for my little birds.",
+        comingSoon: "This story is still being written in the stars for my little birds... ✨"
       },
       FR: {
-        title: "L'histoire des Prophètes",
-        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. 🕊️<br>C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher, à l'écoute de la vie des Prophètes. Leurs parcours sont des lumières qui parlent à chaque cœur. Un instant de sérénité pour mes petits oisillons.",
-        comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles... Elle sera bientôt prête pour mes petits oisillons. ✨"
+        title: "Prophètes",
+        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. C'est le moment où nous nous retrouvons pour ce rituel qui nous est cher. Leurs parcours sont des lumières qui parlent à chaque cœur. Un instant de sérénité pour mes petits oisillons.",
+        comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles pour mes petits oisillons... ✨"
       },
       AR: {
-        title: "قصص الأنبياء",
-        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. 🕊️<br>هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان. هي لحظة صفاء لعصافيري الصغار.",
-        comingSoon: "هذه القصة لا تزال تُكتب بين النجوم... ستكون جاهزة لعصافيري الصغار قريباً جداً. ✨"
+        title: "الأنبياء",
+        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ تلك الرحلات المليئة بالرحمة والعزيمة التي تلمس كل وجدان. هي لحظة صفاء لعصافيري الصغار.",
+        comingSoon: "هذه القصة لا تزال تُكتب بين النجوم لعصافيري الصغار... ✨"
       }
     };
 
@@ -312,10 +328,10 @@
 
     function setLanguage(lang) {
       document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${translations[lang].title} <i class="fas fa-heart heart-icon"></i>`;
+      document.getElementById('mainTitle').textContent = translations[lang].title;
       document.getElementById('dynamicIntro').innerHTML = translations[lang].intro;
       
-      const container = document.querySelector('.app-container');
+      const container = document.body;
       if(lang === 'AR') { container.classList.add('rtl'); container.setAttribute('dir', 'rtl'); }
       else { container.classList.remove('rtl'); container.setAttribute('dir', 'ltr'); }
       
