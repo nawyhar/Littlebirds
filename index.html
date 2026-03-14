@@ -11,8 +11,9 @@
   <style>
     :root {
       --gold: #D4AF37;
-      --gold-glow: rgba(212, 175, 55, 0.4);
-      --dark-bg: #070B13;
+      --gold-bright: #FFD700;
+      --gold-glow: rgba(212, 175, 55, 0.6);
+      --dark-bg: #05080F;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,185 +30,186 @@
       padding: 2rem 1rem;
     }
 
-    /* Animated Background Stars */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 80%);
-      z-index: -1;
-    }
-
-    /* Subtle floating particles effect */
-    @keyframes moveParticles {
-      from { transform: translateY(0); }
-      to { transform: translateY(-100px); }
-    }
+    /* Floating Dust */
     .particles {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px);
-      background-size: 50px 50px;
-      opacity: 0.1;
-      animation: moveParticles 20s linear infinite;
+      background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+      background-size: 60px 60px;
+      opacity: 0.15;
+      animation: drift 30s linear infinite;
       z-index: -1;
     }
 
-    /* Language Selector */
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-60px); }
+    }
+
+    /* Discreet Language Selector */
     .language-selector {
       position: fixed;
       top: 1.5rem;
       display: flex;
       gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      padding: 0.6rem 1.8rem;
+      background: rgba(10, 15, 25, 0.8);
+      backdrop-filter: blur(15px);
+      padding: 0.5rem 2rem;
       border-radius: 3rem;
       border: 1px solid rgba(212, 175, 55, 0.3);
       z-index: 2000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
 
     .lang-option {
       font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      color: rgba(212, 175, 55, 0.5);
+      color: rgba(212, 175, 55, 0.4);
       cursor: pointer;
       background: none; border: none;
-      transition: 0.4s;
-      letter-spacing: 1px;
+      transition: 0.3s;
     }
 
     .lang-option.active {
-      color: var(--gold);
-      text-shadow: 0 0 8px var(--gold-glow);
+      color: var(--gold-bright);
+      text-shadow: 0 0 10px var(--gold-glow);
     }
 
-    /* Container & Layout */
     .app-container {
-      max-width: 1100px;
+      max-width: 1000px;
       width: 100%;
       margin-top: 5rem;
       z-index: 10;
     }
 
-    /* Header & Luminous Hearts */
-    .intro-section { text-align: center; margin-bottom: 4rem; }
+    /* Intro Section with Luminous Frame */
+    .intro-section {
+      text-align: center;
+      margin-bottom: 5rem;
+      perspective: 1000px;
+    }
 
     .intro-title {
       font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: var(--gold);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
     }
 
     .heart-icon {
-      font-size: 1.4rem;
-      color: var(--gold);
-      filter: drop-shadow(0 0 8px var(--gold));
-      animation: heartPulse 2s ease-in-out infinite;
+      font-size: 1.2rem;
+      color: var(--gold-bright);
+      animation: pulse 2s infinite ease-in-out;
     }
 
-    @keyframes heartPulse {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 15px var(--gold)); }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; filter: blur(1px); }
+      50% { transform: scale(1.3); opacity: 1; filter: blur(0px); text-shadow: 0 0 15px var(--gold); }
+    }
+
+    .intro-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      cursor: default;
+    }
+
+    .intro-card:hover {
+      background: rgba(212, 175, 55, 0.04);
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+      transform: scale(1.02);
     }
 
     .intro-text {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 2;
-      max-width: 800px;
-      margin: 0 auto;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
       font-style: italic;
-      position: relative;
-      padding: 2rem;
-      background: rgba(212, 175, 55, 0.03);
-      border-radius: 2rem;
+      font-weight: 300;
     }
 
-    /* Grid & Cards */
+    /* Grid & Luminous Video Cards */
     .prophets-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
+      gap: 2rem;
       padding-bottom: 5rem;
     }
 
     .prophet-card {
-      position: relative;
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(212, 175, 55, 0.1);
-      border-radius: 2rem;
-      padding: 3rem 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 1.5rem;
+      padding: 3rem 1.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .prophet-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: 0.5s;
+      transition: all 0.5s ease;
+      position: relative;
     }
 
     .prophet-card:hover {
       transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      border-color: var(--gold-bright);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    .prophet-card:hover::before { opacity: 1; }
-
+    /* Portrait Styling */
     .card-portrait {
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       margin-bottom: 1.5rem;
-      background-size: cover;
+      background-size: 70%;
+      background-repeat: no-repeat;
       background-position: center;
-      z-index: 2;
       transition: 0.5s;
     }
 
     .prophet-card:hover .card-portrait {
-      border-color: var(--gold);
-      box-shadow: 0 0 20px var(--gold-glow);
+      border-color: var(--gold-bright);
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--gold-glow);
     }
 
+    /* Adam's Tree Portrait */
     .portrait-adam { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M48 85 C46 70, 48 60, 48 50 L52 50 C52 60, 54 70, 52 85 Z" fill="%23D4AF37" opacity="0.8"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 85 V60 M50 65 L35 50 M50 65 L65 50 M50 75 L40 70 M50 75 L60 70" stroke="%23D4AF37" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="3" fill="%23D4AF37"/><circle cx="65" cy="50" r="3" fill="%23D4AF37"/><circle cx="50" cy="40" r="4" fill="%23D4AF37"/><path d="M30 40 Q50 10 70 40" stroke="%23D4AF37" stroke-width="1.5" fill="none"/></svg>');
     }
 
     .portrait-generic { 
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.4"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.4"/></svg>');
     }
 
     .card-name { 
       font-family: 'Cinzel', serif; 
-      font-size: 1.2rem; 
+      font-size: 1.1rem; 
       color: var(--gold); 
-      z-index: 2;
       letter-spacing: 1.5px;
+      transition: 0.3s;
     }
 
-    /* Modal */
+    .prophet-card:hover .card-name {
+      color: var(--gold-bright);
+      text-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    /* Video Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 8, 15, 0.98);
+      background: rgba(3, 5, 10, 0.98);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -218,19 +220,20 @@
 
     .modal-overlay.active { visibility: visible; opacity: 1; }
 
-    .modal-content { max-width: 850px; width: 90%; text-align: center; }
+    .modal-content { max-width: 800px; width: 90%; text-align: center; }
 
-    .video-container { 
-      border-radius: 1rem; overflow: hidden; 
-      border: 1px solid var(--gold); 
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    .video-frame {
+      border: 1px solid var(--gold);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
     }
 
     .rtl { direction: rtl; }
 
     @media (max-width: 700px) {
       .intro-title { font-size: 1.8rem; }
-      .intro-text { font-size: 1rem; padding: 1.5rem; }
+      .intro-card { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -247,7 +250,9 @@
   <div class="app-container">
     <div class="intro-section">
       <h1 class="intro-title" id="mainTitle"></h1>
-      <div class="intro-text" id="dynamicIntro"></div>
+      <div class="intro-card">
+        <div class="intro-text" id="dynamicIntro"></div>
+      </div>
     </div>
 
     <div class="prophets-grid" id="prophetsGrid"></div>
@@ -255,12 +260,12 @@
 
   <div class="modal-overlay" id="quickViewModal">
     <div class="modal-content">
-      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 2rem; margin-bottom: 1.5rem;"></h2>
-      <div class="video-container" id="videoContainer" style="display: none;">
+      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold-bright); font-size: 2rem; margin-bottom: 2rem;"></h2>
+      <div class="video-frame" id="videoContainer" style="display: none;">
         <video id="prophetVideo" style="width:100%" controls><source src="" id="videoSource"></video>
       </div>
-      <div id="progressMessage" style="display: none; color: var(--gold); font-style: italic; font-size: 1.3rem;"></div>
-      <button onclick="closeModal()" style="margin-top: 2rem; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 2rem; border-radius: 2rem; cursor: pointer;">Close</button>
+      <div id="progressMessage" style="display: none; color: var(--gold); font-style: italic; font-size: 1.2rem; padding: 2rem;"></div>
+      <button onclick="closeModal()" style="margin-top: 2rem; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 2rem; border-radius: 2rem; cursor: pointer; font-family: 'Cinzel';">Close</button>
     </div>
   </div>
 
@@ -298,12 +303,12 @@
       },
       FR: {
         title: "Histoire des Prophètes",
-        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. Un moment de sérénité et de courage pour mes petits oisillons.",
+        intro: "Tandis que le jour s'efface et que la maison s'apaise, le temps des histoires commence enfin. C'est le moment de notre rituel sacré pour écouter la vie des Prophètes. Des récits de courage pour mes petits oisillons.",
         comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles pour mes petits oisillons... ✨"
       },
       AR: {
         title: "قصص الأنبياء",
-        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً لنستحضر سير الأنبياء؛ رحلات مليئة بالرحمة لعصافيري الصغار.",
+        intro: "مع هدوء النهار وبداية السكينة، يحين وقت حكاياتنا. هنا نلتفّ معاً في لمّتنا الهادئة لنستحضر سير الأنبياء؛ رحلات مليئة بالرحمة والسكينة لعصافيري الصغار.",
         comingSoon: "هذه القصة لا تزال تُكتب بين النجوم لعصافيري الصغار... ✨"
       }
     };
