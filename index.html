@@ -349,13 +349,19 @@
           document.getElementById('modalProphetName').textContent = prophet.names[lang];
           
           let hasVideo = false;
-          if(prophet.id === 'adam') {
+                    if(prophet.id === 'adam') {
             videoSource.src = `Video ${lang} mp4.mp4`;
             hasVideo = true;
-          } else if(prophet.id === 'enoch' && lang === 'FR') {
-            videoSource.src = `VIDEO IDRISS FR MP4.mp4`;
-            hasVideo = true;
+          } else if(prophet.id === 'enoch') {
+            if(lang === 'FR') {
+              videoSource.src = `VIDEO IDRISS FR MP4.mp4`;
+              hasVideo = true;
+            } else if(lang === 'AR') {
+              videoSource.src = `VIDEO AR MP4.mp4`;
+              hasVideo = true;
+            }
           }
+
 
           if(hasVideo) {
             video.load();
