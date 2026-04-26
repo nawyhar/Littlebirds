@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stories of the Prophets · Mes petits oisillons</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* Palette Céleste & Or Lumineux */
     :root {
       --celestial-blue-deep: #020817;
       --celestial-blue-mid: #04122b;
-      --celestial-glow: rgba(0, 191, 255, 0.1);
       --gold-pure: #FFD700;
       --gold-luminous: #FFFF00;
-      --gold-glow-intense: rgba(255, 215, 0, 0.8);
-      --gold-glow-subtle: rgba(255, 215, 0, 0.4);
+      --gold-glow: rgba(255, 215, 0, 0.4);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,276 +26,243 @@
       font-family: 'Poppins', sans-serif;
       color: #f0f0f0;
       min-height: 100vh;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1.5rem 1rem;
-      background-image: radial-gradient(circle at 50% 30%, var(--celestial-blue-mid) 0%, var(--celestial-blue-deep) 75%);
+      padding: 1.5rem 1.5rem;
+      background-image: radial-gradient(circle at 50% 30%, var(--celestial-blue-mid) 0%, var(--celestial-blue-deep) 80%);
       background-attachment: fixed;
     }
 
+    /* Background Particles Animation */
     .particles {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background-image: radial-gradient(var(--gold-pure) 0.8px, transparent 0.8px);
       background-size: 60px 60px;
       opacity: 0.1;
       animation: drift 60s linear infinite;
       z-index: -1;
     }
+    @keyframes drift { from { transform: translateY(0); } to { transform: translateY(-60px); } }
 
-    @keyframes drift {
-      from { transform: translateY(0); }
-      to { transform: translateY(-60px); }
-    }
-
+    /* Language Switcher */
     .language-selector {
-      position: fixed;
-      top: 1.5rem;
-      display: flex;
-      gap: 1.5rem;
-      background: rgba(2, 8, 23, 0.85);
-      backdrop-filter: blur(20px);
-      padding: 0.6rem 2.5rem;
-      border-radius: 3rem;
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      z-index: 2000;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+      position: fixed; top: 1.5rem; display: flex; gap: 1rem;
+      background: rgba(2, 8, 23, 0.9); backdrop-filter: blur(10px);
+      padding: 0.5rem 2rem; border-radius: 2rem;
+      border: 1px solid var(--gold-glow); z-index: 2000;
     }
-
     .lang-option {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: rgba(255, 215, 0, 0.5);
-      cursor: pointer;
-      background: none; border: none;
-      transition: 0.3s;
-      letter-spacing: 1px;
+      font-family: 'Cinzel', serif; font-weight: 700; color: rgba(255, 215, 0, 0.4);
+      background: none; border: none; cursor: pointer; transition: 0.3s;
     }
+    .lang-option.active { color: var(--gold-pure); text-shadow: 0 0 8px var(--gold-pure); }
 
-    .lang-option.active {
-      color: var(--gold-pure);
-      text-shadow: 0 0 10px var(--gold-glow-intense);
-    }
-
-    .app-container {
-      max-width: 1050px;
-      width: 100%;
-      margin-top: 5rem;
-      z-index: 10;
-    }
-
-    .intro-section {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .intro-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      color: var(--gold-pure);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-    }
-
-    .heart-icon {
-      font-size: 1.2rem;
-      color: var(--gold-luminous);
-      animation: pulse 2.5s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.3); opacity: 1; text-shadow: 0 0 20px var(--gold-luminous); }
-    }
-
+    /* Layout */
+    .app-container { max-width: 1100px; width: 100%; margin-top: 5rem; z-index: 10; }
+    
+    .intro-section { text-align: center; margin-bottom: 3.5rem; }
+    .intro-title { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold-pure); margin-bottom: 1rem; }
+    
     .neon-card {
       background: rgba(255, 255, 255, 0.03);
-      border: 4px solid var(--gold-pure);
-      border-radius: 1.5rem;
-      box-shadow: 0 0 10px var(--gold-glow-subtle), 0 0 20px var(--gold-glow-subtle) inset;
-      transition: all 0.4s ease;
+      border: 2px solid var(--gold-pure);
+      border-radius: 1.2rem;
+      box-shadow: 0 0 15px var(--gold-glow);
+      transition: 0.3s ease;
     }
+    .neon-card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
 
-    .neon-card:hover {
-      background: rgba(255, 255, 255, 0.06);
-      transform: translateY(-5px);
-      box-shadow: 0 0 30px var(--gold-glow-intense);
-    }
-
-    .intro-card { padding: 1.5rem; }
-
+    /* Grid */
     .prophets-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-      padding-bottom: 5rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
     }
-
     .prophet-card {
-      padding: 3.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
+      padding: 2.5rem 1rem;
+      display: flex; flex-direction: column; align-items: center; cursor: pointer;
     }
-
     .card-portrait {
-      width: 110px; height: 110px; border-radius: 50%;
-      margin-bottom: 1.5rem; border: 1px solid var(--gold-pure);
-      background-size: 85%; background-position: center; background-repeat: no-repeat;
+      width: 100px; height: 100px; border-radius: 50%;
+      margin-bottom: 1.2rem; border: 1px solid var(--gold-pure);
+      background-size: 70%; background-position: center; background-repeat: no-repeat;
+      background-color: rgba(255, 215, 0, 0.05);
     }
+    .card-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-pure); text-align: center; }
 
     /* Portraits SVGs */
-    .portrait-adam { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 85 C48 70, 48 60, 48 45 L52 45 C52 60, 54 70, 52 85 Z" fill="%23FFD700"/><circle cx="50" cy="15" r="5" fill="%23FFFF00"/></svg>'); }
-    .portrait-idris { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M45 20 L55 20 L58 70 L50 85 L42 70 Z" fill="%23FFD700" stroke="%23FFFF00" stroke-width="1"/></svg>'); }
-    .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="%23FFD700" stroke-width="1" opacity="0.4"/></svg>'); }
+    .portrait-adam { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 80 C48 65, 52 65, 50 80" stroke="%23FFD700" fill="none"/><circle cx="50" cy="30" r="15" fill="%23FFD700" opacity="0.6"/></svg>'); }
+    .portrait-generic { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="25" fill="none" stroke="%23FFD700" opacity="0.3"/></svg>'); }
 
+    /* Modal */
     .modal-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(1, 4, 12, 0.98);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 3000; visibility: hidden; opacity: 0; transition: 0.5s;
+      display: none; align-items: center; justify-content: center; z-index: 3000;
     }
-
-    .modal-overlay.active { visibility: visible; opacity: 1; }
+    .modal-overlay.active { display: flex; }
     .modal-content { max-width: 800px; width: 90%; text-align: center; position: relative; }
-    .close-modal-btn { position: absolute; top: -3rem; right: 0; background: none; border: none; font-size: 2.5rem; color: var(--gold-pure); cursor: pointer; }
-    .video-frame { border: 3px solid var(--gold-pure); border-radius: 1rem; overflow: hidden; }
-
+    .close-btn { position: absolute; top: -3.5rem; right: 0; color: var(--gold-pure); font-size: 2.5rem; cursor: pointer; background: none; border: none; }
+    .video-frame { border: 3px solid var(--gold-pure); border-radius: 1rem; overflow: hidden; background: #000; line-height: 0; }
+    
     .rtl { direction: rtl; }
   </style>
 </head>
-<body>
+<body class="ltr">
 
   <div class="particles"></div>
 
   <div class="language-selector">
-    <button class="lang-option" id="langAR" data-lang="AR">AR</button>
-    <button class="lang-option" id="langEN" data-lang="EN">EN</button>
-    <button class="lang-option" id="langFR" data-lang="FR">FR</button>
+    <button class="lang-option" onclick="setLanguage('AR')">AR</button>
+    <button class="lang-option" onclick="setLanguage('EN')">EN</button>
+    <button class="lang-option" onclick="setLanguage('FR')">FR</button>
   </div>
 
   <div class="app-container">
     <div class="intro-section">
       <h1 class="intro-title" id="mainTitle"></h1>
-      <div class="intro-card neon-card">
-        <div class="intro-text" id="dynamicIntro" style="font-style: italic; text-align: center;"></div>
+      <div class="intro-card neon-card" style="padding: 1.5rem;">
+        <p id="dynamicIntro" style="font-style: italic; opacity: 0.9;"></p>
       </div>
     </div>
+
     <div class="prophets-grid" id="prophetsGrid"></div>
   </div>
 
-  <div class="modal-overlay" id="quickViewModal">
+  <div class="modal-overlay" id="videoModal">
     <div class="modal-content">
-      <button class="close-modal-btn" onclick="closeModal()">&times;</button>
-      <h2 id="modalProphetName" style="font-family: 'Cinzel', serif; color: var(--gold-luminous); font-size: 2rem; margin-bottom: 2rem;"></h2>
-      <div class="video-frame" id="videoContainer" style="display: none;">
-        <video id="prophetVideo" style="width:100%" controls><source src="" id="videoSource"></video>
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2 id="modalName" style="color: var(--gold-pure); font-family: 'Cinzel', serif; margin-bottom: 1.5rem;"></h2>
+      
+      <div class="video-frame" id="vContainer" style="display: none;">
+        <video id="pVideo" style="width:100%" controls>
+          <source src="" id="vSource" type="video/mp4">
+        </video>
       </div>
-      <div id="progressMessage" style="display: none; color: var(--gold-pure); font-style: italic; font-size: 1.3rem; padding: 2rem;"></div>
+      
+      <div id="comingSoonMsg" style="display: none; padding: 2rem; color: var(--gold-pure); font-style: italic; font-size: 1.2rem;"></div>
     </div>
   </div>
 
 <script>
-  (function() {
-    const prophetsData = [
-      { id: "adam", names: { EN: "Adam", AR: "آدم", FR: "Adam" } },
-      { id: "enoch", names: { EN: "Enoch (Idris)", AR: "إدريس", FR: "Idris (Enoch)" } },
-      { id: "noah", names: { EN: "Noah (Nuh)", AR: "نوح", FR: "Nūh (Noé)" } },
-      { id: "salih", names: { EN: "Salih", AR: "صالح", FR: "Sālih" } },
-      { id: "lot", names: { EN: "Lot (Lut)", AR: "لوط", FR: "Lūt (Lot)" } },
-      { id: "hud", names: { EN: "Hud", AR: "هود", FR: "Hūd" } },
-      { id: "ibrahim", names: { EN: "Abraham (Ibrahim)", AR: "إبراهيم", FR: "Ibrāhīm (Abraham)" } },
-      { id: "shoaib", names: { EN: "Shuaib", AR: "شعيب", FR: "Shu‘ayb" } },
-      { id: "ismael", names: { EN: "Ishmael (Ismail)", AR: "إسماعيل", FR: "Ismā‘īl" } },
-      { id: "isaac", names: { EN: "Isaac (Ishaq)", AR: "إسحاق", FR: "Ishāq (Isaac)" } },
-      { id: "jacob", names: { EN: "Jacob (Yaqub)", AR: "يعقوب", FR: "Ya‘qūb (Jacob)" } },
-      { id: "joseph", names: { EN: "Joseph (Yusuf)", AR: "يوسف", FR: "Yūsuf (Joseph)" } },
-      { id: "job", names: { EN: "Job (Ayyub)", AR: "أيوب", FR: "Ayyūb (Job)" } },
-      { id: "moses", names: { EN: "Moses & Aaron", AR: "موسى وهارون", FR: "Mūsā & Hārūn" } },
-      { id: "ezekiel", names: { EN: "Ezekiel (Dhul-Kifl)", AR: "ذو الكفل", FR: "Dhūl-Kifl (Ézéchiel)" } },
-      { id: "elijah", names: { EN: "Elijah & Elisha", AR: "إلياس واليسع", FR: "Ilyās & Alyasa‘" } },
-      { id: "jonah", names: { EN: "Jonah (Yunus)", AR: "يونس", FR: "Yūnus (Jonas)" } },
-      { id: "david", names: { EN: "David & Solomon", AR: "داود وسليمان", FR: "Dāwūd & Sulaymān" } },
-      { id: "zakaria", names: { EN: "Zechariah & John", AR: "زكريا ويحيى", FR: "Zakariyyā & Yahyā" } },
-      { id: "jesus", names: { EN: "Jesus (Isa)", AR: "عيسى", FR: "‘Īsā (Jésus)" } },
-      { id: "muhammad", names: { EN: "Muhammad ⚘", AR: "محمد ﷺ", FR: "Muhammad ⚘" } }
-    ];
+  const prophets = [
+    { id: "adam", names: { EN: "Adam", AR: "آدم", FR: "Adam" } },
+    { id: "enoch", names: { EN: "Enoch (Idris)", AR: "إدريس", FR: "Idris (Enoch)" } },
+    { id: "noah", names: { EN: "Noah (Nuh)", AR: "نوح", FR: "Nūh (Noé)" } },
+    { id: "salih", names: { EN: "Salih", AR: "صالح", FR: "Sālih" } },
+    { id: "lot", names: { EN: "Lot (Lut)", AR: "لوط", FR: "Lūt (Lot)" } },
+    { id: "hud", names: { EN: "Hud", AR: "هود", FR: "Hūd" } },
+    { id: "ibrahim", names: { EN: "Abraham (Ibrahim)", AR: "إبراهيم", FR: "Ibrāhīm (Abraham)" } },
+    { id: "shoaib", names: { EN: "Shuaib", AR: "شعيب", FR: "Shu‘ayb" } },
+    { id: "ismael", names: { EN: "Ishmael (Ismail)", AR: "إسماعيل", FR: "Ismā‘īl" } },
+    { id: "isaac", names: { EN: "Isaac (Ishaq)", AR: "إسحاق", FR: "Ishāq (Isaac)" } },
+    { id: "jacob", names: { EN: "Jacob (Yaqub)", AR: "يعقوب", FR: "Ya‘qūb (Jacob)" } },
+    { id: "joseph", names: { EN: "Joseph (Yusuf)", AR: "يوسف", FR: "Yūsuf (Joseph)" } },
+    { id: "job", names: { EN: "Job (Ayyub)", AR: "أيوب", FR: "Ayyūb (Job)" } },
+    { id: "moses", names: { EN: "Moses & Aaron", AR: "موسى وهارون", FR: "Mūsā & Hārūn" } },
+    { id: "ezekiel", names: { EN: "Ezekiel (Dhul-Kifl)", AR: "ذو الكفل", FR: "Dhūl-Kifl (Ézéchiel)" } },
+    { id: "elijah", names: { EN: "Elijah & Elisha", AR: "إلياس واليسع", FR: "Ilyās & Alyasa‘" } },
+    { id: "jonah", names: { EN: "Jonah (Yunus)", AR: "يونس", FR: "Yūnus (Jonas)" } },
+    { id: "david", names: { EN: "David & Solomon", AR: "داود وسليمان", FR: "Dāwūd & Sulaymān" } },
+    { id: "zakaria", names: { EN: "Zechariah & John", AR: "زكريا ويحيى", FR: "Zakariyyā & Yahyā" } },
+    { id: "jesus", names: { EN: "Jesus (Isa)", AR: "عيسى", FR: "‘Īsā (Jésus)" } },
+    { id: "muhammad", names: { EN: "Muhammad ⚘", AR: "محمد ﷺ", FR: "Muhammad ⚘" } }
+  ];
 
-    const translations = {
-      EN: { title: "Stories of the Prophets", intro: "The night is arriving gently, my little birds, as we get ready for bed. Which story would you like to hear?", comingSoon: "This story is still being written in the stars... ✨" },
-      FR: { title: "Histoire des Prophètes", intro: "La nuit arrive tout doucement, mes petits oisillons. Quelle histoire aimeriez-vous écouter ?", comingSoon: "Cette histoire est encore en train d'être écrite dans les étoiles... ✨" },
-      AR: { title: "قصص الأنبياء", intro: "يقبل الليل بكل هدوء، عصافيري الصغار. أيُّ حكاية تودّون سماعها؟", comingSoon: "هذه القصة لا تزال تُكتب بين النجوم... ✨" }
-    };
+  const ui = {
+    EN: { title: "Stories of the Prophets", intro: "The night is arriving gently, my little birds... Which story would you like to hear?", soon: "This story is still being written in the stars... ✨" },
+    FR: { title: "Histoire des Prophètes", intro: "La nuit arrive tout doucement, mes petits oisillons... Quelle histoire aimeriez-vous écouter ?", soon: "Cette histoire est encore en train d'être écrite dans les étoiles... ✨" },
+    AR: { title: "قصص الأنبياء", intro: "يقبل الليل بكل هدوء، عصافيري الصغار... أيُّ حكاية تودّون سماعها؟", soon: "هذه القصة لا تزال تُكتب بين النجوم... ✨" }
+  };
 
+  let currentLang = 'FR';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    
+    // Update active button state
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.innerText === lang);
+    });
+
+    // Update UI Text
+    document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart" style="font-size:1rem; vertical-align:middle; opacity:0.6"></i> ${ui[lang].title} <i class="fas fa-heart" style="font-size:1rem; vertical-align:middle; opacity:0.6"></i>`;
+    document.getElementById('dynamicIntro').textContent = ui[lang].intro;
+    
+    // RTL handling
+    document.body.className = (lang === 'AR' ? 'rtl' : 'ltr');
+    
+    renderGrid();
+  }
+
+  function renderGrid() {
     const grid = document.getElementById('prophetsGrid');
-    const modal = document.getElementById('quickViewModal');
-    const video = document.getElementById('prophetVideo');
-    const videoSource = document.getElementById('videoSource');
-    const videoContainer = document.getElementById('videoContainer');
-    const progressMessage = document.getElementById('progressMessage');
+    grid.innerHTML = '';
     
-    function renderProphets(lang) {
-      grid.innerHTML = '';
-      prophetsData.forEach((prophet) => {
-        const card = document.createElement('div');
-        card.className = 'prophet-card neon-card';
-        let portraitClass = (prophet.id === 'adam') ? 'portrait-adam' : (prophet.id === 'enoch') ? 'portrait-idris' : 'portrait-generic';
+    prophets.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'prophet-card neon-card';
+      const portrait = p.id === 'adam' ? 'portrait-adam' : 'portrait-generic';
+      
+      card.innerHTML = `
+        <div class="card-portrait ${portrait}"></div>
+        <div class="card-name">${p.names[currentLang]}</div>
+      `;
+      
+      card.onclick = () => openModal(p);
+      grid.appendChild(card);
+    });
+  }
 
-        card.innerHTML = `<div class="card-portrait ${portraitClass}"></div><div class="card-name">${prophet.names[lang]}</div>`;
-        
-        card.onclick = () => {
-          document.getElementById('modalProphetName').textContent = prophet.names[lang];
-          let hasVideo = false;
+  function openModal(p) {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('pVideo');
+    const source = document.getElementById('vSource');
+    const container = document.getElementById('vContainer');
+    const soon = document.getElementById('comingSoonMsg');
 
-          if(prophet.id === 'adam') {
-            videoSource.src = `Video ${lang} mp4.mp4`;
-            hasVideo = true;
-          } else if(prophet.id === 'enoch') {
-            if(lang === 'FR') { videoSource.src = `VIDEO IDRISS FR MP4.mp4`; hasVideo = true; }
-            else if(lang === 'AR') { videoSource.src = `VIDEO IDRISS AR MP4.mp4`; hasVideo = true; }
-          }
-
-          if(hasVideo) {
-            video.load();
-            videoContainer.style.display = 'block';
-            progressMessage.style.display = 'none';
-          } else {
-            videoContainer.style.display = 'none';
-            progressMessage.textContent = translations[lang].comingSoon;
-            progressMessage.style.display = 'block';
-          }
-          modal.classList.add('active');
-        };
-        grid.appendChild(card);
-      });
+    document.getElementById('modalName').textContent = p.names[currentLang];
+    
+    let videoFile = "";
+    if (p.id === 'adam') {
+      videoFile = `Video ${currentLang} mp4.mp4`;
+    } else if (p.id === 'enoch') {
+      if (currentLang === 'FR') videoFile = "VIDEO IDRISS FR MP4.mp4";
+      if (currentLang === 'AR') videoFile = "VIDEO IDRISS AR MP4.mp4";
     }
 
-    function setLanguage(lang) {
-      document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      document.getElementById('mainTitle').innerHTML = `<i class="fas fa-heart heart-icon"></i> ${translations[lang].title} <i class="fas fa-heart heart-icon"></i>`;
-      document.getElementById('dynamicIntro').textContent = translations[lang].intro;
-      document.body.dir = (lang === 'AR' ? 'rtl' : 'ltr');
-      document.body.classList.toggle('rtl', lang === 'AR');
-      renderProphets(lang);
+    if (videoFile) {
+      source.src = videoFile;
+      video.load();
+      container.style.display = "block";
+      soon.style.display = "none";
+    } else {
+      container.style.display = "none";
+      soon.textContent = ui[currentLang].soon;
+      soon.style.display = "block";
     }
 
-    document.getElementById('langEN').onclick = () => setLanguage('EN');
-    document.getElementById('langAR').onclick = () => setLanguage('AR');
-    document.getElementById('langFR').onclick = () => setLanguage('FR');
-    
-    window.closeModal = () => { modal.classList.remove('active'); video.pause(); }
-    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+    modal.classList.add('active');
+  }
 
-    setLanguage('FR'); // Default to French as requested
-  })();
+  function closeModal() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('pVideo');
+    modal.classList.remove('active');
+    video.pause();
+    document.getElementById('vSource').src = ""; // Clear source to stop memory usage
+  }
+
+  // Close on outside click
+  window.onclick = (e) => {
+    if (e.target.id === 'videoModal') closeModal();
+  };
+
+  // Initial Launch
+  setLanguage('FR');
 </script>
+
 </body>
 </html>
